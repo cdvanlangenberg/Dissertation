@@ -1,0 +1,211 @@
+\documentclass[phd]{uncgdissertation}
+% default is 12pt, phd, doublespaced.
+% Masters students should use the ma on as shown below.
+% \documentclass[ma]{uncgdissertation}
+
+%%------------------------------------------------------------------%%
+%%------------------------- Import Packages ------------------------%%
+%%------------------------------------------------------------------%%
+%% This is where you can put other packages that you may need. 
+%% Note that several packages including amsmath, amsthm, amsfonts,
+%% hyperref have already been loaded.  
+
+
+
+%%------------------------------------------------------------------%% 
+%%--------------------------- Content ------------------------------%%
+%%------------------------------------------------------------------%%
+%% Members of committee
+%% Masters students are required to have chair plus two
+%% PhD students require chair plus three.
+%% The class can handle up to chair plus five.
+\chair{Haimeng Zhang}      % Guidelines say don't use Dr.
+\member{Sat Gupta}    % Guidelines say don't use Dr.
+\member{Scott Richter}    % Guidelines say don't use Dr.
+\member{Xiaoli Gao}    % Guidelines say don't use Dr.
+\member{Shan Suthaharan}    % Guidelines say don't use Dr.
+
+%% Your name goes here.
+\student{Christopher D.}{Vanlangenberg} 
+%% Some other options
+
+%% Thesis Title
+%%    +  Capitalize first letter of important words. 
+%%    +  Use inverted pyramid shape if title spans more than one line.
+%%  Note: You can force break the title onto multiple lines using
+%%  \break instead of \\. 
+\title{Data Generation and Esimation for Axially Symmertic Processes on the Sphere }
+
+%% Degree year.  
+\degreeyear{2016}
+
+%%------------------------------------------------------------------%% 
+%%----------------------- Personal Macros --------------------------%%
+%%------------------------------------------------------------------%%
+%% A central location to add your favorite macros.  A few examples are
+%% given below.  See tips for samples.
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}{Proposition}[section]
+
+\newcommand{\eqn}[1]{{\begin{equation}}{#1}{\end{equation}}}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+
+\newcommand{\blue}[1]{\textcolor{blue}{\emph{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{\emph{#1}}}
+
+\newcommand{\xn}{x_1,\ldots, x_n}
+\newcommand{\Xn}{X_1,\ldots, X_n}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\pd}{positive definite }
+
+\newcommand{\code}[1]{{\small\texttt{#1}}}
+\newcommand{\pkg}[1]{{\normalfont\textsf{#1}}}
+\newcommand{\var}[1] {{\normalfont\textbf{#1}}}
+
+\newcommand{\Cm}{$C_m(\phi_P, \phi_Q)\ $}
+
+
+%% In order to get singlespacing, uncomment the line below.
+%\renewcommand{\doublespacing}{\singlespacing}
+
+%%------------------------------------------------------------------%%
+
+\begin{document}  % required
+\frontmatter      % required
+
+%%------------------------------------------------------------------%%
+%% -------------------------- Abstract -----------------------------%%
+%%------------------------------------------------------------------%%
+\input{abstract.tex}
+
+%%------------------------------------------------------------------%%
+%%---------------------------- Title page --------------------------%%
+%%------------------------------------------------------------------%%
+%% The title page is required. 
+\maketitlepage  
+
+%%------------------------------------------------------------------%%
+%% ------------------------ Copyright page -------------------------%%
+%%------------------------------------------------------------------%%
+%% This page is required if you opt for a copyright.  Otherwise, don't
+%% include it.
+\makecopyrightpage
+
+%%------------------------------------------------------------------%%
+%%---------------------------- Dedication --------------------------%%
+%%------------------------------------------------------------------%%
+%% The dedication is often short.  Longer statements are usually in
+%% the acknowledgements.  The dedication is optional.
+
+\begin{dedication}
+In memory of my fater, Donald Anthony Vanlangenberg
+\end{dedication}
+
+%%------------------------------------------------------------------%%
+%%------------------------ Approval page  --------------------------%%
+%%------------------------------------------------------------------%%
+%% The approval page is required.  If all of your infomation is entered
+%% correctly in the contents section, this should come out correctly.
+\makeapprovalpage
+
+%%------------------------------------------------------------------%%
+%%-------------------------- Acknowledgements ----------------------%%
+%%------------------------------------------------------------------%%
+%% The acknowledgements are optional but highly recommended.  See tips
+%% for details. 
+\begin{acknowledgements}
+\textcolor{red}{Complete later...............!}
+\end{acknowledgements}
+
+%%------------------------------------------------------------------%%
+%%----------------------------- Preface ----------------------------%%
+%%------------------------------------------------------------------%%
+%% The preface is optional.
+%\begin{preface}
+%Your (optional) preface goes here.  See tips for description.
+%\end{preface}
+
+%%------------------------------------------------------------------%%
+%%---------------------- Table of Contents -------------------------%%
+%%------------------------------------------------------------------%%
+%% The table of contents is required.  
+\tableofcontents % required 
+
+
+%%------------------------------------------------------------------%%
+%%---------------------- List of Tables ----------------------------%%
+%%------------------------------------------------------------------%%
+% recommended if you have tables.  
+\listoftables   
+
+
+%%------------------------------------------------------------------%%
+%%---------------------- List of Figures ---------------------------%%
+%%------------------------------------------------------------------%%
+% recommended if you have figures
+\listoffigures   
+
+
+%%------------------------------------------------------------------%%
+%% This signifies that you are done with the frontmatter and ready to
+%% proceed to the main part.  The rest of your document goes below.
+\mainmatter % required
+
+%%------------------------------------------------------------------%%
+\chapter{Introduction (due Augth 4th)}
+\input{Introduction.tex} 
+
+%%------------------------------------------------------------------%%
+\chapter{Literature Review (due August 28)}
+\input{literature.tex}
+
+
+%%------------------------------------------------------------------%%
+\chapter{Covariance and Variogram Estimation on the Cricle (due July 31)}
+\input{circle.tex}
+
+%%------------------------------------------------------------------%%
+\chapter{Random Process on a Sphere (due August 21)}
+\input{sphere.tex}
+
+%%------------------------------------------------------------------%%
+\chapter{Global Data Generation on the Sphere (due August 21)}
+\input{datageneration.tex}
+
+%%------------------------------------------------------------------%%
+\chapter{Future Research (due August 28)}
+\input{future.tex}
+
+%%------------------------------------------------------------------%%
+%%------------------------ Bibliography ----------------------------%%
+%%------------------------------------------------------------------%%
+%% Replace the myreferences with the name of your bib file.  Then you
+%% can run bibtex as usual.  See tips for details.
+%%------------------------------------------------------------------%%
+
+\bibliography{biblography}
+\bibliographystyle{amsalpha}
+
+%%------------------------------------------------------------------%%
+%%------------------------- Appendices -----------------------------%%
+%%------------------------------------------------------------------%%
+%% If you choose not to have appendices, comment out the \appendix
+%% line and the chapters below.
+%%------------------------------------------------------------------%%
+%\appendix
+%\chapter{Appendix Title Goes Here}
+%Appendix material goes here.
+
+%%------------------------------------------------------------------%%
+\backmatter % required
+%%------------------------------------------------------------------%%
+%%----------------------- YOU ARE FINISHED ! -----------------------%%
+%%------------------------------------------------------------------%%
+
+\end{document}
