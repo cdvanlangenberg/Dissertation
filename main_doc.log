@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.4.2)  27 JUL 2016 23:28
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.4.2)  28 JUL 2016 07:22
 entering extended mode
 **main_doc.tex
 (C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\main_doc.tex
@@ -582,15 +582,17 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\abstract.texpdfTeX warni
-ng (ext4): destination with the same identifier (name{page.1}) has been already
- used, duplicate ignored
+(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\chapters/abstract.texpdf
+TeX warning (ext4): destination with the same identifier (name{page.1}) has bee
+n already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.20 \end{abstract}
                     [1])
 Chapter 1.
-(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\Introduction.tex
+
+(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\chapters/Introduction.te
+x
 Underfull \hbox (badness 10000) in paragraph at lines 33--35
 
  []
@@ -624,18 +626,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
 [3]) [4]
 Chapter 2.
-(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\literature.tex [5
+(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\chapters/literature.tex
+[5
 
-]
-[6]) [7pdfTeX warning (ext4): destination with the same identifier (name{table.
-2.1}) has been already used, duplicate ignored
+] [6]) [7pdfTeX warning (ext4): destination with the same identifier (name{tabl
+e.2.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.33 \chapter
              {Covariance and Variogram Estimation on the Cricle (due July 31)}]
 Chapter 3.
-(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\circle.tex
+(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\chapters/circle.tex
 LaTeX Font Info:    Try loading font information for TS1+aer on input line 10.
 
 ("C:\Program Files\R\R-3.2.1\share\texmf\tex\latex\ts1aer.fd"
@@ -644,18 +646,20 @@ File: ts1aer.fd
 LaTeX Font Info:    Font shape `TS1/aer/m/it' in size <12> not available
 (Font)              Font shape `TS1/cmr/m/it' tried instead on input line 10.
 
-<Summary-covarince_circle_1.pdf, id=179, 505.89pt x 361.35pt>
-File: Summary-covarince_circle_1.pdf Graphic file (type pdf)
+<graphs/Summary-covarince_circle_1.pdf, id=179, 505.89pt x 361.35pt>
+File: graphs/Summary-covarince_circle_1.pdf Graphic file (type pdf)
 
-<use Summary-covarince_circle_1.pdf>
-Package pdftex.def Info: Summary-covarince_circle_1.pdf used on input line 19.
+<use graphs/Summary-covarince_circle_1.pdf>
+Package pdftex.def Info: graphs/Summary-covarince_circle_1.pdf used on input li
+ne 19.
 (pdftex.def)             Requested size: 305.33788pt x 218.10188pt.
 
-<Summary-covarince_circle_2.pdf, id=180, 505.89pt x 325.215pt>
-File: Summary-covarince_circle_2.pdf Graphic file (type pdf)
+<graphs/Summary-covarince_circle_2.pdf, id=180, 505.89pt x 325.215pt>
+File: graphs/Summary-covarince_circle_2.pdf Graphic file (type pdf)
 
-<use Summary-covarince_circle_2.pdf>
-Package pdftex.def Info: Summary-covarince_circle_2.pdf used on input line 32.
+<use graphs/Summary-covarince_circle_2.pdf>
+Package pdftex.def Info: graphs/Summary-covarince_circle_2.pdf used on input li
+ne 32.
 (pdftex.def)             Requested size: 305.33788pt x 196.2917pt.
 ) [8
 
@@ -680,14 +684,18 @@ l.37 \chapter
                                                   \fi \fi 
 l.37 \chapter
              {Random Process on a Sphere (due August 21 } <C:/Users/Chris/Dropb
-ox/Research/Dissertation/Chapters/Summary-covarince_circle_1.pdf> <C:/Users/Chr
-is/Dropbox/Research/Dissertation/Chapters/Summary-covarince_circle_2.pdf>]
+ox/Research/Dissertation/Chapters/graphs/Summary-covarince_circle_1.pdf> <C:/Us
+ers/Chris/Dropbox/Research/Dissertation/Chapters/graphs/Summary-covarince_circl
+e_2.pdf>]
 Chapter 4.
-(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\sphere.tex) [10
+(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\chapters/sphere.tex)
+[10
 
 ]
 Chapter 5.
-(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\datageneration.tex
+
+(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\chapters/datageneration.
+tex
 Overfull \hbox (1.79333pt too wide) in paragraph at lines 3--3
 []\T1/aer/bx/n/17.28 Cross Var-i-ogram Es-ti-ma-tion and Data Ver-i-fi-ca-tion)
  
@@ -697,7 +705,7 @@ Overfull \hbox (1.79333pt too wide) in paragraph at lines 3--3
 
 ]
 Chapter 6.
-(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\future.tex)
+(C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\chapters/future.tex)
 (C:\Users\Chris\Dropbox\Research\Dissertation\Chapters\main_doc.bbl [12
 
 ])
@@ -719,13 +727,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 49.
  ) 
 Here is how much of TeX's memory you used:
- 8428 strings out of 493921
- 122010 string characters out of 3144925
+ 8431 strings out of 493921
+ 122271 string characters out of 3144925
  207159 words of memory out of 3000000
  11447 multiletter control sequences out of 15000+200000
  44943 words of font info for 99 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 37i,12n,43p,1022b,416s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,12n,43p,1031b,416s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Chris\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
 tcti1200.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 mbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cme
@@ -742,7 +750,7 @@ s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files
 6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main_doc.pdf (15 pages, 253694 bytes).
+Output written on main_doc.pdf (15 pages, 253784 bytes).
 PDF statistics:
  290 PDF objects out of 1000 (max. 8388607)
  70 named destinations out of 1000 (max. 500000)
