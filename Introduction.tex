@@ -1,0 +1,104 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introduction and General Definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\input{template.tex}
+%
+%\begin{document}
+%\bibliographystyle{apalike}
+
+\begin{description}
+\item [Strict stationarity:] for all finite $n,\ \xn \in \mathbb{R}^d$, $h_1, \ldots, h_n\in\mathbb{R} \mbox{ and } x\in \mathbb{R}^d$,
+\beq
+P\{Z(x_1+x)\le h_1, \ldots, Z(x_n+x)\le h_n\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n\}
+\eeq
+  \item [Weak stationarity:] If a random process $Z(x)$ has a finite second moment, it's mean function is constant and the covariance is a function of distance $C(h)=Cov(Z(x),Z(x+h))$ also referred as auto-covariance).\\
+Note: Strictly stationary random fields with finite second moments is also weakly stationary.
+
+\item [Intrinsic stationarity:] If the variance between two locations depend only on the distance of two locations. Weak stationarity implies intrinsic stationarity.
+
+\item [Isotrophy:] The invariance property of stationarity due to rotations and reflections. If $Z(x)$ is a random field on $\mathbb{R}^d$ it is strictly isotropic if the joint distributions are invariant under all rigid motions. {\em i.e.,} for any orthogonal $d\times d$ matrix $H$ and any $x\in \R^d$
+\beq
+P\{Z(Hx_1+x)\le h_1, \ldots, Z(Hx_n+x)\le h_n\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n\}
+\eeq
+Isotropy assumes that it is not required to distinguish one direction from another for the random field $Z(x)$.
+
+\item [Autocovariance:] Suppose $Z(x)$ is weakly stationary on $\R^d$ with autocavariance function $C(h) = cov(Z(x), Z(x+h))$ then,
+\begin{eqnarray*}
+C(0)& \ge & 0 \\
+C(h)&=& C(-h)\\
+|C(h)|& \le & C(0)\\
+\end{eqnarray*}
+Note: $C(\cdot)$ function is p.d. if
+$$\sum_{i,j=1}^{N} a_i a_j C(x_i - x_j) \ge 0,$$
+for any integer $N$, any constants $a_1, a_2, \ldots, a_N$, and any locations $x_1, x_2, \ldots, x_N$. \\
+
+\textbf{Some properties of a p.d. function}
+\begin{enumerate}
+\item If $C_1, C_2$ are p.d. then $a_1C_1+a_2C_2$ is p.d. $\forall a_1,a_2\ge 0$
+\item If $C_1, C_2, \ldots$ are p.d. and $\underset{n\to\infty} {lim}\ C_n(x)=C(x),\ \forall x\in \R^d$, then $C$ is p.d.
+\item If $C_1, C_2$ are p.d. then $C(x)=C_1(x)C_2(x)$ is p.d.
+\end{enumerate}
+
+\item [Semivariogram:] an alternative to the covariance function proposed by Matheron. For an intrinsically stationary random field $Z(s)$,
+\begin{align}
+E[Z(s)] &= \mu , \nonumber \\
+\gamma(h) &= \frac{1}{2} Var(Z(s+h) -Z(s)),
+\end{align}
+Where $\gamma$ is the semivariogram and $\gamma(h) = C(0) - C(h)$ for a weakly stationary process with covariance function $C(h)$.
+
+\item [Mean square continuity \& differentiability:] there is no simple relationship between $C(h)$ and the smoothness of $Z(x)$. For a sequence of random variables $X_1, X_2,\ldots$ and a random variable $X$ defined on a common probability space. Define,$X_n\overset{L^2}\to X$ if, $E(X^2)<\infty$ and $E(X_n - X)^2\to 0$ as $n \rightarrow \infty$. We can say, $\{X_n\}$ converges in $L^2$ if there exists such a $X$.\\
+
+Suppose $Z(x)$ is a random field on $\R^d$, Then $Z(x)$ is mean square continuous at $x$ if, $$\lim_{h\to 0} E(Z(x+h)-Z(x))^2 =0$$
+If $Z(x)$ is weak stationary and $C(\cdot)$ is the covariance function then $E(Z(x+h)-Z(x))^2=2(C(0)-C(h))$. Therefore $Z(x)$ is mean square continuous iff $C(\cdot)$ is continuous at the origin.
+
+\item [Spectral methods:] Sometimes it is convenient to use complex valued random functions, rather than real valued random functions. \\
+
+We say, $Z(x)=U(x) + i V(x)$ is a complex random field if $U(x),V(x)$ are real random fields. If $U(x),V(x)$ are weakly stationary so does $Z(x)$.The covariance function can be defined as,
+\begin{eqnarray*}
+C(h) = cov(Z(x+h), \overline{Z(x)}), \quad C(-x)=\overline{C(x)},
+\end{eqnarray*}
+for any complex constants $c_1,\ldots, c_n,$ and any locations $x_1, x_2, \ldots, x_n$,
+
+\beq \sum_{i,j=1}^n c_i\bar{c_j}C(x_i-x_j)\ge 0\eeq
+
+\item [Spectral representation of a random field:] Suppose $\omega_1,\ldots, \omega_n \in \mathbb{R}^d$ and let $Z_1, \ldots, Z_n$ be mean zero complex random variables with  $E(Z_i\bar{Z_j})=0, i\ne j\ and\ E|Z_i|^2=f_i$. Then the random sum
+\beq Z(x) = \sum_{k=1}^n Z_k e^{i\omega_k^Tx}.\eeq
+Then $Z(x)$ given above is a weakly stationary complex random field in $\mathbb{R}^d$ with covariance function $C(x) = \sum_{k=1}^n f_k e^{i\omega_k^Tx}$\\
+
+Further, if we think about the integral as a limit in $L^2$ of the above random sum, then the covariance function can be represented as,
+\beq C(x) = \int_{\mathbb{R}^d} e^{i\omega^Tx} F(d\omega)\eeq
+where $F$ is the so-called spectral distribution. For more details one can refer to \cite{stein1999}[p. 24],  Here is a more general result from Bochner.
+
+\begin{thm}[Bochner's Theorem]\hfill \\
+A complex valued covariance function $C(\cdot)$ on $\mathbb{R}$ for a weakly stationary mean square continuous complex-valued random field on $\mathbb{R}^d$ iff it can be represented as above, where $F$ is a positive measure.
+\end{thm}
+
+If $F$ has a density with respect to Lebesgue measure (spectral density) denoted by $f$, ($i.e.$ if such $f$ exists) we can use the inversion formula to obtain $f$
+\beq f(\omega) = \frac{1}{(2\pi)^d}  \int_{\mathbb{R}^d} e^{-i\omega^Tx} C(x) dx \eeq
+
+\item [Septral densities:  Rational Functions] that are even,  nonnegative and integrable the corresponding covariance functions can be expressed in terms of elementary functions. For example if $f(\omega) =\phi (\alpha^2+\omega^2)^{-1}$, then $C(h) = \pi\phi\alpha^{-1}e^{-\alpha|h|}$ (obtained by contour integration).
+
+\item [Septral densities: Gaussian Model]
+Commonly used covariance function for a smooth process on $\mathbb{R}$ where the covariance function is given by $C(h)=ce^{-\alpha h^2}$ and the corresponding spectral density is $ f(\omega) = \frac{1}{2\sqrt{\pi\alpha}}c e^{\frac{-\omega^2}{4\alpha}}$.
+
+\item [Septral densities: Matern class] has more practical use and more frequently used in spatial statistics. The spectral density of the form $f(\omega) =\frac{1}{\phi(\alpha^2+\omega^2)^{\nu+1/2}}$ where $\phi,\nu,\alpha>0$ and the corresponding covariance function  is
+\beq \label{matern_var} C(h) = \frac{\pi^{1/2}\phi}{2^{\nu-1}\Gamma(\nu+1/2)\alpha^{2\nu}} (\alpha|h|)^{\nu} Y_{\nu}(\alpha|t|),\eeq
+
+where $Y_{\nu}$ is the modified Bessel function, the larger the $\nu$ smoother the $Y$. Further, $Y$ will be $m$ times square differntiable iff $\ \nu>m$. When $\nu$ is in the form of $m+1/2$ with $m$ a non negative integer, the spectral density is rational and the covariance function is in the form of $e^{-\alpha|h|}\cdot$ polynomial$(|h|)$ \\
+\begin{eqnarray*}
+\nu = 1/2 &:& C(h) = \pi\phi\alpha^{-1}e^{-\alpha|h|}\\
+\nu = 3/2 &:& C(h) = \frac{1}{2}\pi\phi\alpha^{-3}e^{-\alpha|h|}(1+\alpha|h|)\\
+\end{eqnarray*}
+
+\item [{\bf $Mat\acute{e}rn$} Variance:] We can use the covariance function given by (\ref{matern_var}) to compute the Matern variances at different latitudes. The spectral density of the rational form was fitted to residuals of TOMS data.
+
+
+\end{description}
+
+
+
+
+
+%\bibliography{biblography}
+%\end{document}

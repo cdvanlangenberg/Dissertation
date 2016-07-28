@@ -1,0 +1,61 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Literature review
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\input{template.tex}
+%
+%\begin{document}
+%\bibliographystyle{apalike}
+\begin{enumerate}
+
+\item Axially symmetry, which means that a process is invariant to rotations about the Earth's axis. The idea was first proposed by \cite{Jones1963}, where the covariance function depends on the longitudes only through their difference.
+
+\item In the study of a random process on a sphere, homogeneity (covariance depends solely on distance between locations) was assumed. However, this assumption may not be reasonable for actual data. \cite{Stein2007} argued that Total Ozone Mapping Spectrometer (TOMS) data varies strongly with latitudes and homogeneous models are not suitable. Further, \cite{CressieJohannesson2008}, \cite{JunStein2008}, \cite{BolinLindgren2011} pointed out that homogeneity assumption is not reasonable.   
+
+\item There are no methods to test axially symmetry in real data. However, this assumption is more plausible and reasonable when modeling spatial data. For example, temperature, moisture, etc. most likely symmetric on longitudes rather than latitudes. \cite{Stein2007} propose a method to model axially symmetric process on a sphere (the fitted model is not the best, but this was a good start).
+
+\item There are no practically useful parametric models available, for our knowledge only models available so far, \cite{stein1999} with 170 parameters to estimate and \cite{CressieJohannesson2008} more than 396 parameters to estimate.
+%\blue{add description about the data}
+
+\item When modeling spatial data stationary models are less useful;\cite{JunStein2008} has proposed flexible class of parametric covariance models to capture the non-stationarity of global data. They used Discrete Fourier Transform (DFT) to the data on regular grids and calculated the exact likelihood for large data sets. Furthermore, they used Legendre polynomials to remove the spatial trends when fitting models to global data.
+
+\item \cite{Lindgren2011} analyzed global temperature data with a non-stationary model defined on a sphere using Gaussian Markov Random Fields (GMRF) and Stochastic Partial Differential Equations (SPDE)
+
+\item Monte Carlo Markov Chain (MCMC) is another approach to model non-stationary covariance models on a sphere. \cite{BolinLindgren2011} (continuation of the work proposed in \cite{Lindgren2011} ) constructed a class of stochastic field models using Stochastic Partial Differential Equations (SPDEs). Non stationary covariance models were obtained by spatially varying the parameters in the SPDEs, they argue that this method is more efficient than standard MCMC procedures. There are many articles followed this techniques but we will not discuss more details about these methods.
+
+\item Spatio-temporal mixed-effects model for dimension reduction was proposed by \cite{KatzfussCressie2011}. They used MOM parameter estimation method (similar approach in FRS). This work is also based on \cite{CressieJohannesson2008} spatial only Fixed Rank model. These methods are eventually focused on Bayesian approach and are less interested about topic.
+
+\item The previous studies have argued that many processes on a sphere are not homogeneous, especially in latitude direction. \cite{Huang2012} proposed a class of statistical processes that are axially symmetric and covariance functions that depend on longitudinal differences. Moreover, they have proposed longitudinally reversible processes and some motivations to construct axially symmetric processes. The covariance models implemented in this dissertation are modified versions of the covariance models proposed by \cite{Huang2012}.  
+
+\item \cite{HitczenkoStein2012} discuss about the properties of an existing class of models for axially symmetric Gaussian processes on the sphere. They applied first-order differential operators to an isotropic process. draw conclusions about the local properties of the processes. Under some restrictions they derived explicit forms for the spherical harmonic representation of these processes covariance functions, and make conclusions about the local properties of the processes.
+
+\item The issues associated when modeling axially symmetric spatial random fields on a sphere was discussed by \cite{Li2013}. They proposed convolution methods to generate random fields with a class of $Mat\acute{e}rn$-type kernel functions by allowing the parameters in the kernel function to vary with location. Moreover, they were able to generate flexible class of covariance functions and capture the non-stationary properties on a sphere. Used FFT to get the determinant and the inverse efficiently. Further, semi-parametric variogram estimation method using spectral representation was proposed for intrinsically stationary random fields on $S^2$.     
+
+%\item \cite{HeatonKatzfussBerrettEtAl2014}
+
+\item  $Mat\acute{e}rn$ covariance models are widely used when modeling spatial data, but when the smoothness parameter ($\nu$) is greater than 0.5 it is not valid for the homogeneous processes on the Earth surface with great circle distance. \cite{JeongJun2015} proposed $Mat\acute{e}rn$-like covariance functions for smooth processes on the earth surface that are valid with great circle distance (models were tested on sea levels pressure data).  
+
+\end{enumerate}
+
+\begin{table}[H]
+\label{parameters}
+\centering
+\begin{tabular}{l|l|l|l}
+\hline 
+Family & C(h)  & Parameters & Validity \\ \hline \hline
+$Mat\acute{e}rn$ &  $\frac{\sigma^2}{2^{\nu-1}\Gamma(\nu)} (\frac{h}{\phi})^{\nu} Y_{\nu}(\frac{h}{\phi})$  & $\nu, \sigma^2, \phi$ & $R^3, S^2$ when $\nu\le 0.5$ \\ 
+
+Spherical & $\sigma^2(1-\frac{3h}{2\phi}+\frac{1}{2}(\frac{h}{\phi})^3)I_{0\le h\le \phi}$ & $\phi, \sigma^2$& $R^3, S^3$ \\
+
+Exponential & $\sigma^2exp\{-(h/\phi)\}$ & $\phi, \sigma^2$ & $R^3$ \\
+
+Gaussian & $\sigma^2exp \{-(h/\phi)^2\}$ & $\phi, \sigma^2$ & $R^3$ \\
+
+Power & $\sigma^2(C_0-(h/\phi)^{\alpha}$ & $\phi, \sigma^2$ & $R^3 \alpha\in [0,2],S^2 \alpha \in (1,2]$ \\ \hline
+\end{tabular}
+\caption{Commonly used covariance and variogram models}
+\end{table}
+
+%\blue{Fill the above table later  }
+
+%\end{document}

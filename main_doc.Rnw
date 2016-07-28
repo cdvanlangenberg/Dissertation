@@ -1,0 +1,48 @@
+\input{template.tex}
+\usepackage{graphicx}
+
+\begin{document}
+\bibliographystyle{apalike}
+\SweaveOpts{concordance=TRUE}
+
+\title{{\bf\Large Data Generation and Estimation for Axially Symmetric Processes on the Sphere }}
+
+
+\author{Chris Vanlangenberg\footnote{cdvanlan@uncg.edu} \\
+\bigskip
+Advisor: Dr. Haimeng Zhang\footnote{h\_zhang5@uncg.edu}\\ \small{University of North Carolina at Greensboro}\\
+\small \today}
+
+\maketitle 
+\thispagestyle{empty}
+\input{abstract.tex}
+
+
+\newpage
+%%------------------------------------------------------------------%%
+\chapter{Introduction (due Augth 4th)}
+\input{Introduction.tex}
+
+%%------------------------------------------------------------------%%
+\chapter{Literature Review (due August 28)}
+\input{literature.tex} 
+
+
+%%------------------------------------------------------------------%%
+\chapter{Covariance and Variogram Estimation on the Cricle (due July 31)}
+\input{circle.tex}
+
+%%------------------------------------------------------------------%%
+\chapter{Random Process on a Sphere (due August 21 }
+\input{sphere.tex}
+
+%%------------------------------------------------------------------%%
+\chapter{Global Data Generation on the Sphere (due August 21)}
+\input{datageneration.tex}
+
+%%------------------------------------------------------------------%%
+\chapter{Future Research (due August 28)}
+\input{future.tex}
+
+\bibliography{biblography}
+\end{document}

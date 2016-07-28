@@ -1,0 +1,72 @@
+\documentclass[12pt, amstex, letterpaper] {report} %{article}
+
+\usepackage[margin=1in]{geometry}
+\topmargin -0.5in \textwidth 6.5in \textheight 9in
+\footskip .5in
+\headheight 0.3in
+
+
+\usepackage{Sweave}
+
+\DefineVerbatimEnvironment{Sinput}{Verbatim} {xleftmargin=0em,frame=single}
+\DefineVerbatimEnvironment{Soutput}{Verbatim} {xleftmargin=0em,frame=single}
+
+\usepackage{amssymb, mathrsfs}
+\usepackage{amsmath, amsfonts}
+\usepackage{comment}
+\usepackage{hyperref}
+\usepackage{float}
+%\usepackage{cite}
+\usepackage{ natbib}
+\usepackage{color, multirow, setspace, fancyhdr}
+\usepackage{apalike}
+\usepackage{undertilde}
+\usepackage[bottom]{footmisc}
+
+%\doublespacing
+\pagestyle{empty}
+\pagestyle{fancy}
+\lhead{ }
+%\rhead{May 2016}
+\fancyfoot{ }
+\rfoot{Proposal defense $|$ \thepage}
+\lfoot{Chris Vanlangenberg}
+\date{}
+
+\includecomment{comment}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}{Proposition}[section]
+
+
+\numberwithin{equation}{section}
+\renewcommand{\footrulewidth}{0.1pt}
+\renewcommand{\headrulewidth}{0.1pt}
+
+
+\newcommand{\eqn}[1]{{\begin{equation}}{#1}{\end{equation}}}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+%\renewcommand\refname{Literature}
+\newcommand{\blue}[1]{\textcolor{blue}{\emph{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{\emph{#1}}}
+\newcommand{\twoc}[2]{{\textcolor{blue}{#1}} and {\textcolor{red}{#2}}}
+%\newcommand{\normalpdf}{\beq x^2+1=5 \eeq}
+
+\newcommand{\xn}{x_1,\ldots, x_n}
+\newcommand{\Xn}{X_1,\ldots, X_n}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\pd}{positive definite }
+
+
+%\newcommand{\code}[1]{{\smaller\texttt{#1}}}
+\newcommand{\code}[1]{{\small\texttt{#1}}}
+\newcommand{\pkg}[1]{{\normalfont\textsf{#1}}}
+\newcommand{\var}[1] {{\normalfont\textbf{#1}}}
+\newcommand{\Cm}{$C_m(\phi_P, \phi_Q)\ $}
+
+\newcommand{\jun}{\cite{JunStein2008}}
