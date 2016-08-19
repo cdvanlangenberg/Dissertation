@@ -38,9 +38,9 @@ We can get the covariance of $\utilde{Z}=(\utilde{Z}^{Re}, \utilde{Z}^{Im})^T$ a
 \end{thm}
 
 
-%-------------------------------------% 
-\subsection{Theoretical development}
-%-------------------------------------% 
+%%------------------------------------------------------------------%%
+\section{Theoretical development}
+%%------------------------------------------------------------------%%
 
 Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P = (\lambda, \phi) \in S^2$ with longitude $\lambda \in [-\pi, \pi)$ and latitude $\phi \in [0, \pi]$.
 	
@@ -77,9 +77,9 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 	\]
 	with $\mbox{E}(W_m(\phi_P) \overline{W_n(\phi_Q)}) = \delta_{m,n} C_m(\phi_P, \phi_Q)$. \\
 	
-	%-------------------------------------% 
-	\subsection{Generalization of parametric models}
-	%-------------------------------------% 
+%%------------------------------------------------------------------%%
+	\section{Generalization of parametric models}
+%%------------------------------------------------------------------%%
 	
 	The $R(P,Q)$ given in equation \ref{R(PQ)-01}, is clearly a function of both longitude and latitude. The simplest model is the separable model where,
 	
@@ -186,9 +186,9 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 	% \item Weighted least squares or simply least squares, this may be simpler, may not be as good as MLE, but it can be done without the assumption of Gaussian.
 	% \end{enumerate}
 	
-	%-------------------------------------% 
-	\subsection{Method development}
-	%-------------------------------------% 
+	%%------------------------------------------------------------------%% 
+	\section{Method development}
+	%%------------------------------------------------------------------%%
 	
 	
 	We can construct normal independent (complex) random variate $W_m(\phi)$ associated with the variance-covariance matrix $C_m(\phi_P, \phi_Q)$ to construct an axially symmetric process. Then finite summation can be used to approximate above (\ref{eq:sym_process}) infinite summation as given below,
@@ -372,7 +372,7 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 	\end{eqnarray}
 	
 	%-------------------------------------% 
-	\subsubsection{Pseudo-code}
+	\subsection{Pseudo-code}
 	%-------------------------------------% 
 	
 	\begin{itemize}
@@ -389,16 +389,16 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 	\end{itemize}
 	
 	
-	%-------------------------------------% 
-	\subsection{Property of MOM}
-	%-------------------------------------% 
+	%%------------------------------------------------------------------%% 
+	\section{Property of MOM}
+	%%------------------------------------------------------------------%% 
 	
 	% We would like to test if the generated data follows the proposed covariance structure $i.e$ if
 	% 
 	%     \[ H_o: \Sigma = \Sigma_o \ vs\ H_a:\Sigma\ne \Sigma_o,\]
 	%     where $\Sigma_0$ is the theoretical covariance in other terms it is $R(P,Q)$, there are methods test the above hypothesis but our covariance structure is a 3-dimensional covariance matrix and we still do not have a better approach to test this hypothesis.
 	
-	\blue{we might have to omit this section }
+	\blue{we might have to omit this section, add a discussion about variogram }
 	
 	We should conform the validity of proposed covariance functions $R(P,Q)$. Since $R(P,Q)$ functions are cross covariance functions, we can compute the empirical covariance, by method of moments and compare.
 	
