@@ -1,74 +1,78 @@
 %%-------------------------process on a circle---------------------------------------%%
-\blue{
-	discuss about data generation on a circle, 
-	\begin{itemize}
-		\item including circulant matrix
-		\item why circulant matrix
-		\item discuss covarince, biasness and the difficulties of estimation
-		\item discuss variogram
-		\item jones 1963
-	\end{itemize}
-}
-
-%%------------------------------------------------------------------%%
-\section{Circulant matrix}
-%%------------------------------------------------------------------%%
-
-A square matrix $A_{n\times n}$ is a circulant matrix if the elements of each row (except first row) has the previous row shifted by one place to the right.
-
-\begin{eqnarray}
-	A = circ[a_o, a_1,\cdots,a_{n-1}] &=& \left[
-		\begin{array}{lllll}
-			a_0     & a_1     & a_2    & \cdots & a_{n-1} \\
-			a_{n-1} & a_0     & a_1    & \cdots & a_{n-2} \\
-			a_{n-2} & a_{n-1} & a_0    & \cdots & a_{n-3} \\
-			\vdots  & \vdots  & \vdots & \ddots & \ldots  \\
-			a_1     & a_2     & a_3    & \cdots & a_0     
-		\end{array}
-	\right].
-\end{eqnarray}
-
-The eigenvalues of $A$ are given by
-\[
-	\lambda_l = \sum_{k=0}^{n-1} a_k e^{-i2lk\pi/n} = \sum_{k=0}^{n-1}c_k \rho_l^k, \quad \quad l = 0, 1, 2, \cdots, n-1,
-\]
-($\rho_l = e^{-i2\pi l/n}$ represents the $l$th root of 1), and the corresponding (unitary) eigenvector is given by
-\[
-	\psi_l = \frac{1}{\sqrt{n}}(1, \rho_l, \rho_l^2, \cdots, \rho_l^{n-1})^T.
-\]
-
-\blue{should we talk more about hermitian, and block circulant matrices?}
+% \blue{
+% 	discuss about data generation on a circle, 
+% 	\begin{itemize}
+% 		\item including circulant matrix
+% 		\item why circulant matrix
+% 		\item discuss covarince, biasness and the difficulties of estimation
+% 		\item discuss variogram
+% 		\item jones 1963
+% 	\end{itemize}
+% }
 
 %%------------------------------------------------------------------%%
 \section{Stationary process on a circle}
 %%------------------------------------------------------------------%%
 
+Let $C(\theta), \theta \in (0, \pi)$ denote a stationary covariance function on the circle, then
+
+\beq
+C(\theta) = \sum_{n=0}^\infty a_n \cos(n \theta),
+\eeq
+
+with $\sum_{n = 0}^\infty a_n < \infty$, and $a_n \ge 0$. Note that
+
+\beq
+a_n  =\frac{2}{\pi}\int_0^\pi C(\theta) \cos(n\theta)d\theta.
+\eeq
+
+
+Now if a random process on the circle, with continuity in the quadratic means sense, can be represented as
+
+\beq
+X(t) = \sum_{n = 0}^\infty (A_n \cos(nt) + B_n \sin(nt), \quad t \in (0, 2\pi).
+\eeq
+
+Note that if $X(t)$ is stationary on the circle with covariance function $C(\theta)$, then
+
+\beq
+cov(A_n, A_m) = a_n \delta(n,m) = cov(B_n, B_m), \quad \mbox{for $n, m \ge 0$}.
+\eeq
+
+
 Let $\{X(t_k), k = 1, 2, \cdots, n\}$ be a collection of gridded observations on a circle, with $t_k = (k-1)*2\pi/n, k = 1, 2, \cdots, n$. Lets assume $E(X(t)) = \mu$ is unknown, the unbiased estimator of $\mu$ is given by $\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X(t_i)$. The underlying process is stationary, if it's covariance function solely depends on the distance $\theta$,
 \beq
 C(\theta) = cov(X(t+\theta), X(t)), \quad \quad \theta \in [0, \pi].
 \eeq
-The spectral representation for $C(\theta)$ is given by
-\beq
-C(\theta) = a_0 + \sum_{k = 1}^\infty a_k \cos(k \theta), \quad \theta \in [0, \pi].
-\eeq 
+
+% The spectral representation for $C(\theta)$ is given by
+% \beq
+% C(\theta) = a_0 + \sum_{k = 1}^\infty a_k \cos(k \theta), \quad \theta \in [0, \pi],
+% \eeq 
+% 
+% with $\sum_{n = 0}^\infty a_n < \infty$, and $a_n \ge 0$. Note that
+% \[
+% a_n  =\frac{2}{\pi}\int_0^\pi C(\theta) \cos(n\theta)d\theta.
+% \]
+
 
 %%------------------------------------------------------------------%%
 \section{Estimation}
 %%------------------------------------------------------------------%%
 
 %-------------------------------------% 
-\subsection{Estimation of covaraince on a cricle}
+\subsection{Estimation of covaraince on a cricle} \label{est_covariance}
 %-------------------------------------%
 
-We used method of moments (MOM) to estimate the covariance $C(\theta)$ on a circle, the estmator can be given by
+We used method of moments (MOM) to estimate the covariance $C(\theta)$ on a circle, the estimator can be given by
 
-\beq
+\beq \label{covarince_estimator}
 \hat{C}(\Delta \lambda) = \frac{1}{n}\sum_{i = 1}^n (X(t_i + \Delta \lambda) - \bar{X})(X(t_i) - \bar{X}), 
 \eeq
 
 where $\Delta \lambda = 0, 2\pi/n, 4\pi/n, \cdots, 2(N-1)\pi/n$.\\
 
-Now we shall check the unbiasedness and consistency of the above estimator.
+Now we will show that above estimator is not unbiasedness.
 
 \begin{eqnarray}
 	\nonumber
@@ -80,50 +84,97 @@ Now we shall check the unbiasedness and consistency of the above estimator.
 	&=& C(\Delta \lambda) - var(\bar{X}).
 \end{eqnarray}
 
-Moreover,
-
-\begin{eqnarray*}
-	\nonumber
-	var(\bar{X}) &=& E((\bar{X} - \mu)(\bar{X} - \mu)) = \frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n E(X(t_i) - \mu)(X(t_j) - \mu) \\ \nonumber
-	&=&  \frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n cov(X(t_i), X(t_j)) = \frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n C(m*(i-j)*2\pi/n) \\ \nonumber
-	&=& \frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n \left(a_0 + \sum_{k=1}^\infty a_k \cos(m*(i-j)*2\pi/n)\right) \\ \nonumber
-	&=& a_0 + \sum_{k=1}^\infty a_k \left(\frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n \cos(m*(i-j)*2\pi/n)\right).
-\end{eqnarray*}
-
-Now,
-
-\begin{eqnarray*}
-	& & \sum_{i = 1}^n \sum_{j=1}^n \cos(m*(i-j)*2\pi/n) \\
-	&=& \sum_{i=1}^n \sum_{j=1}^n \left(\cos(m*i *2\pi/n)\cos(m*j*2\pi/n) + \sin(m*i *2\pi/n)\sin(m*j*2\pi/n) \right)\\
-	&=& \left(\sum_{i=1}^n \cos(m*i *2\pi/n)\right)^2 + \left(\sum_{i=1}^n \sin(m*i *2\pi/n)\right)^2 = n^2
-\end{eqnarray*}
-
-since for any integer $m$, we have
-
+Suppose the variance-covariance matrix of the sample vector $\utilde{X} = (X_1, X_2, \cdots, X_n)^T$ is given by $\Sigma$. Further, we can denote $\bar{X}$ in the following form,
 \[
-	\sum_{k = 1}^{n} \cos(mk*2\pi/n) = \left\{\begin{array}{cc}
-	0, & \mbox{for any integer $m \ne 0$,}  \\
-	n, & \mbox{for $m = 0$}
-	\end{array}
-	\right. \mbox{ and }
-	\sum_{k = 1}^{n} \sin(mk*2\pi/n) = 0.
+	\bar{X} = \frac{1}{n}{\bf 1}_n^T \utilde{X}
+\]
+% Moreover,
+% 
+% \begin{eqnarray*}
+% 	\nonumber
+% 	var(\bar{X}) &=& E((\bar{X} - \mu)(\bar{X} - \mu)) = \frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n E(X(t_i) - \mu)(X(t_j) - \mu) \\ \nonumber
+% 	&=&  \frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n cov(X(t_i), X(t_j)) = \frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n C(m*(i-j)*2\pi/n) \\ \nonumber
+% 	&=& \frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n \left(a_0 + \sum_{k=1}^\infty a_k \cos(m*(i-j)*2\pi/n)\right) \\ \nonumber
+% 	&=& a_0 + \sum_{k=1}^\infty a_k \left(\frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n \cos(m*(i-j)*2\pi/n)\right).
+% \end{eqnarray*}
+% 
+% Now,
+% 
+% \begin{eqnarray*}
+% 	& & \sum_{i = 1}^n \sum_{j=1}^n \cos(m*(i-j)*2\pi/n) \\
+% 	&=& \sum_{i=1}^n \sum_{j=1}^n \left(\cos(m*i *2\pi/n)\cos(m*j*2\pi/n) + \sin(m*i *2\pi/n)\sin(m*j*2\pi/n) \right)\\
+% 	&=& \left(\sum_{i=1}^n \cos(m*i *2\pi/n)\right)^2 + \left(\sum_{i=1}^n \sin(m*i *2\pi/n)\right)^2 = n^2
+% \end{eqnarray*}
+% 
+% since for any integer $m$, we have
+% 
+% \[
+% 	\sum_{k = 1}^{n} \cos(mk*2\pi/n) = \left\{\begin{array}{cc}
+% 	0, & \mbox{for any integer $m \ne 0$,}  \\
+% 	n, & \mbox{for $m = 0$}
+% 	\end{array}
+% 	\right. \mbox{ and }
+% 	\sum_{k = 1}^{n} \sin(mk*2\pi/n) = 0.
+% \]
+% 
+% Hence,
+% \[
+% 	var(\bar{X}) = a_0.
+% \]
+% 
+% Therefore,
+% \beq
+% E(\hat{C}(\Delta \lambda)) = C(\Delta \lambda) - a_0.
+% \eeq
+
+
+then
+\begin{eqnarray}
+	var(\bar{X}) &=& cov(\frac{1}{n}{\bf 1}_n^T \utilde{X}, \frac{1}{n}{\bf 1}_n^T \utilde{X}) \nonumber \\
+	&=& \frac{1}{n^2}{\bf 1}_n^T \Sigma {\bf 1}_n \nonumber \\
+	&=& \frac{1}{n} \left(C(0)+C(\pi)+2 \sum_{m=1}^{N-1}C(m 2\pi/n)\right) \nonumber
+\end{eqnarray}
+
+When $n \to \infty$, (assuming $C(\theta)$ is a continuous function on $[0, \pi]$)
+%is integrable, or more strongly,
+\[
+	\frac{1}{n} \left(2 \sum_{m=0}^{N}C(m 2\pi/n)\right) = \frac{1}{\pi} \frac{\pi}{N} \left( \sum_{m=0}^{N}C(m 2\pi/n)\right) \to \frac{1}{\pi} \int_0^\pi C(\theta)d\theta = a_0.
+\]
+Hence
+\[
+	var(\bar{X}) = \frac{1}{n} \left(2 \sum_{m=0}^{N}C(m 2\pi/n)\right) - \frac{1}{n}(C(0) + C(\pi)) \to a_0, \quad \quad \mbox{as $n \to \infty$}.
+\]
+We can conclude that 
+\[
+	var(\bar{X}) \to \frac{1}{\pi} \int_0^\pi C(\theta)d\theta \quad \mbox{as $n \to \infty$}.  
 \]
 
-Hence,
+% {\bf Note}: When $var(\bar{X}) \not\to 0$, we can not make the conclusion that $\bar{X}$ is not consistent. For consistency, we need to prove that
+
+Now, we will show that $\bar{X}$ will never be a consistent estimator for $\mu$, mean on a circle. 
+
 \[
-	var(\bar{X}) = a_0.
+	P(|\bar{X} - \mu| > \varepsilon) \to 0.
+\]  
+
+If $var(\bar{X}) \to 0$, then from Chebyshev's inequality we have 
+
+\[
+	P(|\bar{X} - \mu| > \varepsilon) \le \frac{var(\bar{X})}{\varepsilon^2} \to 0, \quad \mbox{for any $\varepsilon > 0$}.
 \]
 
-Therefore,
-\beq
-E(\hat{C}(\Delta \lambda)) = C(\Delta \lambda) - a_0.
-\eeq
+Therefore, $var(\bar{X}) \to 0$ is a sufficient condition for consistency, but it is not necessary. However, if we assume $\utilde{X}$ is multivariate normally distributed, then $\bar{X}$ follows normal distribution with mean $\mu$ and approximate variance $a_0$. Then ($Z \sim N(0, 1)$)
+\begin{eqnarray*}
+	P(|\bar{X} - \mu| > \varepsilon) = P\left(\frac{|\bar{X} - \mu|}{\sqrt{a_0}} > \frac{\varepsilon}{\sqrt{a_0}}\right) \approx P\left(|Z| > \frac{\varepsilon}{\sqrt{a_0}}\right) \not\to 0  
+\end{eqnarray*}
+since $\frac{\varepsilon}{\sqrt{a_0}}$ is a fixed constant for each fixed $\varepsilon > 0$.\\
+
 
 That is, the MOM estimator $\hat{C}(\Delta \lambda)$ of the covariance function is actually a biased estimator with the shift amount of $a_0$. Therefore, if $a_0 = 0$ for a covariance function, we have the unbiased estimator $\hat{C}(\Delta \lambda)$. \\
 
-If $a_0 = 0$ implies that $var(\bar{X}) = 0 \Rightarrow \bar{X} = \mu$ a.s., which might not be practically possible. On the other hand, if $a_0 \ne 0$, then $var(\bar{X}) \ne 0$. This indicates that $\bar{X}$ will never be a consistent estimator for $\mu$ regardless of the sample size $n$.\\
-
 If the gridded points were on a line, for example in time series, $E(\bar{X} - \mu)^2 \to 0$ as $n \to \infty$ under the assumption that the covariance function $C(\theta) \to 0$ when $\theta \to \infty$ (which is practically feasible), that is, $\bar{X}$ is consistent in the case of points on a line. In the case of circle, we might not have $C(\theta)$ close to 0 since $\theta$ is within a bounded region ($(0, \pi)$ for the circle) and we normally assume $C(\theta)$ is continuous for $\theta$. \\
+
+\blue{consistency of the cross covarince estimator?}
 
 %-------------------------------------%
 \subsection{Estimation of variogram on a circle}
@@ -133,7 +184,7 @@ The theoretical variogram function is given by,
 \beq
 \gamma(\theta) = C(0) - C(\theta).
 \eeq
- and the MOM estimator for the variogram is given by,
+and the MOM estimator for the variogram is given by,
 
 \beq
 \hat{\gamma}(\Delta \lambda) = \frac{1}{2n} \sum_{i=1}^n (X(t_i + \Delta \lambda) - X(t_i))^2.
@@ -142,53 +193,132 @@ The theoretical variogram function is given by,
 We can show that variogram estimator through MOM is an unbiased estimator, 
 
 \begin{eqnarray*}
-E(\hat{\gamma}(\Delta \lambda)) &=& \frac{1}{2n} \sum_{i = 1}^n E(X(t_i + \Delta \lambda) - X(t_i))^2 \\
-&=& \frac{1}{2n} \sum_{i = 1}^n E((X(t_i + \Delta \lambda)-\mu) - (X(t_i) - \mu))^2 \\
-&=& \frac{1}{2n} \sum_{i = 1}^n cov(X(t_i + \Delta \lambda) - X(t_i), X(t_i + \Delta \lambda) - X(t_i)) \\
-&=& \frac{1}{2n} \sum_{i = 1}^n \left\{ cov(X(t_i + \Delta \lambda), X(t_i + \Delta \lambda)) + cov(X(t_i), X(t_i)) \right. \\
-& & \left. - 2cov(X(t_i + \Delta \lambda), X(t_i)) \right\}\\
-&=& \frac{1}{2n} \sum_{i = 1}^n \left( C(0) + C(0) - 2C(\Delta \lambda)\right) \\
-&=& C(0) - C(\Delta \lambda) = \gamma(\Delta \lambda).
+	E(\hat{\gamma}(\Delta \lambda)) &=& \frac{1}{2n} \sum_{i = 1}^n E(X(t_i + \Delta \lambda) - X(t_i))^2 \\
+	&=& \frac{1}{2n} \sum_{i = 1}^n E((X(t_i + \Delta \lambda)-\mu) - (X(t_i) - \mu))^2 \\
+	&=& \frac{1}{2n} \sum_{i = 1}^n cov(X(t_i + \Delta \lambda) - X(t_i), X(t_i + \Delta \lambda) - X(t_i)) \\
+	&=& \frac{1}{2n} \sum_{i = 1}^n \left\{ cov(X(t_i + \Delta \lambda), X(t_i + \Delta \lambda)) + cov(X(t_i), X(t_i)) \right. \\
+	& & \left. - 2cov(X(t_i + \Delta \lambda), X(t_i)) \right\}\\
+	&=& \frac{1}{2n} \sum_{i = 1}^n \left( C(0) + C(0) - 2C(\Delta \lambda)\right) \\
+	&=& C(0) - C(\Delta \lambda) = \gamma(\Delta \lambda).
 \end{eqnarray*}
-% 
-% \blue{need to prove consistency}
+ 
+\blue{need to prove consistency}
 
 
 %-------------------------------------%
-%-------------------------------------% 
 \section{Data generation on a circle}
+%-------------------------------------% 
 
-Using the covarince function $C_1e^{-a|\Delta\lambda|}$ and estimate empirical covarince from MOM as follows,
 
-\beq\label{cov:circle1}
-C(\theta) = \frac{1}{n_L} \sum_{i=1}^{n_L} (X(a_i+\theta)\cdot X(a_i))-(\overline{X(a)})^2
+
+First, we will discuss how to generate correlated data at $n$ grided points on a circle when the covarince function is defined and compare above covariance and variogram estimators. Since the observed data are correlated, the covaince function can be written as a function of distance (angle). For similicity we will use exponential family covarince function as given below, 
+
+\beq \label{exp_covarince} 
+C(\theta) = C_1e^{-a|\theta|},
 \eeq
 
+where $\theta = i*\Delta\lambda = \pm i*2\pi/n, i=1,2,\cdots,n/2$\\
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.65\textwidth]{graphs/covarince_circle}
-	\caption {Theoretical and empirical covariance comparison comparison on a circle}
+	\includegraphics[width=0.5\textwidth]{graphs/process_circle}
+	\caption {Random process on a circle at 24 points ($\Delta\lambda = 30^0$), the red dots represent the  observed values at a given time and each red dot is a random process of it own.}
 \end{figure}
 
+Clearly, each location is correlated with other $n-1$ locations and $C(\theta) = C(-\theta)$ the variance-covariance matrix $\Sigma$ is circulant and will be in the following form,   
 
-\begin{figure}
+
+\begin{eqnarray*}
+	\Sigma &=& {\tiny \left(\begin{array}{cccccccc}
+		C(0)      & C(2\pi/n) & \cdots & C((N-1)2\pi/n) & C(\pi) &  C((N-1)2\pi/n) & \cdots & C(2\pi/n) \\
+		C(2\pi/n) & C(0)  & \cdots & C((N-2)2\pi/n) & C((N-1)2\pi/n) &  C(\pi)  & \cdots & C(4\pi/n) \\
+		C(4\pi/n) & C(2\pi/n)  & \cdots & C((N-3)2\pi/n) & C((N-2)2\pi/n) &  C((N-1)2\pi/n) & \cdots & C(6\pi/n)\\
+		\vdots    &    \vdots  & \vdots  & \vdots  & \vdots  & \vdots  & \vdots  & \vdots  \\
+		C(2\pi/n) & C(4\pi/n) & \cdots & C(\pi) &  C((N-1)2\pi/n) & C((N-2)2\pi/n)  & \cdots & C(0) 
+		\end{array} \right) }\\
+	& & \\
+	&=& circ(C(0),C(2\pi/n), C(4\pi/n), \cdots, C((N-1)2\pi/n), C(\pi),  C((N-1)2\pi/n), \cdots, C(2\pi/n)).\\
+	&=& Q\Lambda Q^T,
+\end{eqnarray*}
+
+where $\Lambda=\{\lambda_1, \lambda_2,\cdots,\lambda_n\}$ and $Q=\{\psi_1, \psi_2,\cdots,\psi_n\}$ are the respective eigen values and eigen vectros of the above circulant matrix. Now using singular value decompossion (SVD) we can obtain the correlated data \{X(t)\} on a circle as follows,
+
+\[
+	X(t) = \Sigma^{1/2}*Z = Q\Lambda^{1/2}Q^T*Z 
+\]
+
+where $Z\sim N(\utilde{0},1_{n})$.
+
+%-------------------------------------%
+\subsection{Compare covarince estimator} 
+%-------------------------------------%
+
+% \beq\label{cov:circle1}
+% C(\theta) = \frac{1}{n_L} \sum_{i=1}^{n_L} (X(a_i+\theta)\cdot X(a_i))-(\overline{X(a)})^2
+% \eeq
+\begin{itemize}
+	
+	\item Using the exponential covariance function given by \ref{exp_covarince}
+	      
+	      In section \ref{est_covariance} we proved that, in general the covarince estimator (\ref{covarince_estimator}) on a circle is biased, with a bias of $var(\bar{X})$. In order to compare this estiamtor to it's theoretical covarince given by equation \ref{exp_covarince}. We computed the MOM estimator $\hat{C}(\theta)$ with 48 gridded observations on the circle from 500 simulations. 
+	      
+	      \begin{figure}[H] 
+	      	\label{covarince_circle}
+	      	\centering
+	      	\includegraphics[width=0.65\textwidth]{graphs/covarince_circle}
+	      	\caption {Theoretical and empirical covariance (with bias) comparison on a circle}
+	      \end{figure}
+	      
+	      We have noticed that the shift between theoretical and empirical values were approximately equal to $a_0$.\\
+	      
+	      \blue{should we talk about $\hat{var(\bar{X})} = var(\bar{X}_1, \cdots, \bar{X}_k) $??, $a_0 = 0.3045545 \quad \hat{var(\bar{X})}$ will be close to  $a_0$ as we increase the number of simulations }
+	      
+	      % and this cannot be estimated since there is only one data point at each location
+	      
+	\item However, we can obtain $a_0$ for the above exponential covarince as follows,
+	      \[
+	      	a_0 = \frac{C_1}{a\pi}(1 - e^{-a\pi})
+	      \]
+	      
+	      We consider the following covariance function, after subtracting $a_0$ from $C(\theta)$. The theoretical and empirical values match perfectly.
+	      \[
+	      	D(\theta) = C(\theta) - a_0.
+	      \]
+	      
+	      % \beq \label{cov:circle1}  
+	      % C(\theta) = \frac{1}{n_L} \sum_{i=1}^{n_L} (X(a_i+\theta) \cdot X(a_i)) 
+	      % \eeq
+	      
+	      \begin{figure}[H]
+	      	\centering
+	      	\includegraphics[width=0.65\textwidth]{graphs/Summary-covarince_circle_2}
+	      	%graph from data genaration summary doc line 194 
+	      	\caption {Theoretical and empirical covariance comparison on a circle}
+	      \end{figure}
+	      
+	      Note, if the process is a zero mean process the covariance estimator will be unbiased ($i.e. Var(\bar{X}) = 0$) hence we will get a perfect match between theoretical and empirical values.
+	      
+\end{itemize}
+
+%-------------------------------------%
+\subsection{Compare variogram estimator} 
+%-------------------------------------%
+
+We proved that in general the variogram estimator is unbiased. The theoretical variogram based on exponential covariance is given below,   
+
+\[
+	\gamma(\theta) = C(0) - C(\theta) = C_1(1-e^{-a|\theta|})
+\]
+
+Again we computed the variogram estimator $\hat{\gamma}(\theta)$ with 48 gridded observations on the circle from 4000 simulations and there is a perfect match between theoretical and empirical values.
+
+
+\begin{figure}[H]
 	\centering
 	%\includegraphics[width=0.65\textwidth]{graphs/Summary-covarince_circle_1}
 	\includegraphics[width=0.65\textwidth]{graphs/variogram_plot_4000}
 	%graph from data genaration summary doc line 177 
-	\caption {Theoretical and empirical covariance comparison comparison on a circle}
+	\caption {Theoretical and empirical comparison for variogram on a circle}
 \end{figure}
 
-covariance estimator without the mean term
-
-\beq \label{cov:circle1}  
-C(\theta) = \frac{1}{n_L} \sum_{i=1}^{n_L} (X(a_i+\theta) \cdot X(a_i)) 
-\eeq
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.65\textwidth]{graphs/Summary-covarince_circle_2}
-	%graph from data genaration summary doc line 194 
-	\caption {Theoretical and empirical covariance comparison comparison on a circle}
-\end{figure}
+\blue{should make any argument why we need more simulations}

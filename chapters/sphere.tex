@@ -1,3 +1,57 @@
-\section{Axially Symmetric Processes}
+%%-------------------------Random process on sphere---------------------------------------%%
 
-\section{Covariance and Variogram Estimation} 
+A random process is a collection of random variables $X \in \{X(s): s\in D\}$, defined in a common probability space. In general, if
+\begin{itemize}
+	\item $s \in N$: random sequence, time series
+	\item $s \in R^1$: random process which is a stochastic process
+	\item $s \in R^d$: random filed, spatial process if $d > 1$
+	\item $s \in S^2$: random process on the sphere
+	\item $s \in R^d\times R$: spatio-temporal process
+\end{itemize}
+
+In this dissertation, we will focus only on spatial processes on a sphere, where $s$ represents a location.
+
+
+%%------------------------------------------------------------------%%
+\section{Random process on a sphere} 
+%%------------------------------------------------------------------%%
+
+
+We consider a complex-valued random process $X(P)$ on a unit sphere $S^2$, where $P=(\lambda, \phi) \in S^2$ with longitude $\lambda \in [-\pi, \pi)$ and latitude $\phi \in [0, \pi]$. Assume the process is continuous in quadratic mean with respect to the location $P$, and has finite second moment, then $X(P)$ can be represented by spherical harmonics, with convergence of the series in quadratic mean, \cite{LiNorth1997}.
+	\[
+		X(P) = X(\lambda,\phi) = \sum_{\nu=0}^\infty \sum_{m=-\nu}^{\nu} Z_{\nu,m} e^{i m \lambda} P_{\nu}^m (\cos \phi),
+	\]
+	where $P_{\nu}^m(\cdot)$ is a normalized associated Legendre polynomial so that its squared integral on $[-1, 1]$ is 1, and $Z_{\nu,m}$ are the coefficients satisfying
+	\[
+		Z_{\nu,m} = \int_{S^2} X(P) e^{-im \lambda} P_{\nu}^m (\cos \phi) d P.
+	\]
+	Without loss of generality, the process is assumed to have mean zero, i.e., $\mbox{E}(X(P)) = 0$, which implies $\mbox{E} (Z_{\nu,m}) = 0$. Then, the covariance function of the process at two locations $P = (\lambda_P, \phi_P)$ and $Q=(\lambda_Q, \phi_Q)$ is given by,
+	\[
+		R(P, Q) = \mbox{E}(X(P) \overline{X(Q)}) = \sum_{\nu=0}^\infty \sum_{\mu=0}^\infty \sum_{m=-\nu}^{\nu} \sum_{n=-\mu}^{\mu} \mbox{E}(Z_{\nu,m} \overline{Z}_{\mu,n}) e^{im \lambda_P} P_{\nu}^m(\cos \phi_P) e^{-i n \lambda_Q} P_{\mu}^n (\cos \phi_Q).
+	\]
+	where $\bar{Z}$ denotes the complex conjugate of $Z$. Note that the continuity of $X(P)$ on every point $P$ implies that $R(P, Q)$ is continuous on all pairs $(P, Q)$ \cite[page 83]{Leadbetter1967}. If the covariance function depends solely on the spherical distance between these two locations, the process is homogeneous. That is, (Obukhov, 1947, \cite{Yaglomothers1961})
+	\[
+		R(P, Q) = R(\theta(P,Q)) = \sum_{\nu=0}^\infty \frac{(2\nu+1)f_{\nu}}{2} P_{\nu}(\cos \theta(P,Q)),
+	\]
+	where the spherical distance $ \theta(P,Q) = \cos^{-1} (\cos \phi_P \cos \phi_Q + \cos \phi_P \cos \phi_Q \cos (\lambda_P-\lambda_Q))$, $P_{\nu}(\cdot)$ is the Legendre polynomial of order $\nu$, $f_{\nu} \ge 0$, and $\sum_{\nu = 0}^{\infty} (2\nu+1)f_{\nu} < \infty$. Here, the random variable $Z_{\nu,m}$ satisfies
+	\[
+		\mbox{E} (Z_{\nu,m} \overline{Z}_{\mu,n}) = \delta_{\nu,\mu} \delta_{n,m} f_\nu,
+	\]
+	where $\delta_{a, b} = 1$ if $a = b$, and $0$ otherwise.
+	
+	
+	%%------------------------------------------------------------------%%
+	\section{Axially symmetry}
+	%%------------------------------------------------------------------%%
+	
+	The idea was introduced by \cite{Jones1963}, if the covarince between two spatial points depends only on the longitudes only through their difference  between two points then process is said to be axially symmetric.
+	
+	Under the assumption of axial symmetry , where the covariance function depends on longitudinal differences, one has
+	\[
+		\mbox{E} (Z_{\nu,m} \overline{Z}_{\mu,n}) = \delta_{n,m} f_{\nu,\mu,m}.
+	\]
+	Hence, the covariance function is of the form
+	\begin{eqnarray} \label{axially-symmetry-cov}
+		R(P,Q) = R(\phi_P, \phi_Q, \lambda_P-\lambda_Q) = \sum_{m=-\infty}^{\infty} \sum_{\nu=|m|}^\infty \sum_{\mu=|m|}^\infty f_{\nu,\mu,m} e^{im (\lambda_P-\lambda_Q)} P_{\nu}^m(\cos \phi_P) P_{\mu}^m (\cos \phi_Q).
+	\end{eqnarray}
+	Further conditions on $f_{\nu,\mu,m}$ are imposed in order to have the covariance function valid. In particular, $f_{\nu,\mu, m} = \overline{f}_{\mu, \nu, m}$ and for each fixed integer $m$, the matrix $F_m(N) = \{ f_{\nu,\mu,m} \}_{\nu,\mu=|m|,|m|+1, \ldots, N }$ must be positive definite for all $N \ge |m|$. A detailed discussion of parallel conditions on $f_{\nu, \mu, m}$ under the real-valued case is given in \cite{Jones1963}.

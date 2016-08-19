@@ -20,7 +20,7 @@ Advisor: Dr. Haimeng Zhang\footnote{h\_zhang5@uncg.edu}\\ \small{University of N
 
 \newpage
 %%------------------------------------------------------------------%%
-\chapter{Introduction (due Augth 4th)}
+\chapter{Introduction}
 \input{chapters/Introduction.tex}
 
 %%------------------------------------------------------------------%%
@@ -29,7 +29,7 @@ Advisor: Dr. Haimeng Zhang\footnote{h\_zhang5@uncg.edu}\\ \small{University of N
 
 
 %%------------------------------------------------------------------%%
-\chapter{Covariance and Variogram Estimation on the Cricle (due July 31)}
+\chapter{Covariance and Variogram Estimation on the Cricle}
 \input{chapters/circle.tex}
 
 %%------------------------------------------------------------------%%

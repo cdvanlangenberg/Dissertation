@@ -1,102 +1,232 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Introduction and General Definitions
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%-------------------------Introduction---------------------------------------%%
 
-%\input{template.tex}
-%
-%\begin{document}
-%\bibliographystyle{apalike}
+In this chapter we have given a brief introduction to some of the basic concepts in spatial statistics which are necessary to follow other chapters in this dissertation. Moreover, we have discuss about stationarity, isotropy, intrinsic stationarity, covarince function and it properties, variogram, continuty and differentiability, spectral representations, Bochner's theorem, spectral densities, circulant matrices and it's properties with special cases.   
 
-\begin{description}
-\item [Strict stationarity:] for all finite $n,\ \xn \in \mathbb{R}^d$, $h_1, \ldots, h_n\in\mathbb{R} \mbox{ and } x\in \mathbb{R}^d$,
+%%------------------------------------------------------------------%%
+\section{Spatial random field} 
+%%------------------------------------------------------------------%%
+
+A real-valued spatial proces $Z$ in $d$ dimensions or a spatial random field can be denoted as $\{Z(x): x \in D \subset \mathbb{R}^d\}$ where $x$ is the location of process $Z(x)$ and $x$ varies over the set $D$ which is fixed and discrete. The distribution of the random vector ${\bf Z(x)}=\{Z(x_1),\ldots, Z(x_n)\}$ is given by the associated finite-dimensional joint distributions
+
+\beq
+F\{Z(x_1),\ldots, Z(x_n)\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n \}
+\eeq
+
+%-------------------------------------% 
+\subsection{Stationary and Isotropy}
+%-------------------------------------%
+A spatial random field is strict stationarity, for all finite $n,\ \xn \in \mathbb{R}^d$, $h_1, \ldots, h_n\in\mathbb{R} \mbox{ and } x\in \mathbb{R}^d$, if the random field is invariant under translation. that is,
+
 \beq
 P\{Z(x_1+x)\le h_1, \ldots, Z(x_n+x)\le h_n\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n\}
 \eeq
-  \item [Weak stationarity:] If a random process $Z(x)$ has a finite second moment, it's mean function is constant and the covariance is a function of distance $C(h)=Cov(Z(x),Z(x+h))$ also referred as auto-covariance).\\
-Note: Strictly stationary random fields with finite second moments is also weakly stationary.
+Strict stationary is a too strong condition as it involves the distibution of the random field but many spatial methods are based moments. Therefore, it is sufficeint to use weak assumptions and we could say a random process $Z(x)$ is weakly stationary if, 
+\begin{eqnarray}
+	E(Z(x))   & = & \mu \nonumber \\ 
+	E^2(Z(x)  & < & \infty \nonumber \\  
+	C(h)      & = & Cov(Z(x),Z(x+h))
+\end{eqnarray}
 
-\item [Intrinsic stationarity:] If the variance between two locations depend only on the distance of two locations. Weak stationarity implies intrinsic stationarity.
+if $Z(x)$ has a finite second moment with constant mean and $C(h)$ the covarince (also referred as auto-covariance) function depends on the spatial distance only. Futher strictly stationary random fields with finite second moment is also weakly stationary, but weak stationarity does not imply strict stationarity. However, in the case of Gaussian random fields that weakly stationary are also strict stationarity because the first two moments ($\mu, \sigma$) will explain the distribution. \\
 
-\item [Isotrophy:] The invariance property of stationarity due to rotations and reflections. If $Z(x)$ is a random field on $\mathbb{R}^d$ it is strictly isotropic if the joint distributions are invariant under all rigid motions. {\em i.e.,} for any orthogonal $d\times d$ matrix $H$ and any $x\in \R^d$
+Suppose $Z(x)$ is weakly stationary on $\R^d$ with autocavariance function $C(h)$ then it has the following properties,
+
+\begin{enumerate}[(i)]
+	\item $C(0) \ge 0$
+	\item $C(h) = C(-h)$
+	\item $|C(h)| \le  C(0)$
+	\item If $C_1, C_2$ valid covariance functions then,
+	      
+	      \begin{enumerate}
+	      	\item $C(x) = a_1C_1+a_2C_2$, $\forall a_1,a_2\ge 0$ is also a valid covariance function.
+	      	\item $C(x) = C_1(x)C_2(x)$ is also a valid covariance function.
+	      	      %\item If $\underset{n\to\infty} {lim}\ C_n(x)=C(x),\ \forall x\in   \R^d$, 
+	      \end{enumerate}
+	      
+\end{enumerate}
+
+
+If the variance between two locations soley depends on the distance between the two locations then the process is said to be intrinsically stationary. Semivariogram is an alternative to the covariance function proposed by Matheron. For an intrinsically stationary random field $Z(s)$,
+
+\begin{align}
+	E[Z(s)]   & = \mu , \nonumber                \\
+	\gamma(h) & = \frac{1}{2} Var(Z(s+h) -Z(s)), 
+\end{align}
+
+Where $\gamma$ is the semivariogram and $\gamma(h) = C(0) - C(h)$ for a weakly stationary process with covariance function $C(h)$. Intrinsic stationary is defined in terms of variogram and it is more general than weak stationary which is defined in terms of covariance. Clearly, when $C(h)$ is known we can get $\gamma(h)$ but not $C(h)$ when $\gamma(h)$ is known. For example consider a linear semi variogram function,
+
+\[
+	\gamma(h) = \left \{ \begin{array}{cc}
+	a^2+\sigma^2h & h>0 \\
+	0 & otherwise \\
+	\end{array}
+	\right.
+\]
+
+when $\underset{h \to \infty} {lim} \gamma(h) \to \infty$ thus this is not weak stationary and $C(h)$ does not exist. \\
+
+
+A weakly stationary process with a covarince function $C(||h||)$ which is free from direction is called isoropic. The random field, $Z(x)$, on $\mathbb{R}^d$ is strictly isotropic if the joint distributions are invariant under all rigid motions. {\em i.e.,} for any orthogonal $d\times d$ matrix $H$ and any $x\in \R^d$
+
 \beq
 P\{Z(Hx_1+x)\le h_1, \ldots, Z(Hx_n+x)\le h_n\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n\}
 \eeq
-Isotropy assumes that it is not required to distinguish one direction from another for the random field $Z(x)$.
 
-\item [Autocovariance:] Suppose $Z(x)$ is weakly stationary on $\R^d$ with autocavariance function $C(h) = cov(Z(x), Z(x+h))$ then,
-\begin{eqnarray*}
-C(0)& \ge & 0 \\
-C(h)&=& C(-h)\\
-|C(h)|& \le & C(0)\\
-\end{eqnarray*}
-Note: $C(\cdot)$ function is p.d. if
-$$\sum_{i,j=1}^{N} a_i a_j C(x_i - x_j) \ge 0,$$
-for any integer $N$, any constants $a_1, a_2, \ldots, a_N$, and any locations $x_1, x_2, \ldots, x_N$. \\
+Isotropy assumes that it is not required to distinguish one direction from another for the random field $Z(x)$.\\
 
-\textbf{Some properties of a p.d. function}
-\begin{enumerate}
-\item If $C_1, C_2$ are p.d. then $a_1C_1+a_2C_2$ is p.d. $\forall a_1,a_2\ge 0$
-\item If $C_1, C_2, \ldots$ are p.d. and $\underset{n\to\infty} {lim}\ C_n(x)=C(x),\ \forall x\in \R^d$, then $C$ is p.d.
-\item If $C_1, C_2$ are p.d. then $C(x)=C_1(x)C_2(x)$ is p.d.
-\end{enumerate}
 
-\item [Semivariogram:] an alternative to the covariance function proposed by Matheron. For an intrinsically stationary random field $Z(s)$,
-\begin{align}
-E[Z(s)] &= \mu , \nonumber \\
-\gamma(h) &= \frac{1}{2} Var(Z(s+h) -Z(s)),
-\end{align}
-Where $\gamma$ is the semivariogram and $\gamma(h) = C(0) - C(h)$ for a weakly stationary process with covariance function $C(h)$.
+A covariance function $C(\cdot)$ on $\mathbb{R}^d$ is positive definite  if and only if 
 
-\item [Mean square continuity \& differentiability:] there is no simple relationship between $C(h)$ and the smoothness of $Z(x)$. For a sequence of random variables $X_1, X_2,\ldots$ and a random variable $X$ defined on a common probability space. Define,$X_n\overset{L^2}\to X$ if, $E(X^2)<\infty$ and $E(X_n - X)^2\to 0$ as $n \rightarrow \infty$. We can say, $\{X_n\}$ converges in $L^2$ if there exists such a $X$.\\
+\beq
+\sum_{i,j=1}^{N} a_i a_j C(x_i - x_j) \ge 0,
+\eeq
+for any integer $N$, any constants $a_1, a_2, \ldots, a_N$, and any locations $x_1, x_2, \ldots, x_N \in \mathbb{R}^d$.
+
+Similarly, the variogram is conditionally negative definite
+\beq
+\sum_{i,j=1}^{N} a_i a_j 2\gamma(x_i - x_j) \le 0,
+\eeq
+
+for any integer $N$, any constants $a_1, a_2, \ldots, a_N$ with $\sum a_i = 0$, and any locations $x_1, x_2, \ldots, x_N \in \mathbb{R}^d$.
+
+
+
+\begin{table}
+	\label{parameters}
+	\centering
+	\begin{tabular}{l|l|l|l}
+		\hline 
+		Family           & C(h)                                                                                   & Parameters            & Validity                                   \\ \hline \hline
+		$Mat\acute{e}rn$ & $\frac{\sigma^2}{2^{\nu-1}\Gamma(\nu)} (\frac{h}{\phi})^{\nu} Y_{\nu}(\frac{h}{\phi})$ & $\nu, \sigma^2, \phi$ & $R^3, S^2$ when $\nu\le 0.5$               \\ 
+		
+		Spherical        & $\sigma^2(1-\frac{3h}{2\phi}+\frac{1}{2}(\frac{h}{\phi})^3)I_{0\le h\le \phi}$         & $\phi, \sigma^2$      & $R^3, S^3$                                 \\
+		
+		Exponential      & $\sigma^2exp\{-(h/\phi)\}$                                                             & $\phi, \sigma^2$      & $R^3$                                      \\
+		
+		Gaussian         & $\sigma^2exp \{-(h/\phi)^2\}$                                                          & $\phi, \sigma^2$      & $R^3$                                      \\
+		
+		Power            & $\sigma^2(C_0-(h/\phi)^{\alpha}$                                                       & $\phi, \sigma^2$      & $R^3 \alpha\in [0,2],S^2 \alpha \in (1,2]$ \\ \hline
+	\end{tabular}
+	\caption{Commonly used isotropic covariance models}
+\end{table}
+
+%-------------------------------------% 
+\subsection{Mean square continuity \& differentiability}
+%-------------------------------------% 
+
+There is no simple relationship between $C(h)$ and the smoothness of $Z(x)$. For a sequence of random variables $X_1, X_2,\ldots$ and a random variable $X$ defined on a common probability space. Define,$X_n\overset{L^2}\to X$ if, $E(X^2)<\infty$ and $E(X_n - X)^2\to 0$ as $n \rightarrow \infty$. We can say, $\{X_n\}$ converges in $L^2$ if there exists such a $X$.\\
 
 Suppose $Z(x)$ is a random field on $\R^d$, Then $Z(x)$ is mean square continuous at $x$ if, $$\lim_{h\to 0} E(Z(x+h)-Z(x))^2 =0$$
 If $Z(x)$ is weak stationary and $C(\cdot)$ is the covariance function then $E(Z(x+h)-Z(x))^2=2(C(0)-C(h))$. Therefore $Z(x)$ is mean square continuous iff $C(\cdot)$ is continuous at the origin.
 
-\item [Spectral methods:] Sometimes it is convenient to use complex valued random functions, rather than real valued random functions. \\
+%-------------------------------------% 
+\subsection{Spectral methods} 
+%-------------------------------------% 
+
+Sometimes it is convenient to use complex valued random functions, rather than real valued random functions. \\
 
 We say, $Z(x)=U(x) + i V(x)$ is a complex random field if $U(x),V(x)$ are real random fields. If $U(x),V(x)$ are weakly stationary so does $Z(x)$.The covariance function can be defined as,
 \begin{eqnarray*}
-C(h) = cov(Z(x+h), \overline{Z(x)}), \quad C(-x)=\overline{C(x)},
+	C(h) = cov(Z(x+h), \overline{Z(x)}), \quad C(-x)=\overline{C(x)},
 \end{eqnarray*}
 for any complex constants $c_1,\ldots, c_n,$ and any locations $x_1, x_2, \ldots, x_n$,
 
 \beq \sum_{i,j=1}^n c_i\bar{c_j}C(x_i-x_j)\ge 0\eeq
 
-\item [Spectral representation of a random field:] Suppose $\omega_1,\ldots, \omega_n \in \mathbb{R}^d$ and let $Z_1, \ldots, Z_n$ be mean zero complex random variables with  $E(Z_i\bar{Z_j})=0, i\ne j\ and\ E|Z_i|^2=f_i$. Then the random sum
+%-------------------------------------% 
+\subsection{Spectral representation of a random field}
+%-------------------------------------% 
+
+Suppose $\omega_1,\ldots, \omega_n \in \mathbb{R}^d$ and let $Z_1, \ldots, Z_n$ be mean zero complex random variables with  $E(Z_i\bar{Z_j})=0, i\ne j\ and\ E|Z_i|^2=f_i$. Then the random sum
 \beq Z(x) = \sum_{k=1}^n Z_k e^{i\omega_k^Tx}.\eeq
 Then $Z(x)$ given above is a weakly stationary complex random field in $\mathbb{R}^d$ with covariance function $C(x) = \sum_{k=1}^n f_k e^{i\omega_k^Tx}$\\
 
 Further, if we think about the integral as a limit in $L^2$ of the above random sum, then the covariance function can be represented as,
 \beq C(x) = \int_{\mathbb{R}^d} e^{i\omega^Tx} F(d\omega)\eeq
-where $F$ is the so-called spectral distribution. For more details one can refer to \cite{stein1999}[p. 24],  Here is a more general result from Bochner.
+where $F$ is the so-called spectral distribution. There is a more general result from Bochner.
 
+%-------------------------------------% 
 \begin{thm}[Bochner's Theorem]\hfill \\
-A complex valued covariance function $C(\cdot)$ on $\mathbb{R}$ for a weakly stationary mean square continuous complex-valued random field on $\mathbb{R}^d$ iff it can be represented as above, where $F$ is a positive measure.
+	%-------------------------------------% 
+	
+	A complex valued covariance function $C(\cdot)$ on $\mathbb{R}$ for a weakly stationary mean square continuous complex-valued random field on $\mathbb{R}^d$ iff it can be represented as above, where $F$ is a positive measure.
 \end{thm}
 
 If $F$ has a density with respect to Lebesgue measure (spectral density) denoted by $f$, ($i.e.$ if such $f$ exists) we can use the inversion formula to obtain $f$
-\beq f(\omega) = \frac{1}{(2\pi)^d}  \int_{\mathbb{R}^d} e^{-i\omega^Tx} C(x) dx \eeq
+\beq 
+f(\omega) = \frac{1}{(2\pi)^d}  \int_{\mathbb{R}^d} e^{-i\omega^Tx} C(x) dx 
+\eeq
 
-\item [Septral densities:  Rational Functions] that are even,  nonnegative and integrable the corresponding covariance functions can be expressed in terms of elementary functions. For example if $f(\omega) =\phi (\alpha^2+\omega^2)^{-1}$, then $C(h) = \pi\phi\alpha^{-1}e^{-\alpha|h|}$ (obtained by contour integration).
+%-------------------------------------% 
+\subsection{Septral densities}
+%-------------------------------------% 
 
-\item [Septral densities: Gaussian Model]
-Commonly used covariance function for a smooth process on $\mathbb{R}$ where the covariance function is given by $C(h)=ce^{-\alpha h^2}$ and the corresponding spectral density is $ f(\omega) = \frac{1}{2\sqrt{\pi\alpha}}c e^{\frac{-\omega^2}{4\alpha}}$.
+\begin{enumerate}[(i)]
+	\item Rational Functions that are even,  nonnegative and integrable the corresponding covariance functions can be expressed in terms of elementary functions. For example if $f(\omega) =\phi (\alpha^2+\omega^2)^{-1}$, then $C(h) = \pi\phi\alpha^{-1}e^{-\alpha|h|}$ (obtained by contour integration).
+	      
+	\item Gaussian are the most commonly used covariance function for a smooth process on $\mathbb{R}$ where the covariance function is given by $C(h)=ce^{-\alpha h^2}$ and the corresponding spectral density is $ f(\omega) = \frac{1}{2\sqrt{\pi\alpha}}c e^{\frac{-\omega^2}{4\alpha}}$.
+	      
+	\item $Mat\acute{e}rn$ class has more practical use and more frequently used in spatial statistics. The spectral density of the form $f(\omega) =\frac{1}{\phi(\alpha^2+\omega^2)^{\nu+1/2}}$ where $\phi,\nu,\alpha>0$ and the corresponding covariance function given by,
+	      
+	      \beq
+	      C(h) = \frac{\pi^{1/2}\phi}{2^{\nu-1}\Gamma(\nu+1/2)\alpha^{2\nu}} (\alpha|h|)^{\nu} Y_{\nu} (\alpha|t|)
+	      \eeq
+	      
+	      where $Y_{\nu}$ is the modified Bessel function, the larger the $\nu$ smoother the $Y$. Further, $Y$ will be $m$ times square differntiable iff $\ \nu>m$. When $\nu$ is in the form of $m+1/2$ with $m$ a non negative integer, the spectral density is rational and the covariance function is in the form of $e^{-\alpha|h|}\cdot$ polynomial$(|h|)$ \\
+	      
+	      \begin{eqnarray*}
+	      	\nu = 1/2 &:& C(h) = \pi\phi\alpha^{-1}e^{-\alpha|h|}\\
+	      	\nu = 3/2 &:& C(h) = \frac{1}{2}\pi\phi\alpha^{-3}e^{-\alpha|h|}(1+\alpha|h|)\\
+	      \end{eqnarray*}
+	      
+\end{enumerate}
 
-\item [Septral densities: Matern class] has more practical use and more frequently used in spatial statistics. The spectral density of the form $f(\omega) =\frac{1}{\phi(\alpha^2+\omega^2)^{\nu+1/2}}$ where $\phi,\nu,\alpha>0$ and the corresponding covariance function  is
-\beq \label{matern_var} C(h) = \frac{\pi^{1/2}\phi}{2^{\nu-1}\Gamma(\nu+1/2)\alpha^{2\nu}} (\alpha|h|)^{\nu} Y_{\nu}(\alpha|t|),\eeq
 
-where $Y_{\nu}$ is the modified Bessel function, the larger the $\nu$ smoother the $Y$. Further, $Y$ will be $m$ times square differntiable iff $\ \nu>m$. When $\nu$ is in the form of $m+1/2$ with $m$ a non negative integer, the spectral density is rational and the covariance function is in the form of $e^{-\alpha|h|}\cdot$ polynomial$(|h|)$ \\
+%%------------------------------------------------------------------%%
+\section{Circulant matrix}
+%%------------------------------------------------------------------%%
+
+A square matrix $A_{n\times n}$ is a circulant matrix if the elements of each row (except first row) has the previous row shifted by one place to the right.
+
+\begin{eqnarray}
+	A = circ[a_o, a_1,\cdots,a_{n-1}] &=& \left[
+		\begin{array}{lllll}
+			a_0     & a_1     & a_2    & \cdots & a_{n-1} \\
+			a_{n-1} & a_0     & a_1    & \cdots & a_{n-2} \\
+			a_{n-2} & a_{n-1} & a_0    & \cdots & a_{n-3} \\
+			\vdots  & \vdots  & \vdots & \ddots & \vdots  \\
+			a_1     & a_2     & a_3    & \cdots & a_0     
+		\end{array}
+	\right].
+\end{eqnarray}
+
+The eigenvalues of $A$ are given by
 \begin{eqnarray*}
-\nu = 1/2 &:& C(h) = \pi\phi\alpha^{-1}e^{-\alpha|h|}\\
-\nu = 3/2 &:& C(h) = \frac{1}{2}\pi\phi\alpha^{-3}e^{-\alpha|h|}(1+\alpha|h|)\\
+	\lambda_l & = & \sum_{k=0}^{n-1} a_k e^{-i2lk\pi/n} \\
+	& = & \sum_{k=0}^{n-1}c_k \rho_l^k, \quad \quad l = 0, 1, 2, \cdots, n-1,
 \end{eqnarray*}
 
-\item [{\bf $Mat\acute{e}rn$} Variance:] We can use the covariance function given by (\ref{matern_var}) to compute the Matern variances at different latitudes. The spectral density of the rational form was fitted to residuals of TOMS data.
+where $\rho_l = e^{-i2\pi l/n}$ represents the $l$th root of 1), and the corresponding (unitary) eigenvector is given by
+\[
+	\psi_l = \frac{1}{\sqrt{n}}(1, \rho_l, \rho_l^2, \cdots, \rho_l^{n-1})^T.
+\]
+
+If matrix $A$ is real symmetric then its eigen values are real; for even $n=2h$ the eigen values $\lambda_j = \lambda_{n-j}$ or there are either two eigen values or none with odd multipilicity, for odd $n=2h-1$ the eigen value $\lambda_0$ equal to any $\lambda_j$ for $1\le j \le h-1$ or $\lambda_0$ occurs with odd multiplicity.\\
+
+A square matrix $B$ is Hermitian, if and only if $B^* = B$ where $B^*$ is the complex conjugate. If $B$ is real then $B^* = B^T$. Hermitian matrices has a full set of orthogonal eigen vectors with corresponsding real eigen values.    
 
 
-\end{description}
+
+%-------------------------------------% 
+\subsection{Block circulant matrices}
+%-------------------------------------% 
+
+\blue{should we talk about finding the inverse?}
 
 
+
+
+\blue{should we add any references in the introduction}
 
 
 
