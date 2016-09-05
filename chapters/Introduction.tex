@@ -1,16 +1,27 @@
 %%-------------------------Introduction---------------------------------------%%
 
-In this chapter we have given a brief introduction to some of the basic concepts in spatial statistics which are necessary to follow other chapters in this dissertation. Moreover, we have discuss about stationarity, isotropy, intrinsic stationarity, covarince function and it properties, variogram, continuty and differentiability, spectral representations, Bochner's theorem, spectral densities, circulant matrices and it's properties with special cases.   
+In this chapter we have given a brief introduction to some of the basic concepts in spatial statistics which are necessary to follow other chapters in this dissertation. Moreover, we have discuss about stationarity, isotropy, intrinsic stationarity, covarince function and it properties, variogram, continuity and differentiability, spectral representations, Bochner's theorem, spectral densities, circulant matrices and it's properties with special cases.\\~\\
+
+
+{\bf A random process} is a collection of random variables $X \in \{X(s): s\in D\}$, defined in a common probability space. In general, if
+\begin{itemize}
+	\item $s \in N$: $X(s)$ is a random sequence which is used in time series.
+	\item $s \in R^1$: $X(s)$ is a random process which is also referred as a stochastic process.
+	\item $s \in R^d$: $X(s)$ is a random filed or a spatial process if $d > 1$
+	\item $s \in S^2$: $X(s)$ is a random process on the sphere.
+	\item $s \in R^d\times R$: $X(s)$ is a spatio-temporal process which involves location and time.
+\end{itemize}
 
 %%------------------------------------------------------------------%%
 \section{Spatial random field} 
 %%------------------------------------------------------------------%%
 
-A real-valued spatial proces $Z$ in $d$ dimensions or a spatial random field can be denoted as $\{Z(x): x \in D \subset \mathbb{R}^d\}$ where $x$ is the location of process $Z(x)$ and $x$ varies over the set $D$ which is fixed and discrete. The distribution of the random vector ${\bf Z(x)}=\{Z(x_1),\ldots, Z(x_n)\}$ is given by the associated finite-dimensional joint distributions
+A real-valued spatial process $Z$ in $d$ dimensions or a spatial random field can be denoted as $\{Z(x): x \in D \subset \mathbb{R}^d\}$ where $x$ is the location of process $Z(x)$ and $x$ varies over the set $D$ which is fixed and discrete. The distribution of the random vector ${\bf Z(x)}=\{Z(x_1),\ldots, Z(x_n)\}$ is given by the associated finite-dimensional joint distributions
 
 \beq
-F\{Z(x_1),\ldots, Z(x_n)\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n \}
+F\{Z(x_1),\ldots, Z(x_n)\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n \} 
 \eeq
+
 
 %-------------------------------------% 
 \subsection{Stationary and Isotropy}
@@ -20,14 +31,14 @@ A spatial random field is strict stationarity, for all finite $n,\ \xn \in \math
 \beq
 P\{Z(x_1+x)\le h_1, \ldots, Z(x_n+x)\le h_n\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n\}
 \eeq
-Strict stationary is a too strong condition as it involves the distibution of the random field but many spatial methods are based moments. Therefore, it is sufficeint to use weak assumptions and we could say a random process $Z(x)$ is weakly stationary if, 
+Strict stationary is a too strong condition as it involves the distribution of the random field but many spatial methods are based moments. Therefore, it is sufficient to use weak assumptions and we could say a random process $Z(x)$ is weakly stationary if, 
 \begin{eqnarray}
 	E(Z(x))   & = & \mu \nonumber \\ 
 	E^2(Z(x)  & < & \infty \nonumber \\  
 	C(h)      & = & Cov(Z(x),Z(x+h))
 \end{eqnarray}
 
-if $Z(x)$ has a finite second moment with constant mean and $C(h)$ the covarince (also referred as auto-covariance) function depends on the spatial distance only. Futher strictly stationary random fields with finite second moment is also weakly stationary, but weak stationarity does not imply strict stationarity. However, in the case of Gaussian random fields that weakly stationary are also strict stationarity because the first two moments ($\mu, \sigma$) will explain the distribution. \\
+if $Z(x)$ has a finite second moment with constant mean and $C(h)$ the covarince (also referred as auto-covariance) function depends on the spatial distance only. Further strictly stationary random fields with finite second moment is also weakly stationary, but weak stationarity does not imply strict stationarity. However, in the case of Gaussian random fields that weakly stationary are also strict stationarity because the first two moments ($\mu, \sigma$) will explain the distribution. \\
 
 Suppose $Z(x)$ is weakly stationary on $\R^d$ with autocavariance function $C(h)$ then it has the following properties,
 
@@ -35,18 +46,18 @@ Suppose $Z(x)$ is weakly stationary on $\R^d$ with autocavariance function $C(h)
 	\item $C(0) \ge 0$
 	\item $C(h) = C(-h)$
 	\item $|C(h)| \le  C(0)$
-	\item If $C_1, C_2$ valid covariance functions then,
+	\item If $C_1, C_2, C_n$ are valid covariance functions then following $C(x)$ functions are also valid covarince functions
 	      
 	      \begin{enumerate}
-	      	\item $C(x) = a_1C_1+a_2C_2$, $\forall a_1,a_2\ge 0$ is also a valid covariance function.
-	      	\item $C(x) = C_1(x)C_2(x)$ is also a valid covariance function.
-	      	      %\item If $\underset{n\to\infty} {lim}\ C_n(x)=C(x),\ \forall x\in   \R^d$, 
+	      	\item $C(x) = a_1C_1+a_2C_2$, $\forall a_1,a_2\ge 0$
+	      	\item $C(x) = C_1(x)C_2(x)$
+	      	\item $\underset{n\to\infty} {lim}\ C_n(x)=C(x),\ \forall x\in \R^d$ 
 	      \end{enumerate}
 	      
 \end{enumerate}
 
 
-If the variance between two locations soley depends on the distance between the two locations then the process is said to be intrinsically stationary. Semivariogram is an alternative to the covariance function proposed by Matheron. For an intrinsically stationary random field $Z(s)$,
+If the variance between two locations solely depends on the distance between the two locations then the process is said to be intrinsically stationary. Semivariogram is an alternative to the covariance function proposed by Matheron. For an intrinsically stationary random field $Z(s)$,
 
 \begin{align}
 	E[Z(s)]   & = \mu , \nonumber                \\
@@ -66,7 +77,7 @@ Where $\gamma$ is the semivariogram and $\gamma(h) = C(0) - C(h)$ for a weakly s
 when $\underset{h \to \infty} {lim} \gamma(h) \to \infty$ thus this is not weak stationary and $C(h)$ does not exist. \\
 
 
-A weakly stationary process with a covarince function $C(||h||)$ which is free from direction is called isoropic. The random field, $Z(x)$, on $\mathbb{R}^d$ is strictly isotropic if the joint distributions are invariant under all rigid motions. {\em i.e.,} for any orthogonal $d\times d$ matrix $H$ and any $x\in \R^d$
+A weakly stationary process with a covarince function $C(||h||)$ which is free from direction is called isotropy. The random field, $Z(x)$, on $\mathbb{R}^d$ is strictly isotropy if the joint distributions are invariant under all rigid motions. {\em i.e.,} for any orthogonal $d\times d$ matrix $H$ and any $x\in \R^d$
 
 \beq
 P\{Z(Hx_1+x)\le h_1, \ldots, Z(Hx_n+x)\le h_n\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n\}
@@ -75,9 +86,9 @@ P\{Z(Hx_1+x)\le h_1, \ldots, Z(Hx_n+x)\le h_n\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_
 Isotropy assumes that it is not required to distinguish one direction from another for the random field $Z(x)$.\\
 
 
-A covariance function $C(\cdot)$ on $\mathbb{R}^d$ is positive definite  if and only if 
+A covariance function $C(\cdot)$ on $\mathbb{R}^d$ is non-negative definite  if and only if 
 
-\beq
+\beq \label{cov_pd}
 \sum_{i,j=1}^{N} a_i a_j C(x_i - x_j) \ge 0,
 \eeq
 for any integer $N$, any constants $a_1, a_2, \ldots, a_N$, and any locations $x_1, x_2, \ldots, x_N \in \mathbb{R}^d$.
@@ -89,26 +100,6 @@ Similarly, the variogram is conditionally negative definite
 
 for any integer $N$, any constants $a_1, a_2, \ldots, a_N$ with $\sum a_i = 0$, and any locations $x_1, x_2, \ldots, x_N \in \mathbb{R}^d$.
 
-
-
-\begin{table}
-	\label{parameters}
-	\centering
-	\begin{tabular}{l|l|l|l}
-		\hline 
-		Family           & C(h)                                                                                   & Parameters            & Validity                                   \\ \hline \hline
-		$Mat\acute{e}rn$ & $\frac{\sigma^2}{2^{\nu-1}\Gamma(\nu)} (\frac{h}{\phi})^{\nu} Y_{\nu}(\frac{h}{\phi})$ & $\nu, \sigma^2, \phi$ & $R^3, S^2$ when $\nu\le 0.5$               \\ 
-		
-		Spherical        & $\sigma^2(1-\frac{3h}{2\phi}+\frac{1}{2}(\frac{h}{\phi})^3)I_{0\le h\le \phi}$         & $\phi, \sigma^2$      & $R^3, S^3$                                 \\
-		
-		Exponential      & $\sigma^2exp\{-(h/\phi)\}$                                                             & $\phi, \sigma^2$      & $R^3$                                      \\
-		
-		Gaussian         & $\sigma^2exp \{-(h/\phi)^2\}$                                                          & $\phi, \sigma^2$      & $R^3$                                      \\
-		
-		Power            & $\sigma^2(C_0-(h/\phi)^{\alpha}$                                                       & $\phi, \sigma^2$      & $R^3 \alpha\in [0,2],S^2 \alpha \in (1,2]$ \\ \hline
-	\end{tabular}
-	\caption{Commonly used isotropic covariance models}
-\end{table}
 
 %-------------------------------------% 
 \subsection{Mean square continuity \& differentiability}
@@ -147,7 +138,7 @@ where $F$ is the so-called spectral distribution. There is a more general result
 
 %-------------------------------------% 
 \begin{thm}[Bochner's Theorem]\hfill \\
-	%-------------------------------------% 
+%-------------------------------------% 
 	
 	A complex valued covariance function $C(\cdot)$ on $\mathbb{R}$ for a weakly stationary mean square continuous complex-valued random field on $\mathbb{R}^d$ iff it can be represented as above, where $F$ is a positive measure.
 \end{thm}
@@ -162,7 +153,7 @@ f(\omega) = \frac{1}{(2\pi)^d}  \int_{\mathbb{R}^d} e^{-i\omega^Tx} C(x) dx
 %-------------------------------------% 
 
 \begin{enumerate}[(i)]
-	\item Rational Functions that are even,  nonnegative and integrable the corresponding covariance functions can be expressed in terms of elementary functions. For example if $f(\omega) =\phi (\alpha^2+\omega^2)^{-1}$, then $C(h) = \pi\phi\alpha^{-1}e^{-\alpha|h|}$ (obtained by contour integration).
+	\item Rational Functions that are even,  non-negative and integrable the corresponding covariance functions can be expressed in terms of elementary functions. For example if $f(\omega) =\phi (\alpha^2+\omega^2)^{-1}$, then $C(h) = \pi\phi\alpha^{-1}e^{-\alpha|h|}$ (obtained by contour integration).
 	      
 	\item Gaussian are the most commonly used covariance function for a smooth process on $\mathbb{R}$ where the covariance function is given by $C(h)=ce^{-\alpha h^2}$ and the corresponding spectral density is $ f(\omega) = \frac{1}{2\sqrt{\pi\alpha}}c e^{\frac{-\omega^2}{4\alpha}}$.
 	      
@@ -172,7 +163,7 @@ f(\omega) = \frac{1}{(2\pi)^d}  \int_{\mathbb{R}^d} e^{-i\omega^Tx} C(x) dx
 	      C(h) = \frac{\pi^{1/2}\phi}{2^{\nu-1}\Gamma(\nu+1/2)\alpha^{2\nu}} (\alpha|h|)^{\nu} Y_{\nu} (\alpha|t|)
 	      \eeq
 	      
-	      where $Y_{\nu}$ is the modified Bessel function, the larger the $\nu$ smoother the $Y$. Further, $Y$ will be $m$ times square differntiable iff $\ \nu>m$. When $\nu$ is in the form of $m+1/2$ with $m$ a non negative integer, the spectral density is rational and the covariance function is in the form of $e^{-\alpha|h|}\cdot$ polynomial$(|h|)$ \\
+	      where $Y_{\nu}$ is the modified Bessel function, the larger the $\nu$ smoother the $Y$. Further, $Y$ will be $m$ times square differentiable iff $\ \nu>m$. When $\nu$ is in the form of $m+1/2$ with $m$ a non negative integer. The spectral density is rational and the covariance function is in the form of $e^{-\alpha|h|}\cdot$ polynomial$(|h|)$ for example, when $\nu=\frac{1}{2}$ $C(h)$ corresponds to exponential model and $\nu=\frac{3}{2}$ is transformation of exponential family of order 2.     \\
 	      
 	      \begin{eqnarray*}
 	      	\nu = 1/2 &:& C(h) = \pi\phi\alpha^{-1}e^{-\alpha|h|}\\
@@ -180,6 +171,8 @@ f(\omega) = \frac{1}{(2\pi)^d}  \int_{\mathbb{R}^d} e^{-i\omega^Tx} C(x) dx
 	      \end{eqnarray*}
 	      
 \end{enumerate}
+
+
 
 
 %%------------------------------------------------------------------%%
@@ -202,18 +195,16 @@ A square matrix $A_{n\times n}$ is a circulant matrix if the elements of each ro
 
 The eigenvalues of $A$ are given by
 \begin{eqnarray*}
-	\lambda_l & = & \sum_{k=0}^{n-1} a_k e^{-i2lk\pi/n} \\
-	& = & \sum_{k=0}^{n-1}c_k \rho_l^k, \quad \quad l = 0, 1, 2, \cdots, n-1,
+	\lambda_l & = & \sum_{k=0}^{n-1} a_k e^{i2lk\pi/n} \\
+	& = & \sum_{k=0}^{n-1}a_k \rho_l^k, \quad \quad l = 0, 1, 2, \cdots, n-1,
 \end{eqnarray*}
 
-where $\rho_l = e^{-i2\pi l/n}$ represents the $l$th root of 1), and the corresponding (unitary) eigenvector is given by
+where $\rho_l = e^{i2\pi l/n}$ represents the $l$th root of 1, and the corresponding (unitary) eigenvector is given by
 \[
 	\psi_l = \frac{1}{\sqrt{n}}(1, \rho_l, \rho_l^2, \cdots, \rho_l^{n-1})^T.
 \]
 
-If matrix $A$ is real symmetric then its eigen values are real; for even $n=2h$ the eigen values $\lambda_j = \lambda_{n-j}$ or there are either two eigen values or none with odd multipilicity, for odd $n=2h-1$ the eigen value $\lambda_0$ equal to any $\lambda_j$ for $1\le j \le h-1$ or $\lambda_0$ occurs with odd multiplicity.\\
-
-A square matrix $B$ is Hermitian, if and only if $B^* = B$ where $B^*$ is the complex conjugate. If $B$ is real then $B^* = B^T$. Hermitian matrices has a full set of orthogonal eigen vectors with corresponsding real eigen values.    
+If matrix $A$ is real symmetric then its eigen values are real; for even $n=2h$ the eigen values $\lambda_j = \lambda_{n-j}$ or there are either two eigen values or none with odd multiplicity, for odd $n=2h-1$ the eigen value $\lambda_0$ equal to any $\lambda_j$ for $1\le j \le h-1$ or $\lambda_0$ occurs with odd multiplicity. A square matrix $B$ is Hermitian, if and only if $B^* = B$ where $B^*$ is the complex conjugate. If $B$ is real then $B^* = B^T$. According to \cite{Tee2005} Hermitian matrices has a full set of orthogonal eigen vectors with corresponding real eigen values.    
 
 
 
@@ -221,12 +212,85 @@ A square matrix $B$ is Hermitian, if and only if $B^* = B$ where $B^*$ is the co
 \subsection{Block circulant matrices}
 %-------------------------------------% 
 
-\blue{should we talk about finding the inverse?}
+The idea of a block circulant matrix was first proposed by \cite{Muir1920}. A matrix $B_{np\times np}$ is a block-circulant matrix if it has the following form,
 
 
+\begin{eqnarray}
+	B = bcirc[a_o, a_1,\cdots,a_{n-1}] &=& \left[
+		\begin{array}{lllll}
+			a_0     & a_1     & a_2    & \cdots & a_{n-1} \\
+			a_{n-1} & a_0     & a_1    & \cdots & a_{n-2} \\
+			a_{n-2} & a_{n-1} & a_0    & \cdots & a_{n-3} \\
+			\vdots  & \vdots  & \vdots & \ddots & \vdots  \\
+			a_1     & a_2     & a_3    & \cdots & a_0     
+		\end{array}
+	\right].
+\end{eqnarray}
+
+where $a_j$ are ($p \times p$) sub matrices of complex or real valued elements. \cite{DeMazancourt1983} proposed some methodologies to find the inverse of $B$. Let $M$ be a block-permutation matrix
+
+\begin{eqnarray*}
+	M = \left[
+		\begin{array}{lllll}
+			0       & I_p     & 0      & \cdots & 0 \\
+			0       & 0       & I_p    & \cdots & 0 \\
+			\vdots  & \vdots  & \vdots & \ddots & \vdots  \\
+			0       & 0       & 0      & \cdots & I_p \\
+			I_p     & 0     & 0    & \cdots & 0     
+		\end{array}
+	\right].
+\end{eqnarray*}
+
+where $I_p$ is $p\times p$ identity matrix and $B$ can be defined as follows,
+
+\[ 
+B = \sum_{k=0}^{n-1} a_k M^k.
+\]
+
+Define $M^0$ as ($np\times np$) identity matrix and the eigen values of $M$ given by $\rho_l$, the eigen matrix of $M$ can be given by $Q_{np\times np}=\{ \utilde{\psi_0}, \utilde{\psi_1},\ldots, \utilde{\psi_{n-1}} \}$. From \cite{Trapp1973} it can be shown that $Q^{-1} = Q^*/n$ where $Q^*$ is the conjugate transpose of $Q$ now we can write,
+
+\[
+M = QDQ^{-1} = \frac{QDQ^*}{n}
+\]
+
+where $D$ is a diagonal matrix and the diagonal elements $d_i \quad i=0,1, n-1$ are the discrete Fourier transform of the blocks $a_j$,
+
+\[
+d_i = \sum_{k=0}^{n-1} a_k e^{i2lk\pi/n}
+\]
+
+That is the inverse of matrix $B$ takes the following form,
+
+\begin{eqnarray*}
+	B^{-1} = Q\cdot\left(
+		\begin{array}{llll}
+			d_0^{-1}  & 0              & \cdots & 0 \\
+			0         & d_1^{-1}       & \cdots & 0 \\
+			\vdots    & \vdots         & \ddots & \vdots  \\
+			0         & 0              & \cdots & d_n{-1}     
+		\end{array}
+	\right)\cdot Q^{-1}.
+\end{eqnarray*}
+
+The eigen matrix $Q$ is solely depending on the dimension of $B$ and the eigen values of $B$ ($\rho_l$'s) or in other words $B$ is not depending on the blocks ($a_j$'s) $i.e.$ for any block diagonal matrix $D_{np \times np}$, $QDQ^{-1}$ is a block circulant matrix and immediately follows that the inverse of the matrix B is also a block circulant matrix.\\
+
+When $a_{j_{1\times 1}}$, $B=A$, $d_i^{-1}=\lambda^{-1}$, and the eigen matrix has a dimension of $n\times n$ then
+
+\[
+A^{-1} = Q \Lambda^{-1} Q^T \quad \mbox{where $\Lambda = \{\lambda_0, \ldots, \lambda_{n-1} \}$}
+\]
 
 
-\blue{should we add any references in the introduction}
+When $A$ is real symmetric $Q$ is real also symmetric and $Q^{-1}=Q^T$.\\
+
+
+\blue{should we add the following special cases?}\\
+
+Case 1 : When $a_j$'s are symmetric (\blue{by Tee, add citation})
+
+Case 2 : When $a_j$'s are circulant
+
+
 
 
 

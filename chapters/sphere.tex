@@ -1,57 +1,288 @@
 %%-------------------------Random process on sphere---------------------------------------%%
 
-A random process is a collection of random variables $X \in \{X(s): s\in D\}$, defined in a common probability space. In general, if
-\begin{itemize}
-	\item $s \in N$: random sequence, time series
-	\item $s \in R^1$: random process which is a stochastic process
-	\item $s \in R^d$: random filed, spatial process if $d > 1$
-	\item $s \in S^2$: random process on the sphere
-	\item $s \in R^d\times R$: spatio-temporal process
-\end{itemize}
 
-In this dissertation, we will focus only on spatial processes on a sphere, where $s$ represents a location.
+Suppose $X \in \{X(s): s\in D\}$, defined in a common probability space $s \in S^2$: $X(s)$ is a random process or a spatial processes on the sphere $S^2$ with radius $r$ and $s$ represents any location on sphere by latitude $L$ and longitude $l$, where $0 \ge L \ge \pi$ and $-\pi \ge l \ge \pi$.\\
 
 
 %%------------------------------------------------------------------%%
-\section{Random process on a sphere} 
+\section{Covariance on sphere} 
 %%------------------------------------------------------------------%%
 
+The random process $X(\cdot)$ is said to be homogeneous (or isotropy) on $S^2$ if second moment is finite and invariant under the rotations on the sphere with constant mean. Similarly, we can define an isoropic random process on a sphere as, 
 
-We consider a complex-valued random process $X(P)$ on a unit sphere $S^2$, where $P=(\lambda, \phi) \in S^2$ with longitude $\lambda \in [-\pi, \pi)$ and latitude $\phi \in [0, \pi]$. Assume the process is continuous in quadratic mean with respect to the location $P$, and has finite second moment, then $X(P)$ can be represented by spherical harmonics, with convergence of the series in quadratic mean, \cite{LiNorth1997}.
+\begin{eqnarray*}
+	E(X(s) &=& \mu \quad \mbox{for any } s\in S^2 \\
+	Cov(X(s_1),X(s_2)) &=& C(\theta_{s_1s_2}) 
+\end{eqnarray*}
+
+where $\theta_{s_1s_2}$ is the spherical angle between two locations $s_1,s_2$. For a unit sphere ($r=1$), the distance between the two locations can be defined as great circle distance ($\gcd_{s_1s_2}$) or chordal distance ($ch_{s_1s_2}$) as follows,
+
+\begin{eqnarray*}
+	\theta_{s_1s_2}  &=& arcsin(\sin(L_1)\sin(L_2) + \cos(L_1)\cos(L_2)\cos(l_1-l_2)\\
+	gcd_{s_1s_2}    &=&  1\cdot\theta_{s_1s_2}\\
+	ch_{s_1s_2}     &=& 2\sin (\theta_{s_1s_2}/2)
+\end{eqnarray*}
+
+In the case of $\R^d$, non-negative definite is a necessary and sufficient condition for a valid covariance function defined on $\R^d$ (\ref{cov_pd}). Similarly, a real continuous function $C(\cdot)$ defined on the sphere is a valid covariance function if and only if it is non-negative definite,
+
+\beq
+\sum_{i,j=1}^{N} a_i a_j C(\theta_{s_1s_2}) \ge 0,
+\eeq
+for any integer $N$, any constants $a_1, a_2, \ldots, a_N$, and any locations $s_1, s_2, \ldots, s_N \in S^2$.
+
+Accoriding to \cite{schoenberg1942} a real continous function $C(\theta)$ is a valid covariance function on $S^d$, where $d=1,2,\ldots$, if and only if it can be written in the following form
+
+\beq
+C(\theta) = \sum_{k = 0}^\infty c_kP_k^{(r)}(\cos\theta) \quad r=\frac{1}{2}(d-1)
+\eeq
+
+where $P_{k}(\cdot)$ are Legendre polynomials with $\forall c_k\ge 0$ and $\sum c_k < \infty$. \\
+
+When $d=1$ the covarince on a circle can be expressed as follows,
+
+\beq
+C(\theta) = \sum_{k = 0}^\infty c_k\cos\theta
+\eeq
+
+When $d=2$ the covarince on a sphere ($S^2$) can be expressed as follows,
+
+\beq \label{covs2_sum}
+C(\theta) = \sum_{k = 0}^\infty c_kP_k(\cos\theta)
+\eeq
+
+Suppose $C(\cdot)$ is a covariance functions that is valid in $S^d$ then it is valid on $S^r\quad r\le d$ but covariance functions that are valid on $S^r$  may not be valid on $S^d \quad d>r$ \blue{example?}.\\
+
+\blue{?if a covariance function is not valid on $S^r$ it is not valid on $S^d \quad d > r$ (example).}\\
+
+Since the Legendre polynomials are orthogonal we have
+
+\[
+	\int_{-1}^{1} P_{n}(x)P_{m}(x)dx = \frac{2}{2n+1}\delta_{nm}
+\]
+
+and on a sphere the coefficients $c_k$ can be obtained by
+
+\beq \label{covs2_coef}
+c_{\nu} = \frac{2\nu+1}{2}\int_0^{\pi} C(\theta)P_{\nu}(\cos\theta)d\theta. \quad \nu = 0,1,2,\ldots
+\eeq
+
+One can directly use the above integral to evalute the validity of a covariance function on the sphere by checking if $c_k$ is non-negative and $\sum c_k < \infty$ .\\ 
+
+All covariance models that are valid on $\R^d$ are not valid on the sphere ($S^2$), \cite{HuangZhangRobeson2011} evaluated the validity of commonly used covariance on a sphere that are valid on $\R^d$, they showed that some models are not valid on the sphere and some models are valid only for certain parameter values.  
+ 
+
+\begin{table}[H]
+	\label{valid_cov_models}
+	\centering
+	\begin{tabular}[htb]{lll} \hline \hline
+		Model & Covariance function & Validity  $S^2$           \\   \hline Spherical  &
+		$\left(1-\frac{3\theta}{2a} + \frac{1}{2}
+		\frac{\theta^3}{a^3}\right){\bf 1}_{(\theta \le a)}$ & Yes   \\
+		[2ex]
+		Stable     & $\exp\left\{-\left(\frac{\theta}{a}\right)^\alpha\right\}$ & Yes for $\alpha \in (0,1]$  \\
+		      &                     & No for $\alpha \in (1,2]$ \\ [2ex] \hspace{0.2in} Exponential &
+		$\exp \{-\left(\frac{\theta}{a}\right) \}$ & Yes \\ [2ex]
+		\hspace{0.2in} Gaussian & $\exp\left\{-\left(\frac{\theta}{a} \right)^2
+		\right\}$  & No \\ [2ex]
+		Power$^*$   & $c_0 - (\theta/a)^\alpha$ & Yes for  $\alpha \in (0,1] $  \\
+		& & No for $\alpha \in (1,2]$ \\ [2ex]
+		Radon transform of order 2         & $e^{-\theta/a}(1+\theta/a)$ &
+		No        \\ [2ex] Radon transform of order 4         &
+		$e^{-\theta/a} (1+\theta/a+\theta^2/3a^2)$  & No  \\ [2ex] Cauchy &
+		$(1+\theta^2/a^2)^{-1}$ &  No      \\ [2ex] Hole - effect & $\sin
+		a\theta / \theta$ & No    \\ \hline \hline
+	\end{tabular}
+	\caption{Validity of covariance functions on the sphere, $a >
+		0,\theta \in [0,\pi]$. $^*$When $\alpha \in (0,1]$, power model is
+			valid on the sphere  for some $c_0 \ge \int_0^\pi
+			(\theta/a)^{\alpha} \sin \theta d \theta$.} \label{tab:t1}
+				
+	\end{table}
+	
+	Furthermore, \cite{Gneiting2013} argued that Mat$\acute{e}$rn covariance function is valid on the sphere when the smoothness parameter $\nu\in(0,1/2)$ and it is not valid if $\nu>1/2$. \cite{Yadrenko1983} showed that if $K(\cdot)$ is valid isotropic covariance function on $\R^3$ then
+	
 	\[
-		X(P) = X(\lambda,\phi) = \sum_{\nu=0}^\infty \sum_{m=-\nu}^{\nu} Z_{\nu,m} e^{i m \lambda} P_{\nu}^m (\cos \phi),
+		C(\theta) = K(2\sin(\theta/2))
 	\]
-	where $P_{\nu}^m(\cdot)$ is a normalized associated Legendre polynomial so that its squared integral on $[-1, 1]$ is 1, and $Z_{\nu,m}$ are the coefficients satisfying
-	\[
+	
+	is a valid isotropic covariance function on the unit sphere (where $\theta$ is $gcd$).
+	
+	%%------------------------------------------------------------------%%
+	\section{Variogram on a sphere}
+	%%------------------------------------------------------------------%%
+	
+	
+	A random process $X(\cdot)$ on a sphere, \cite{HuangZhangRobeson2011} defined, if $E(X(s))=\mu$ for all $s\in S^2$ and $Var(X(s_1)-X(s_2)) = 2\gamma(\theta_{s_1s_2})$ and for all $s_1, s_2 \in S^2$ then $X(\cdot)$ is intrinsically statioinary on $S^2$ where $2\gamma(\cdot)$ is the variogram. The variogram is conditionally negative definite
+	
+	\beq
+	\sum_{i,j=1}^{N} a_i a_j 2\gamma(\theta_{s_1s_2}) \le 0,
+	\eeq
+	
+	for any integer $N$, any constants $a_1, a_2, \ldots, a_N$ with $\sum a_i = 0$, and any locations $s_1, s_2, \ldots, s_N \in S^2$. Immeditely from \ref{covs2_sum} for a continuous $2\gamma(\cdot)$ with $\gamma(0)=0$ the variogram is negative definite if and only if 
+	
+	\beq \label{covs2_sum}
+	C(\theta) = \sum_{k = 0}^\infty c_k(1-P_k(\cos\theta))
+	\eeq
+	where $P_{k}(\cdot)$ are Legendre polynomials with $\forall c_k\ge 0$ and $\sum c_k < \infty$. \\
+	
+	In the introduction we pointed out in $\R^d$ one can always construct the variogram if the covariance function is given but not the converse. However, in $S^2$ \cite{Yaglom1961} argued that for a valid $\gamma(\theta) \quad \theta \in [0,\pi]$ one can always construct covariance function $C(\theta)=c_0-\gamma(\theta)$ for some $c_0 \ge \int_0^{\pi} \gamma(\theta)\sin(\theta)d\theta$. 
+	
+	%%------------------------------------------------------------------%%
+	\section{Random process on a sphere}
+	%%------------------------------------------------------------------%%
+	
+	\cite{Jones1963} showed that a random process on a sphere, can be written as a summation of spherical harmonics $Y_{\nu}^m(P)$. 
+	
+	% 	\beq
+	% 		X(P) = X(\lambda,\phi) = \sum_{\nu=0}^\infty \sum_{m=-\nu}^{\nu} Z_{\nu,m} Y_{\nu}^m (P),
+	% 	\eeq
+	% where the squared integral of $Y_{\nu}^m(P)$ over $S^2$ is 1. The process is isoropic if the covariance solely depends on the distance between two locations and $E(X(P)$ is a constant.
+	
+	A random process $X(P)$ on a unit sphere $S^2$, where $P=(\lambda, \phi) \in S^2$ where $P=(\lambda, \phi) \in S^2$ with longitude $\lambda \in [-\pi, \pi)$ and latitude $\phi \in [0, \pi]$.. Suppose the porcess is isotropy and continuous in quadratic mean with respect to the location $P$ then the process can be represented by spherical harmonics, $P_{\nu}^m(\cdot)$ normalized associated Legendre polynomials, with the sum converges in mean square (\cite{LiNorth1997, Huang2012}).   
+		
+		\beq
+		X(P) = \sum_{\nu=0}^\infty \sum_{m=-\nu}^{\nu} Z_{\nu,m} e^{i m \lambda} P_{\nu}^m (\cos \phi),
+		\eeq
+		
+		Since $\cos(\phi)\in[-1,1]$ we have $\int_{-1}^{1}[P_{\nu}^m(cos(\phi))]^2dcos(\phi) = 1$, and $Z_{\nu,m}$ are complex-valued coefficients satisfying.
+		
+		\beq
 		Z_{\nu,m} = \int_{S^2} X(P) e^{-im \lambda} P_{\nu}^m (\cos \phi) d P.
-	\]
-	Without loss of generality, the process is assumed to have mean zero, i.e., $\mbox{E}(X(P)) = 0$, which implies $\mbox{E} (Z_{\nu,m}) = 0$. Then, the covariance function of the process at two locations $P = (\lambda_P, \phi_P)$ and $Q=(\lambda_Q, \phi_Q)$ is given by,
-	\[
-		R(P, Q) = \mbox{E}(X(P) \overline{X(Q)}) = \sum_{\nu=0}^\infty \sum_{\mu=0}^\infty \sum_{m=-\nu}^{\nu} \sum_{n=-\mu}^{\mu} \mbox{E}(Z_{\nu,m} \overline{Z}_{\mu,n}) e^{im \lambda_P} P_{\nu}^m(\cos \phi_P) e^{-i n \lambda_Q} P_{\mu}^n (\cos \phi_Q).
-	\]
-	where $\bar{Z}$ denotes the complex conjugate of $Z$. Note that the continuity of $X(P)$ on every point $P$ implies that $R(P, Q)$ is continuous on all pairs $(P, Q)$ \cite[page 83]{Leadbetter1967}. If the covariance function depends solely on the spherical distance between these two locations, the process is homogeneous. That is, (Obukhov, 1947, \cite{Yaglomothers1961})
-	\[
-		R(P, Q) = R(\theta(P,Q)) = \sum_{\nu=0}^\infty \frac{(2\nu+1)f_{\nu}}{2} P_{\nu}(\cos \theta(P,Q)),
-	\]
-	where the spherical distance $ \theta(P,Q) = \cos^{-1} (\cos \phi_P \cos \phi_Q + \cos \phi_P \cos \phi_Q \cos (\lambda_P-\lambda_Q))$, $P_{\nu}(\cdot)$ is the Legendre polynomial of order $\nu$, $f_{\nu} \ge 0$, and $\sum_{\nu = 0}^{\infty} (2\nu+1)f_{\nu} < \infty$. Here, the random variable $Z_{\nu,m}$ satisfies
-	\[
-		\mbox{E} (Z_{\nu,m} \overline{Z}_{\mu,n}) = \delta_{\nu,\mu} \delta_{n,m} f_\nu,
-	\]
-	where $\delta_{a, b} = 1$ if $a = b$, and $0$ otherwise.
-	
-	
-	%%------------------------------------------------------------------%%
-	\section{Axially symmetry}
-	%%------------------------------------------------------------------%%
-	
-	The idea was introduced by \cite{Jones1963}, if the covarince between two spatial points depends only on the longitudes only through their difference  between two points then process is said to be axially symmetric.
-	
-	Under the assumption of axial symmetry , where the covariance function depends on longitudinal differences, one has
-	\[
-		\mbox{E} (Z_{\nu,m} \overline{Z}_{\mu,n}) = \delta_{n,m} f_{\nu,\mu,m}.
-	\]
-	Hence, the covariance function is of the form
-	\begin{eqnarray} \label{axially-symmetry-cov}
-		R(P,Q) = R(\phi_P, \phi_Q, \lambda_P-\lambda_Q) = \sum_{m=-\infty}^{\infty} \sum_{\nu=|m|}^\infty \sum_{\mu=|m|}^\infty f_{\nu,\mu,m} e^{im (\lambda_P-\lambda_Q)} P_{\nu}^m(\cos \phi_P) P_{\mu}^m (\cos \phi_Q).
-	\end{eqnarray}
-	Further conditions on $f_{\nu,\mu,m}$ are imposed in order to have the covariance function valid. In particular, $f_{\nu,\mu, m} = \overline{f}_{\mu, \nu, m}$ and for each fixed integer $m$, the matrix $F_m(N) = \{ f_{\nu,\mu,m} \}_{\nu,\mu=|m|,|m|+1, \ldots, N }$ must be positive definite for all $N \ge |m|$. A detailed discussion of parallel conditions on $f_{\nu, \mu, m}$ under the real-valued case is given in \cite{Jones1963}.
+		\eeq
+			
+		Suppose the process $X(P)$ is isotropy with 0 mean (without loss of generality) which implies $E(Z_{\nu,m}) = 0$. Let $P = (\lambda_P, \phi_P)$ and $Q=(\lambda_Q, \phi_Q)$ be two arbitary locations on the sphere, if the covariance function $R(P,Q)$ on $S^2$ solely depends on the spherical distance between $(P,Q)$ and from \ref{covs2_sum}, \ref{covs2_coef} we can derive the covariance function as follows,
+			
+		\begin{eqnarray} \label{rpq_1}
+			R(P, Q) &=& \mbox{E}(X(P) \overline{X(Q)}) \nonumber \\
+			&=& \sum_{\nu=0}^\infty \sum_{\mu=0}^\infty \sum_{m=-\nu}^{\nu} \sum_{n=-\mu}^{\mu} \mbox{E}(Z_{\nu,m} \overline{Z}_{\mu,n}) e^{im \lambda_P} P_{\nu}^m(\cos \phi_P) e^{-i n \lambda_Q} P_{\mu}^n (\cos \phi_Q) \nonumber \\
+			&=& \sum_{\nu=0}^\infty \frac{(2\nu+1)f_{\nu}}{2} P_{\nu}(\cos \theta(P,Q)).
+		\end{eqnarray}
+			
+		where $\bar{Z}$ denotes the complex conjugate of $Z$, $\theta(P,Q)$ is the spherical distance, $P_{\nu}(\cdot)$ is the Legendre polynomial, and $\sum_{\nu = 0}^{\infty} (2\nu+1)f_{\nu} < \infty$. Here, the random variable $Z_{\nu,m}$ satisfies
+		\[
+			\mbox{E} (Z_{\nu,m} \overline{Z}_{\mu,n}) = \delta_{\nu,\mu} \delta_{n,m} f_\nu,
+		\]
+		where $\delta_{a, b} = 1$ if $a = b$, and $0$ otherwise.
+		
+		% Note that the continuity of $X(P)$ on every point $P$ implies that $R(P, Q)$ is continuous on all pairs $(P, Q)$ \cite[page 83]{Leadbetter1967}.
+		
+		%%------------------------------------------------------------------%%
+		\section{Axially symmetry}
+		%%------------------------------------------------------------------%%
+			
+		In the previous sections we discssed why it is necessary to use $S^2$ instead of $R^3$ when studying about random processes on Earth and isotropy is often assumed (\cite{Yadrenko1983, Yaglom1987}). However, many studies have pointed out this assumption is not resonable (\cite{Stein2007, JunStein2008, BolinLindgren2011}) for random processes on the sphere primarly on Earth. \cite{Stein2007} argued that Total Ozone Mapping Spectrometer (TOMS) data varies strongly with latitudes and homogeneous models are not suitable. Moreover, aerosol depth (AOD) from Multi-angle Imaging Spectrometer (MISR), Sea Surface Temprature (SST) from RRMM MIcrowave Imager (TMI) are some other example for anisotropy global data on a sphere (on Earth). In order to study non homogenous processes on the sphere \cite{Jones1963} introduces the concept of axially symmetry, where the covarince between two spatial points depend on the longitudes only through their difference  between two points.
+			
+		A rondom process $X(P): P\in S^2$ on the sphere and let $R(P,Q)$ be a valid covarince finction on the sphere where $P=(L_P, l_P), Q(L_Q,l_Q)$ then $X(P)$ is axially symmetric if and only if
+		
+		\[
+			R(L_P, L_Q, l_P, l_Q) = R(L_P, L_Q, l_P-l_Q).
+		\]
+		
+		Currently, to our knowledge there are no methods to test axially symmetry in real data. However, this assumption is more plausible and reasonable when modeling spatial data. For example, temperature, moisture, etc. most likely symmetric on longitudes rather than latitudes. \cite{Stein2007} propose a method to model axially symmetric process on a sphere (the fitted model is not the best, but this was a good start). When modeling spatial data stationary models are less useful; but using the concept of axially symmetry \cite{JunStein2008} proposed a flexible class of parametric covariance models to capture the non-stationarity of global data. \cite{HitczenkoStein2012} discussed about the properties of an existing class of models for axially symmetric Gaussian processes on the sphere. They applied first-order differential operators to an isotropic process. \cite{Huang2012} developed a new representation of axially symmetric process on the sphere and futher introduced some parametric covariance models that are valid on $S^2$.  \\
+		
+		if the process is axially symmetric $E(Z_{\nu,m} \overline{Z}_{\mu,n})$ can be expressed as,
+		
+		\[
+			\mbox{E} (Z_{\nu,m} \overline{Z}_{\mu,n}) = \delta_{n,m} f_{\nu,\mu,m}.
+		\]
+			
+		Hence, for an axially symmetric process the covariance function \ref{rpq_1} will be the following form (\cite{Huang2012}) 
+			
+		\begin{eqnarray} \label{axially-symmetry-cov}
+			R(P,Q)  & = & R(\phi_P, \phi_Q, \lambda_P-\lambda_Q) \nonumber \\
+			& = & \sum_{m=-\infty}^{\infty} \sum_{\nu=|m|}^\infty \sum_{\mu=|m|}^\infty f_{\nu,\mu,m} e^{im (\lambda_P-\lambda_Q)} P_{\nu}^m(\cos \phi_P) P_{\mu}^m (\cos \phi_Q) .
+		\end{eqnarray}
+			
+		Inorder to have a valid covariance function, $f_{\nu,\mu, m} = \overline{f}_{\mu, \nu, m}$ and for each fixed integer $m$, the matrix $F_m(N) = \{ f_{\nu,\mu,m} \}_{\nu,\mu=|m|,|m|+1, \ldots, N }$ must be positive definite for all $N \ge |m|$. 
+		
+		\beq \label{R(PQ)-01}
+		R(P,Q) = R(\phi_P,\phi_Q,\Delta\lambda) = \sum_{m = -\infty}^{\infty}e^{im\Delta\lambda}C_m(\phi_P,\phi_Q) \quad m=0, \pm 1, \pm 2,...
+		\eeq
+		
+		where $\Delta\lambda \in [-\pi, \pi]$ and $\phi_P, \phi_Q \in [0,\pi]$
+		%-------------------------------------%
+		\subsection{Properties of \Cm}
+		%-------------------------------------%
+			
+		The covariance function $R(P,Q)$ based on the concept of axially symmetry is clearly defined by both latitudes and longitudes (difference). The following conditions for \Cm are very important to have a valid covaraince function defined by \ref{R(PQ)-01}.  
+			
+		\begin{itemize}
+			\item Hermitian and positive definite.
+			\item $\sum_{m = -\infty}^{\infty}|C_m(\phi_P,\phi_Q)|<\infty$ for $m=0,\pm 1, \pm  2$, ...
+			\item Is a continuous function. 
+		\end{itemize}
+		
+		%-------------------------------------% 
+		\begin{thm}[Mercer's theorem (simplified version) ] \hfill \\
+			%-------------------------------------% 
+			
+			A kernal $K:[a,b]\times [a,b] \to \R$ be a symmetric continuous function that is non-negative definite,
+			
+			\[
+				\sum_{i=1}^{n}\sum_{j=1}^{n} a_i a_j K(s, t) \ge 0 \quad \mbox{and} \quad K(s,t) = K(t,s)
+			\]
+			
+			for all $(s,t)\in [a,b]$ and $a_i>0$. Let $T_k:L_2 \to L_2$ be an intergral operator defined by
+			
+			\[
+				[T_kf](\cdot) = \int_{a}^{b} K(\cdot,s)f(s)ds
+			\]
+			
+			is positive, for all $f\in L_2$
+			
+			\[
+				\int_{a}^{b} K(s, t)f(s)f(t)dsdt \ge 0.
+			\]
+			
+			The corresponding orthonormal eigen functions $\psi_i\in L_2$ and non negative eigen values $\lambda_i \ge 0$ of the operator $T_k$ is defined as
+			
+			\[
+				T_k(\psi_i(\cdot)) = \int K(\cdot, s)\psi(s)ds = \lambda_i\psi_i(\cdot) \quad \int \psi_i(\cdot)\psi_j(\cdot) = \delta_{ij}
+			\]
+			
+			
+			then the kernal $K(\cdot)$ is a uniformly convergent series in terms of eigen functions and associated eigen values of $T_k$ as follows,
+			
+			\[
+				K(s,t) = \sum_{j=1}^{\infty} \lambda_i \psi_i(s)\psi_i(t) 
+			\]
+			
+		\end{thm}
+		
+		Since \Cm is continuous, Hermitian and positive definite, Mercer's theorem can be directly applied to \Cm such that the covariance function on a axially symmetric sphere defined by \ref{R(PQ)-01} can be written as (\cite{Huang2012})
+		
+		\[
+			R(\phi_P,\phi_Q) = \sum_{m=-\infty}^{\infty}\sum_{\nu=0}^{\infty} \eta_{m,\nu}e^{im\Delta\lambda}\psi_{m,\nu}(\phi_P)\overline{\psi_{m,\nu}(\phi_Q)},
+		\]
+		
+		Where $\Delta\lambda \in [0, \pi]$, $\eta_{m,\nu}\ge 0$ and $\psi_{m,\nu}(\cdot)$ are the eigen values eigen functions of \Cm respectively.
+		
+		In general for covariance function defined on a sphere (\cite{Stein2007}) requires triple summation and required to estimate $O(n^3)$ parameters. In contrast, the covariance function \ref{R(PQ)-01} defined by \cite{Huang2012} requires to estimate $O(n^2)$ parameters which is a huge reduction of comoputational compelextity and we will continue to use this covariance model in our approach on global data generation which is discussed in the next chapter.
+		
+		
+		In the covariance model provided by \cite{Huang2012}, the choice of \Cm is very important and they have proposed some functions for \Cm.
+		
+		
+		\begin{table}
+			\centering
+			\begin{tabular}{l|l|l}
+				\hline
+				Model   & Cm                                            & paramters                                \\ 
+				\hline \hline
+				model 1 & : $C_m = Cp^m$                                & $m=0, \pm 1, \pm 2,... \quad p\in [0,1]$ \\
+				model 2 & : $C_m = \frac{Cp^m}{m} \mbox{ and } C_0 = 0$ & $m=\pm 1, \pm 2,... \quad p\in [0,1]$    \\
+				model 3 & : $C_m = \frac{C}{m^4} \mbox{ and } C_0 = 0$  & $m=\pm 1, \pm 2,...$                     \\
+				\hline
+			\end{tabular}
+			\caption{some proposed \Cm models}
+		\end{table}
+			
+		%%------------------------------------------------------------------%%
+		\section{Longitudinally reversibile process}
+		%%------------------------------------------------------------------%%
+			
+		The idea was first introduced by \cite{Stein2007}. Suppose $K(\cdot)$ is a valid covariance function defined on a sphere if $K(L_1, L_2, l_1-l_2 = K(L_1, L_2, l_2-l_1)$ then underline process is said to be logitudinally reversible. For example the covariance model proposed by \cite{Huang2012} is clearly yileds a longitudinally reveresible process as $R(\phi_P, \phi_Q, \Delta\lambda) = R(\phi_P, \phi_Q, -\Delta\lambda)$    
+			
+			
+			
+			

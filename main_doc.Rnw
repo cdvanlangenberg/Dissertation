@@ -25,7 +25,7 @@ Advisor: Dr. Haimeng Zhang\footnote{h\_zhang5@uncg.edu}\\ \small{University of N
 
 %%------------------------------------------------------------------%%
 \chapter{Literature Review (due August 28)}
-\input{chapters/literature.tex}
+%\input{chapters/literature.tex}
 
 
 %%------------------------------------------------------------------%%
@@ -33,11 +33,11 @@ Advisor: Dr. Haimeng Zhang\footnote{h\_zhang5@uncg.edu}\\ \small{University of N
 \input{chapters/circle.tex}
 
 %%------------------------------------------------------------------%%
-\chapter{Random Process on a Sphere (due August 21) }
+\chapter{Random Process on a Sphere}
 \input{chapters/sphere.tex}
 
 %%------------------------------------------------------------------%%
-\chapter{Global Data Generation on the Sphere (due August 21)}
+\chapter{Global Data Generation on the Sphere}
 \input{chapters/datageneration.tex}
 
 %%------------------------------------------------------------------%%
