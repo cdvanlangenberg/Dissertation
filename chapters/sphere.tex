@@ -15,10 +15,10 @@ The random process $X(\cdot)$ is said to be homogeneous (or isotropy) on $S^2$ i
 	Cov(X(s_1),X(s_2)) &=& C(\theta_{s_1s_2}) 
 \end{eqnarray*}
 
-where $\theta_{s_1s_2}$ is the spherical angle between two locations $s_1,s_2$. For a unit sphere ($r=1$), the distance between the two locations can be defined as great circle distance ($\gcd_{s_1s_2}$) or chordal distance ($ch_{s_1s_2}$) as follows,
+where $\theta_{s_1s_2}$ is the spherical angle between two locations $s_1,s_2$. For a unit sphere, the distance between the two locations can be defined as great circle distance ($\gcd_{s_1s_2}$) or chordal distance ($ch_{s_1s_2}$) as follows,
 
 \begin{eqnarray*}
-	\theta_{s_1s_2}  &=& arcsin(\sin(L_1)\sin(L_2) + \cos(L_1)\cos(L_2)\cos(l_1-l_2)\\
+	\theta_{s_1s_2}  &=& \arccos\left(\sin(L_1)\sin(L_2) + \cos(L_1)\cos(L_2)\cos(l_1-l_2)\right)\\
 	gcd_{s_1s_2}    &=&  1\cdot\theta_{s_1s_2}\\
 	ch_{s_1s_2}     &=& 2\sin (\theta_{s_1s_2}/2)
 \end{eqnarray*}
@@ -30,29 +30,51 @@ In the case of $\R^d$, non-negative definite is a necessary and sufficient condi
 \eeq
 for any integer $N$, any constants $a_1, a_2, \ldots, a_N$, and any locations $s_1, s_2, \ldots, s_N \in S^2$.
 
-Accoriding to \cite{schoenberg1942} a real continous function $C(\theta)$ is a valid covariance function on $S^d$, where $d=1,2,\ldots$, if and only if it can be written in the following form
+Let $P_{k}^{\nu}(\cos\theta)$ be the ultraspherical polynomials defined by the following infinite summation,
 
 \beq
-C(\theta) = \sum_{k = 0}^\infty c_kP_k^{(r)}(\cos\theta) \quad r=\frac{1}{2}(d-1)
+  \frac{1}{(1 - 2c\cos\theta + c^2)^{\nu}} = \sum_{k=0}^{\infty}c^{k} P_{k}^{\nu}(\cos\theta) \quad \nu>0
 \eeq
 
-where $P_{k}(\cdot)$ are Legendre polynomials with $\forall c_k\ge 0$ and $\sum c_k < \infty$. \\
 
-When $d=1$ the covarince on a circle can be expressed as follows,
+\[
+\mbox{When $\nu = 0$, } P_{k}^{0}(\cos\theta) = \cos (k\theta)
+\]
+
+Accoriding to \cite{schoenberg1942}, a real continous function $C(\theta)$ is a valid covariance function on $S^d$, where $d=1,2,\ldots$, if and only if it can be written in the following form
 
 \beq
-C(\theta) = \sum_{k = 0}^\infty c_k\cos\theta
+C(\theta) = \sum_{k = 0}^\infty c_kP_k^{(\nu)}(\cos\theta), \quad \nu=\frac{1}{2}(d-1)
 \eeq
 
-When $d=2$ the covarince on a sphere ($S^2$) can be expressed as follows,
+where $\forall c_k\ge 0$ and $\sum c_k < \infty$. \\
+
+Suppose $C(\cdot)$ is a covariance functions that is valid in $S^d$ then it is valid on $S^m$ where $d\le m$. In general we have the following property,
+
+\[
+S^1 \subset S^2 \subset \cdots S^{d} \subset \cdots S^{\infty}
+\]
+
+
+\[
+C(S^1) \supset C(S^2) \supset \cdots C(S^d) \supset \cdots C(S^{\infty})
+\]
+
+and covariance functions that are valid on $S^m$ may not be valid on $S^d$ where $m>d$ \blue{example?}.\\
+
+In chapter 3 we discussed about random processes on a circle and the covariance on a circle ($d=1$) was expressed as follows,
+
+\beq
+C(\theta) = \sum_{k = 0}^\infty c_k\cos (k\theta)
+\eeq
+
+Since $\cos\theta \in S^1$ clearly $\cos\theta \in S^2$ and from the properties of covariance discussed in chapter 1, $P_k\cos\theta \in S^2$ where $P_k$ is a Legender ploynomial. Therefore, when $d=2$ the covarince on a sphere ($S^2$) can be expressed as follows,
 
 \beq \label{covs2_sum}
 C(\theta) = \sum_{k = 0}^\infty c_kP_k(\cos\theta)
 \eeq
 
-Suppose $C(\cdot)$ is a covariance functions that is valid in $S^d$ then it is valid on $S^r\quad r\le d$ but covariance functions that are valid on $S^r$  may not be valid on $S^d \quad d>r$ \blue{example?}.\\
-
-\blue{?if a covariance function is not valid on $S^r$ it is not valid on $S^d \quad d > r$ (example).}\\
+% \blue{?if a covariance function is not valid on $S^r$ it is not valid on $S^d \quad d > r$ (example).}\\
 
 Since the Legendre polynomials are orthogonal we have
 
@@ -121,7 +143,7 @@ All covariance models that are valid on $\R^d$ are not valid on the sphere ($S^2
 	for any integer $N$, any constants $a_1, a_2, \ldots, a_N$ with $\sum a_i = 0$, and any locations $s_1, s_2, \ldots, s_N \in S^2$. Immeditely from \ref{covs2_sum} for a continuous $2\gamma(\cdot)$ with $\gamma(0)=0$ the variogram is negative definite if and only if 
 	
 	\beq \label{covs2_sum}
-	C(\theta) = \sum_{k = 0}^\infty c_k(1-P_k(\cos\theta))
+	\gamma(\theta) = \sum_{k = 0}^\infty c_k(1-P_k(\cos\theta))
 	\eeq
 	where $P_{k}(\cdot)$ are Legendre polynomials with $\forall c_k\ge 0$ and $\sum c_k < \infty$. \\
 	
@@ -155,10 +177,10 @@ All covariance models that are valid on $\R^d$ are not valid on the sphere ($S^2
 		\begin{eqnarray} \label{rpq_1}
 			R(P, Q) &=& \mbox{E}(X(P) \overline{X(Q)}) \nonumber \\
 			&=& \sum_{\nu=0}^\infty \sum_{\mu=0}^\infty \sum_{m=-\nu}^{\nu} \sum_{n=-\mu}^{\mu} \mbox{E}(Z_{\nu,m} \overline{Z}_{\mu,n}) e^{im \lambda_P} P_{\nu}^m(\cos \phi_P) e^{-i n \lambda_Q} P_{\mu}^n (\cos \phi_Q) \nonumber \\
-			&=& \sum_{\nu=0}^\infty \frac{(2\nu+1)f_{\nu}}{2} P_{\nu}(\cos \theta(P,Q)).
+			&=& \sum_{\nu=0}^\infty \frac{(2\nu+1)f_{\nu}}{2} P_{\nu}(\cos \theta_{PQ}).
 		\end{eqnarray}
 			
-		where $\bar{Z}$ denotes the complex conjugate of $Z$, $\theta(P,Q)$ is the spherical distance, $P_{\nu}(\cdot)$ is the Legendre polynomial, and $\sum_{\nu = 0}^{\infty} (2\nu+1)f_{\nu} < \infty$. Here, the random variable $Z_{\nu,m}$ satisfies
+		where $\bar{Z}$ denotes the complex conjugate of $Z$, $\theta_{PQ}$ is the spherical distance, $P_{\nu}(\cdot)$ is the Legendre polynomial, and $\sum_{\nu = 0}^{\infty} (2\nu+1)f_{\nu} < \infty$. Here, the random variable $Z_{\nu,m}$ satisfies
 		\[
 			\mbox{E} (Z_{\nu,m} \overline{Z}_{\mu,n}) = \delta_{\nu,\mu} \delta_{n,m} f_\nu,
 		\]
@@ -212,76 +234,115 @@ All covariance models that are valid on $\R^d$ are not valid on the sphere ($S^2
 			\item Is a continuous function. 
 		\end{itemize}
 		
-		%-------------------------------------% 
-		\begin{thm}[Mercer's theorem (simplified version) ] \hfill \\
-			%-------------------------------------% 
-			
-			A kernal $K:[a,b]\times [a,b] \to \R$ be a symmetric continuous function that is non-negative definite,
-			
-			\[
-				\sum_{i=1}^{n}\sum_{j=1}^{n} a_i a_j K(s, t) \ge 0 \quad \mbox{and} \quad K(s,t) = K(t,s)
-			\]
-			
-			for all $(s,t)\in [a,b]$ and $a_i>0$. Let $T_k:L_2 \to L_2$ be an intergral operator defined by
-			
-			\[
-				[T_kf](\cdot) = \int_{a}^{b} K(\cdot,s)f(s)ds
-			\]
-			
-			is positive, for all $f\in L_2$
-			
-			\[
-				\int_{a}^{b} K(s, t)f(s)f(t)dsdt \ge 0.
-			\]
-			
-			The corresponding orthonormal eigen functions $\psi_i\in L_2$ and non negative eigen values $\lambda_i \ge 0$ of the operator $T_k$ is defined as
-			
-			\[
-				T_k(\psi_i(\cdot)) = \int K(\cdot, s)\psi(s)ds = \lambda_i\psi_i(\cdot) \quad \int \psi_i(\cdot)\psi_j(\cdot) = \delta_{ij}
-			\]
-			
-			
-			then the kernal $K(\cdot)$ is a uniformly convergent series in terms of eigen functions and associated eigen values of $T_k$ as follows,
-			
-			\[
-				K(s,t) = \sum_{j=1}^{\infty} \lambda_i \psi_i(s)\psi_i(t) 
-			\]
-			
-		\end{thm}
+		% %-------------------------------------% 
+		% \begin{thm}[Mercer's theorem (simplified version) ] \hfill \\
+		% 	%-------------------------------------% 
+		% 	
+		% 	A kernal $K:[a,b]\times [a,b] \to \R$ be a symmetric continuous function that is non-negative definite,
+		% 	
+		% 	\[
+		% 		\sum_{i=1}^{n}\sum_{j=1}^{n} a_i a_j K(s, t) \ge 0 \quad \mbox{and} \quad K(s,t) = K(t,s)
+		% 	\]
+		% 	
+		% 	for all $(s,t)\in [a,b]$ and $a_i>0$. Let $T_K:L_2 \to L_2$ be an intergral operator defined by
+		% 	
+		% 	\[
+		% 		[T_Kf](\cdot) = \int_{a}^{b} K(\cdot,s)f(s)ds
+		% 	\]
+		% 	
+		% 	is positive, for all $f\in L_2$
+		% 	
+		% 	\[
+		% 		\int_{a}^{b} K(s, t)f(s)f(t)dsdt \ge 0.
+		% 	\]
+		% 	
+		% 	The corresponding orthonormal eigen functions $\psi_i\in L_2$ and non negative eigen values $\lambda_i \ge 0$ of the operator $T_k$ is defined as
+		% 	
+		% 	\[
+		% 		T_K(\psi_i(\cdot)) = \int K(\cdot, s)\psi(s)ds = \lambda_i\psi_i(\cdot), \quad \int \psi_i(\cdot)\psi_j(\cdot) = \delta_{ij}
+		% 	\]
+		% 	
+		% 	
+		% 	then the kernal $K(\cdot)$ is a uniformly convergent series in terms of eigen functions and associated eigen values of $T_k$ as follows,
+		% 	
+		% 	\[
+		% 		K(s,t) = \sum_{j=1}^{\infty} \lambda_i \psi_i(s)\psi_i(t) 
+		% 	\]
+		% 	
+		% \end{thm}
 		
-		Since \Cm is continuous, Hermitian and positive definite, Mercer's theorem can be directly applied to \Cm such that the covariance function on a axially symmetric sphere defined by \ref{R(PQ)-01} can be written as (\cite{Huang2012})
+		One can use inverse Fourier transformation to derive $C_m$ based on an axially symmetric covariance function $R(P,Q)$ defined on a sphere, as we have
 		
+	\[ 
+	C_m(\phi_P, \phi_Q) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R(\phi_P, \phi_Q)e^{-im\Delta\lambda} d\Delta\lambda \]
+	
+	Since \Cm is continuous and both Hermitian and positive definite, Mercer's theorem (\ref{mercer}) can be directly applied to \Cm such that there exists an orthonormal basis $\{\psi_{m,\nu}, \nu = 0,1,\ldots \}$ in $L^2$ (\cite{Huang2012}) and \Cm can be given by, 
+	
+	\[ 
+	C_m(\phi_P,\phi_Q) = \sum_{\nu=0}^{\infty} \eta_{m,\nu}\psi_{m,\nu}(\phi_P)\overline{\psi_{m,\nu}(\phi_Q)},  \]
+	
+	% Where $\eta_{m,\nu}\ge 0$ and $\psi_{m,\nu}(\cdot)$ are the corresponding eigen values and eigen functions for \Cm.\\
+
+Now the covariance function on a sphere is given by,
 		\[
-			R(\phi_P,\phi_Q) = \sum_{m=-\infty}^{\infty}\sum_{\nu=0}^{\infty} \eta_{m,\nu}e^{im\Delta\lambda}\psi_{m,\nu}(\phi_P)\overline{\psi_{m,\nu}(\phi_Q)},
+			R(P,Q) = \sum_{m=-\infty}^{\infty}\sum_{\nu=0}^{\infty} \eta_{m,\nu}e^{im\Delta\lambda}\psi_{m,\nu}(\phi_P)\overline{\psi_{m,\nu}(\phi_Q)},
 		\]
 		
-		Where $\Delta\lambda \in [0, \pi]$, $\eta_{m,\nu}\ge 0$ and $\psi_{m,\nu}(\cdot)$ are the eigen values eigen functions of \Cm respectively.
+		Where $\Delta\lambda \in [0, \pi]$, $\eta_{m,\nu}\ge 0$ and $\psi_{m,\nu}(\cdot)$ are the eigen values eigen functions of $C_m(\phi_P, \phi_Q)$ respectively.
 		
 		In general for covariance function defined on a sphere (\cite{Stein2007}) requires triple summation and required to estimate $O(n^3)$ parameters. In contrast, the covariance function \ref{R(PQ)-01} defined by \cite{Huang2012} requires to estimate $O(n^2)$ parameters which is a huge reduction of comoputational compelextity and we will continue to use this covariance model in our approach on global data generation which is discussed in the next chapter.
 		
+Let's consider a real-valued process with a complex valued \Cm as given below,
+
+\begin{eqnarray*}
+C_m(\phi_P,\phi_Q) &=& c_m f(\phi_P,\phi_Q)e^{i\omega_m(\phi_P-\phi_Q)}, \quad c_m \ge 0,\omega_m\in R \\
+ &=& c_mC_m^{R}(\phi_P,\phi_Q) + i c_mC_m^{I}(\phi_P,\phi_Q).
+\end{eqnarray*}
+
+		\cite{Huang2012} states that if a process is real-valued then the corresponding covariance function $R(P,Q)$ is also real-valued and \Cm $= \overline{C_{-m}(\phi_P,\phi_Q)}$, The covarince function $R(P,Q)$ on the sphere given by \ref{R(PQ)-01} can be simplified to the following form,
 		
-		In the covariance model provided by \cite{Huang2012}, the choice of \Cm is very important and they have proposed some functions for \Cm.
+
+\begin{eqnarray*}
+R(P,Q) &=& C_0(\phi_P,\phi_Q) + \sum_{m=1}^{\infty} e^{-im\Delta\lambda}C_{-m}(\phi_P,\phi_Q) +  \sum_{m=1}^{\infty} e^{im\Delta\lambda}C_m(\phi_P,\phi_Q) \\ 
+ &=& C_0(\phi_P,\phi_Q) + \sum_{m=1}^{\infty} c_m e^{-im\Delta\lambda}( C_m^{R}(\phi_P,\phi_Q) - i C_m^{I}(\phi_P,\phi_Q)) \\
+ & &  + \sum_{m=1}^{\infty}c_m e^{im\Delta\lambda}( C_m^{R}(\phi_P,\phi_Q) + iC_m^{I}(\phi_P,\phi_Q)) \\ 
+ &=& c_oC_{0}^{R}(\phi_P,\phi_Q)+2 \sum_{m=1}^{\infty}c_m[\cos(m\Delta\lambda)C_{m}^{R}(\phi_P,\phi_Q)-\sin(m\Delta\lambda)C_{m}^{I}(\phi_P,\phi_Q)].
+\end{eqnarray*}
+
+
+		There are several covariance models, $R(P,Q)$, valid on a sphere were suggested by \cite{Huang2012} by carefully choosing values for $c_m$.
 		
 		
-		\begin{table}
+		\begin{table}[H]
 			\centering
 			\begin{tabular}{l|l|l}
 				\hline
-				Model   & Cm                                            & paramters                                \\ 
+				Model   & $c_m$                                            & paramters                                \\ 
 				\hline \hline
-				model 1 & : $C_m = Cp^m$                                & $m=0, \pm 1, \pm 2,... \quad p\in [0,1]$ \\
-				model 2 & : $C_m = \frac{Cp^m}{m} \mbox{ and } C_0 = 0$ & $m=\pm 1, \pm 2,... \quad p\in [0,1]$    \\
-				model 3 & : $C_m = \frac{C}{m^4} \mbox{ and } C_0 = 0$  & $m=\pm 1, \pm 2,...$                     \\
+				model 1 & : $c_m = Cp^m$                                & $m=0, \pm 1, \pm 2,... \quad p\in (0,1)$ \\
+				model 2 & : $c_m = \frac{Cp^m}{m} \mbox{ and } c_0 = 0$ & $m=\pm 1, \pm 2,... \quad p\in (0,1)$    \\
+				model 3 & : $c_m = \frac{C}{m^4} \mbox{ and } c_0 = 0$  & $m=\pm 1, \pm 2,...$                     \\
 				\hline
 			\end{tabular}
-			\caption{some proposed \Cm models}
+			\caption{some proposed $c_m$ models}
 		\end{table}
 			
 		%%------------------------------------------------------------------%%
 		\section{Longitudinally reversibile process}
 		%%------------------------------------------------------------------%%
 			
-		The idea was first introduced by \cite{Stein2007}. Suppose $K(\cdot)$ is a valid covariance function defined on a sphere if $K(L_1, L_2, l_1-l_2 = K(L_1, L_2, l_2-l_1)$ then underline process is said to be logitudinally reversible. For example the covariance model proposed by \cite{Huang2012} is clearly yileds a longitudinally reveresible process as $R(\phi_P, \phi_Q, \Delta\lambda) = R(\phi_P, \phi_Q, -\Delta\lambda)$    
+		The idea was first introduced by \cite{Stein2007}. Suppose $K(\cdot)$ is a valid covariance function defined on a sphere where,
+		\beq
+		K(L_1, L_2, l_1-l_2 = K(L_1, L_2, l_2-l_1)
+		\eeq
+then underline process is said to be logitudinally reversible. For example the covariance model proposed by \cite{Huang2012} clearly yileds a longitudinally reveresible process as $R(\phi_P, \phi_Q, \Delta\lambda) = R(\phi_P, \phi_Q, -\Delta\lambda)$ and the reversibility holds when $C_{-m}(\phi_P,\phi_Q)=C_m(\phi_P,\phi_Q)$. Now the covariance function reduces to the following,  
+
+\[
+R(P,Q) = \sum_{m=0}^{\infty} C_m(\phi_P,\phi_Q)\cos(m\Delta\lambda)
+\]
+
+If a random process on the sphere is real valued and longitudinally reversible so is the covariance function, $R(P,Q),$ is real valued then \Cm is real since $C_{-m}(\phi_P,\phi_Q)=C_m(\phi_P,\phi_Q)$  and \Cm $= \overline{C_{-m}(\phi_P,\phi_Q)}$.   
+
 			
 			
 			

@@ -1,41 +1,6 @@
 %%-------------------------Data generation---------------------------------------%%
 
-%%------------------------------------------------------------------%%
-\section{Circularly-symmetry Gaussian random vectors}
-%%------------------------------------------------------------------%%
 
-In general, a normal family has two parameters, location parameter $\mu$ and scale parameter $\Sigma$. But when we are dealing with complex normal family there is one additional parameter, the relation matrix also referred as pseudo-covariance matrix (for real normal family pseudo-covariance matrix is equivalent to the covariance matrix).
-
-Following the notes provided by \cite{Gallager2008}, a complex random variable $Z = Z^{Re} + iZ^{Im}$ is Gaussian, if $Z^{Re}, Z^{Im}$ both are real and jointly Gaussian. Then $Z$ is circularly-symmetric if both $ Z$ and $e^{i\phi} Z$ has the same probability distribution for all real $\phi$.  Since $E[e^{i\phi}Z] = e^{i\phi}E[Z]$, any circularly-symmetric complex random vector must have $E[Z]=0$, in other words its mean must be zero.
-
-Let the covariance matrix $K_Z$ and the pseudo-covariance matrix $M_Z$ of a zero mean $2n$ complex random vector $\utilde{Z} = (Z_1, Z_2, \ldots, Z_n)^T$, where $Z_j = (Z_j^{Re}, Z_j^{Im})^T$ and $j=1,2,\ldots, n$ can be defined as follows,
-
-\[ K_{\utilde{Z}} = E[\utilde{Z}\utilde{Z}^*]\quad M_{\utilde{Z}} = E[\utilde{Z}\utilde{Z}^T],\]
-where $\utilde{Z}^*$ is the conjugate transpose of $\utilde{Z}$.
-
-The covariance matrix of real $2n$ random vector $\utilde{Z}=(\utilde{Z}^{Re}, \utilde{Z}^{Im})^T$ is determined by both $K_{\utilde{Z}}$ and $M_{\utilde{Z}}$ as follows,
-
-\begin{eqnarray}
-	E[\utilde{Z}^{Re}\utilde{Z}^{Re}] &=& \frac{1}{2}Re(K_{\utilde{Z}} + M_{\utilde{Z}}), \nonumber\\
-	E[\utilde{Z}^{Im}\utilde{Z}^{Im}] &=& \frac{1}{2}Re(K_{\utilde{Z}} - M_{\utilde{Z}}), \nonumber\\
-	E[\utilde{Z}^{Re}\utilde{Z}^{Im}] &=& \frac{1}{2}Im(-K_{\utilde{Z}} + M_{\utilde{Z}}), \nonumber\\
-	E[\utilde{Z}^{Im}\utilde{Z}^{Re}] &=& \frac{1}{2}Im(K_{\utilde{Z}} + M_{\utilde{Z}}) \label{comlex_cov}
-\end{eqnarray}
-
-We can get the covariance of $\utilde{Z}=(\utilde{Z}^{Re}, \utilde{Z}^{Im})^T$ as follows,
-
-\begin{eqnarray*}
-	Cov(\utilde{Z}) &=& E(\utilde{Z}\utilde{Z}^T) \\
-	&=& \left( \begin{array}{ll}
-	E[\utilde{Z}^{Re}\utilde{Z}^{Re}] &  E[\utilde{Z}^{Re}\utilde{Z}^{Im}] \\
-	E[\utilde{Z}^{Im}\utilde{Z}^{Re}] &  E[\utilde{Z}^{Im}\utilde{Z}^{Im}]
-	\end{array}
-	\right) \\
-\end{eqnarray*}
-
-\begin{thm}[Gallager, 2008] \label{circular_theory} \hfill \\
-	Let $\utilde{Z}$ be a zero mean Gaussian random vector then $M_{\utilde{Z}}=0$ if and only if $\utilde{Z}$ is circularly-symmetric.
-\end{thm}
 
 
 %%------------------------------------------------------------------%%
@@ -46,7 +11,7 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 	
 	A covariance function for continuous axially symmetric processes on a sphere given by \cite[proposition 1]{Huang2012}:
 	
-	\beq \label{R(PQ)-01}
+	\beq 
 	R(P,Q) = R(\phi_P,\phi_Q,\Delta\lambda) = \sum_{m = -\infty}^{\infty}e^{im\Delta\lambda}C_m(\phi_P,\phi_Q)
 	\eeq
 	
