@@ -19,8 +19,8 @@ where $\theta_{s_1s_2}$ is the spherical angle between two locations $s_1,s_2$. 
 
 \begin{eqnarray*}
 	\theta_{s_1s_2}  &=& \arccos\left(\sin(L_1)\sin(L_2) + \cos(L_1)\cos(L_2)\cos(l_1-l_2)\right)\\
-	gcd_{s_1s_2}    &=&  1\cdot\theta_{s_1s_2}\\
-	ch_{s_1s_2}     &=& 2\sin (\theta_{s_1s_2}/2)
+	% gcd_{s_1s_2}    &=&  1\cdot\theta_{s_1s_2}\\
+	% ch_{s_1s_2}     &=& 2\sin (\theta_{s_1s_2}/2)
 \end{eqnarray*}
 
 In the case of $\R^d$, non-negative definite is a necessary and sufficient condition for a valid covariance function defined on $\R^d$ (\ref{cov_pd}). Similarly, a real continuous function $C(\cdot)$ defined on the sphere is a valid covariance function if and only if it is non-negative definite,
@@ -284,9 +284,9 @@ All covariance models that are valid on $\R^d$ are not valid on the sphere ($S^2
 	% Where $\eta_{m,\nu}\ge 0$ and $\psi_{m,\nu}(\cdot)$ are the corresponding eigen values and eigen functions for \Cm.\\
 
 Now the covariance function on a sphere is given by,
-		\[
+		\beq \label{RPQ_orthonormal}
 			R(P,Q) = \sum_{m=-\infty}^{\infty}\sum_{\nu=0}^{\infty} \eta_{m,\nu}e^{im\Delta\lambda}\psi_{m,\nu}(\phi_P)\overline{\psi_{m,\nu}(\phi_Q)},
-		\]
+		\eeq
 		
 		Where $\Delta\lambda \in [0, \pi]$, $\eta_{m,\nu}\ge 0$ and $\psi_{m,\nu}(\cdot)$ are the eigen values eigen functions of $C_m(\phi_P, \phi_Q)$ respectively.
 		
@@ -341,7 +341,7 @@ then underline process is said to be logitudinally reversible. For example the c
 R(P,Q) = \sum_{m=0}^{\infty} C_m(\phi_P,\phi_Q)\cos(m\Delta\lambda)
 \]
 
-If a random process on the sphere is real valued and longitudinally reversible so is the covariance function, $R(P,Q),$ is real valued then \Cm is real since $C_{-m}(\phi_P,\phi_Q)=C_m(\phi_P,\phi_Q)$  and \Cm $= \overline{C_{-m}(\phi_P,\phi_Q)}$.   
+If a random process on the sphere is real valued and longitudinally reversible so is the covariance function, $R(P,Q),$ is real valued then \Cm is real since $C_{-m}(\phi_P,\phi_Q)=C_m(\phi_P,\phi_Q)$  and \Cm $= \overline{C_{-m}(\phi_P,\phi_Q)}$.
 
 			
 			

@@ -10,16 +10,16 @@ In this chapter we have given a brief introduction to some of the basic concepts
 A real-valued spatial process in $d$ dimensions or a spatial random field can be denoted as $\{Z(x): x \in D \subset \mathbb{R}^d\}$ where $x$ is the location of process $Z(x)$ and $x$ varies over the set $D$ which is fixed and discrete. The distribution of the random vector $ Z(\utilde{X})=(Z(x_1),\ldots, Z(x_n) )$ is given by the associated finite-dimensional joint distributions
 
 \beq
-F\{Z(x_1),\ldots, Z(x_n)\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n \} 
+F\{Z(x_1),\ldots, Z(x_n)\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n. \} 
 \eeq
 
-A random process is a collection of random variables $X \in \{X(s): s\in D\}$, defined in a common probability space. In general, if
+A random process is a collection of random variables $Z \in \{Z(s): s\in D\}$, defined in a common probability space. In general, if
 \begin{itemize}
-	\item $s \in N$: $X(s)$ is a random sequence which is used in time series.
-	\item $s \in R^1$: $X(s)$ is a random process which is also referred as a stochastic process.
-	\item $s \in R^d$: $X(s)$ is a random filed or a spatial process if $d > 1$
-	\item $s \in S^2$: $X(s)$ is a random process on the sphere.
-	\item $s \in R^d\times R$: $X(s)$ is a spatio-temporal process which involves location and time.
+	\item $s \in N$: $Z(s)$ is a random sequence which is used in time series.
+	\item $s \in R^1$: $Z(s)$ is a random process which is also referred as a stochastic process.
+	\item $s \in R^d$: $Z(s)$ is a random filed or a spatial process if $d > 1$
+	\item $s \in S^2$: $Z(s)$ is a random process on the sphere.
+	\item $s \in R^d\times R$: $Z(s)$ is a spatio-temporal process which involves location and time.
 \end{itemize}
 
 \blue{? comment : more words}
@@ -41,7 +41,7 @@ Strict stationarity is a too strong condition as it involves the distribution of
 	C(h)      & = & Cov(Z(x),Z(x+h))
 \end{eqnarray}
 
-if $Z(x)$ has a finite second moment with constant mean and $C(h)$ the covarince (also referred as auto-covariance) function depends on the spatial distance only. Further strictly stationary random fields with finite second moment is also weakly stationary, but weak stationarity does not imply strict stationarity. However, in the case of Gaussian random fields that weakly stationary are also strict stationarity because the first two moments ($\mu, \sigma$) will explain the distribution. \\
+In other words a random process $Z(x)$ is weakly stationary if the second moment is finite with constant mean and $C(h)$ the covarince (also referred as auto-covariance) is a function that depends only on the spatial distance. Further strictly stationary random fields with finite second moment is also weakly stationary, but weak stationarity does not imply strict stationarity. Any random process defined in finite dimension and all its distributions are multivariate Gaussian then the random process is said to Gaussian. In the case of Gaussian random fields that weakly stationary are also strict stationarity because the first two moments ($\mu, \sigma$) will explain the distribution. \\
 
 Suppose $Z(x)$ is weakly stationary on $\R^d$ with autocavariance function $C(h)$ then it has the following properties,
 

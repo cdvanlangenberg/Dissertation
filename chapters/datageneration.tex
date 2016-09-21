@@ -7,119 +7,165 @@
 \section{Theoretical development}
 %%------------------------------------------------------------------%%
 
-Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P = (\lambda, \phi) \in S^2$ with longitude $\lambda \in [-\pi, \pi)$ and latitude $\phi \in [0, \pi]$.
-	
-	A covariance function for continuous axially symmetric processes on a sphere given by \cite[proposition 1]{Huang2012}:
-	
-	\beq 
-	R(P,Q) = R(\phi_P,\phi_Q,\Delta\lambda) = \sum_{m = -\infty}^{\infty}e^{im\Delta\lambda}C_m(\phi_P,\phi_Q)
-	\eeq
-	
-	where $\Delta\lambda \in [-\pi,\pi]$, and $C_m(\phi_P,\phi_Q)$ is Hermitian and $p.d.$ with $\sum_{-\infty}^{\infty}|C_m(\phi_P,\phi_Q)|<\infty$.
-	
-	One can derive $C_m$ based on an axially symmetric covariance function $R(P,Q)$ defined on a sphere, as we have
-	\[ C_m(\phi_P, \phi_Q) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R(\phi_P, \phi_Q)e^{-im\Delta\lambda} d\Delta\lambda \]
-	
-	since \Cm is continuous and both Hermitian and positive definite, by Mercer's theorem, there exists an orthonormal basis $\{\psi_{m,\nu}, \nu = 0,1,\ldots \}$ in $L^2$, a complex-valued functional Hilbert space on $[o,\pi ]$, such that
-	
-	\[ C_m(\phi_P,\phi_Q) = \sum_{\nu=0}^{\infty} \eta_{m,\nu}\psi_{m,\nu}(\phi_P)\overline{\psi_{m,\nu}(\phi_Q)},  \]
-	Where $\eta_{m,\nu}\ge 0$ are the eigen values and $\psi_{m,\nu}(\cdot)$ are the eigen functions.\\
-	
-	Further, according to \cite{Huang2012}[remark 2.5] a continuous axially symmetric process, $X(P)$, is given as:
-	
-	\beq
+The global data generation process on a sphere discussed on this dissertation is primarly based on the axially symmetric covariance structure introduced by \cite{Jones1963} and as continuation of axially symmetric process on a sphere developed by \cite{Huang2012}.  Let $X(P)$ be a complex-valued random process defined on a unit sphere $S^2$, where $P = (\lambda, \phi) \in S^2$ with longitude $\lambda \in [-\pi, \pi)$ and latitude $\phi \in [0, \pi]$.In chapter 4 we discussed how to formulate a valid covariance function for continuous axially symmetric processes on a sphere and was given by \ref{R(PQ)-01}:
+		
+	\[ 
+		R(P,Q) = R(\phi_P,\phi_Q,\Delta\lambda) = \sum_{m = -\infty}^{\infty}e^{im\Delta\lambda}C_m(\phi_P,\phi_Q)
+	\]
+		
+	where $\Delta\lambda \in [-\pi,\pi]$, and $C_m(\phi_P,\phi_Q)$ is Hermitian and $p.d.$ with $\sum_{-\infty}^{\infty}|C_m(\phi_P,\phi_Q)|<\infty$.\\
+		
+	Since \Cm is continuous, Hermitian and positive definite Mercer's theorem (\ref{mercer}) was applied for \Cm hence the covariance function defined by \ref{R(PQ)-01} was given by the following \ref{RPQ_orthonormal}:
+		
+	\[
+		R(P,Q) = \sum_{m=-\infty}^{\infty}\sum_{\nu=0}^{\infty} \eta_{m,\nu}e^{im\Delta\lambda}\psi_{m,\nu}(\phi_P)\overline{\psi_{m,\nu}(\phi_Q)},
+	\]
+		
+	Now, in the light of above two equations a continuous axially symmetric process, $X(P)$ on a unit sphere (\cite{Huang2012}[remark 2.5]), is given as:
+		
+	\beq \label{process_sphere}
 	X(P) = X(\phi, \lambda) = \sum_{m=-\infty}^{\infty} W_{m, \nu}(\phi) e^{i m \lambda}\psi_{m,\nu} (\phi),
 	\eeq
-	where $\lambda$ is the longitude, $\phi$ is the latitude and $\psi_{m,\nu}(\cdot)$ is a orthonormal basis. When the process is real and Gaussian, $W_{m,\nu}$ are independent normal random variables. In addition, this process can be viewed as a homogeneous random process on the circle with angular distance given by $\Delta \lambda$. That is, for each $\phi$, one can expand $X(P)$ in a Fourier series that is convergent in quadratic mean \cite{Roy1972}:
-	
-	\beq
-	\label{eq:sym_process} X(\phi, \lambda) = \sum_{m=-\infty}^{\infty} W_m(\phi) e^{i m \lambda}
-	\eeq,
-	
-	where
+		
+	where $\lambda$ is the longitude, $\phi$ is the latitude and $\psi_{m,\nu}(\cdot)$ is a orthonormal basis for \Cm and using inverse Fourier transformation we get
 	\[
-		W_m(\phi) = \frac{1}{2\pi} \int_0^{2\pi} X(\phi, \lambda) e^{-i m \lambda} d \lambda,
+		W_m(\phi) = \frac{1}{2\pi} \int_{S^2} X(P) e^{-im\lambda} \overline{\psi_{m,\nu} (\phi)} dP,
 	\]
+	with $\mbox{E}(W_{m, \nu} \overline{W_{n,\nu}}) = \delta_{m,n}\delta_{m,\mu}\eta_{m,\nu}$. \\
+		
+	{\bf Remark 1} If the random process on a sphere is real-Gaussian, then the weights given by $W_{m,\nu}$ will be independent normal random variables. Furthermore, if $\nu$ is fixed the process defined by $X(P)$ will be equivalent to a homogeneous random process on a circle with angular distance $\Delta \lambda$. In other words a random process on a sphere at a given latitude (for fix $\phi$) can be studies as a random process on the circle. In Chapter 3 \label{process_circle} a random process on a circle was given by a infinite Fourier summation (\cite{Roy1972},\cite{DUFOUR1976107}) and in the case of a process on a circle, $X(P)$ (\ref{process_sphere}) can be given by   
+		
+	\beq \label{eq:sym_process} 
+	X(\phi, \lambda) = \sum_{m=-\infty}^{\infty} W_m(\phi) e^{i m \lambda},
+	\eeq
+		
+	\[
+		\mbox{where } W_m(\phi) = \frac{1}{2\pi} \int_0^{2\pi} X(\phi, \lambda) e^{-i m \lambda} d \lambda,
+	\]
+		
 	with $\mbox{E}(W_m(\phi_P) \overline{W_n(\phi_Q)}) = \delta_{m,n} C_m(\phi_P, \phi_Q)$. \\
 	
-%%------------------------------------------------------------------%%
+		
+	%%------------------------------------------------------------------%%
 	\section{Generalization of parametric models}
-%%------------------------------------------------------------------%%
-	
-	The $R(P,Q)$ given in equation \ref{R(PQ)-01}, is clearly a function of both longitude and latitude. The simplest model is the separable model where,
+	%%------------------------------------------------------------------%%
+		
+	\blue{How to discuss/link about other parametric models suggested by \cite{JeongJun2015}, \cite{JunStein2008}, etc... and why are we using \cite{Huang2012} and what are the advantages?} \\
+		
+	The covariance function on sphere, $R(P,Q)$,  given in equation \ref{R(PQ)-01}, is clearly a function of both longitude and latitude. 
+	% \cite{Huang2012} pointed out that the simplest model is the separable model can be defined as follows,
 	
 	\[
-		R(P,Q) = \tilde{C}(\Delta\lambda)C_m(\phi_P,\phi_Q)
+		R(P,Q) = f(\Delta\lambda, \phi_P,\phi_Q)
 	\]
-	
+		
 	In order to make things easier one could assume that $C_m(\phi_P, \phi_Q) = \tilde{C}_m(\phi_P - \phi_Q)$ only depends on the difference of $\phi_P$ and $\phi_Q$, \cite{HuangZhangRobeson2011} proposed a simple separable covariance function when both covariance components are exponential
 	\[
-		R(P, Q) = c_0e^{-a|\Delta \lambda|}e^{-b|\phi_P - \phi_Q|}.
+		R(P, Q) = c_0e^{-a|\Delta \lambda|}e^{-b|\phi_P - \phi_Q|},
 	\]
+		
+	Where $a$ and $b$ are defined as decay parameters in longitude and latitude respectively. \\ 
+		
+	Since a real-valued random process on sphere has a real-valued covariance function and in order to have a non separable covariance model \cite{Huang2012} considered a complex-valued \Cm which is clearly both Hermitian and positive as given below,
+		
+	\begin{eqnarray*}
+		C_m(\phi_P,\phi_Q) &=& c_m e^{-a_m|\phi_P-\phi_Q|}e^{\omega_m(\phi_P-\phi_Q)}, \quad c_m \ge 0,a_m\ge0,\omega_m\in R. \\
+		C_m(\phi_P,\phi_Q) &=& C_{m,R}(\phi_P,\phi_Q)+iC_{m.I}(\phi_P,\phi_Q), \quad C_m(\phi_P,\phi_Q) = \overline{C_{-m}(\phi_P,\phi_Q)} 
+	\end{eqnarray*}\\
+		
+	We define the following, 
 	
-	Lets assume,
-	\[
-		C_m(\phi_P,\phi_Q)=c_m e^{-a_m|\phi_P-\phi_Q|}(\cos\omega_m(\phi_P-\phi_Q)+i\sin\omega_m(\phi_P-\phi_Q)), \quad C_m \ge 0,a_m\ge0,\omega_m\in R.
-	\]
+	\begin{eqnarray*}
+		C_{0,R}(\phi_P,\phi_Q) &=& c_0e^{-a_0|\phi_P-\phi_Q|}\cos\omega_0(\phi_P-\phi_Q), \\
+		C_{m,R}(\phi_P,\phi_Q) &=& c_me^{-a_m|\phi_P-\phi_Q|}\cos\omega_m(\phi_P-\phi_Q), \\
+		C_{m,I}(\phi_P,\phi_Q) &=& c_me^{-a_m|\phi_P-\phi_Q|}\sin\omega_m(\phi_P-\phi_Q). \\
+	\end{eqnarray*}
 	
+	Clearly, \Cm is both Hermitian and positive definite then $R(P,Q)$ can be given as follows,
+		
+	\begin{eqnarray*}
+		R(P,Q) &=& c_0e^{-a_0|\phi_P-\phi_Q|}\cos\omega_0(\phi_P-\phi_Q) + \sum_{m=-\infty}^{-1} e^{im\Delta\lambda}C_m(\phi_P,\phi_Q) + \sum_{m=1}^{\infty} e^{im\Delta\lambda}C_m(\phi_P,\phi_Q) \\
+		&=& c_0e^{-a_0|\phi_P-\phi_Q|}\cos\omega_0(\phi_P-\phi_Q) + \sum_{m=1}^{\infty} e^{-im\Delta\lambda}C_{-m}(\phi_P,\phi_Q) + \sum_{m=1}^{\infty} e^{im\Delta\lambda}C_m(\phi_P,\phi_Q) \\
+		&=& c_{0,R}(\phi_P,\phi_Q)+2 \sum_{m=1}^{\infty}cos(m\Delta\lambda)C_{m,R}(\phi_P,\phi_Q)-sin(m\Delta\lambda)C_{m,I}(\phi_P,\phi_Q)\\
+		&=& c_0e^{-a_0|\phi_P-\phi_Q|}\cos\omega_0(\phi_P-\phi_Q)\\
+		& & +2\sum_{m=1}^{\infty}\cos(m\Delta\lambda)[c_me^{-a_m|\phi_P-\phi_Q|}\cos(\omega_m(\phi_P-\phi_Q))] \\
+		& & -\sin(m\Delta\lambda)[c_me^{-a_m|\phi_P-\phi_Q|}\sin(\omega_m(\phi_P-\phi_Q))]\\
+		&=&c_0e^{-a_0|\phi_P-\phi_Q|}cos\omega_m(\phi_P-\phi_Q)+2\sum_{m=1}^{\infty}c_me^{-a_m|\phi_P-\phi_Q|}[\cos(m\Delta\lambda)\cos(\omega_m(\phi_P-\phi_Q))\\
+		& &-\sin(m\Delta\lambda)\sin(\omega_m(\phi_P-\phi_Q))]
+		\\
+		&=&c_0e^{-a_0|\phi_P-\phi_Q|}cos\omega_m(\phi_P-\phi_Q)+2\sum_{m=1}^{\infty}c_me^{-a_m|\phi_P-\phi_Q|}\cos[m\Delta\lambda+\omega_m(\phi_P-\phi_Q)].
+	\end{eqnarray*}
 	
-	\cite[Remark 2.4]{Huang2012}states that for real-valued process, the covariance function $R(P,Q)$ is also real-valued, and
-	\[
-		R(P,Q)=C_{0,R}(\phi_P,\phi_Q)+2 \sum_{m=1}^{\infty}cos(m\Delta\lambda)C_{m,R}(\phi_P,\phi_Q)-sin(m\Delta\lambda)C_{m,I}(\phi_P,\phi_Q),
-	\]
-	
-	where $C_m(\phi_P,\phi_Q)$=$C_{m,R}(\phi_P,\phi_Q)$+$iC_{m.I}(\phi_P,\phi_Q)$.\\
-	$C_{0,R}(\phi_P,\phi_Q)$=$c_0e^{-a_0|\phi_P-\phi_Q|}\cos\omega_0(\phi_P-\phi_Q)$, $C_{m,R}(\phi_P,\phi_Q)$=$c_me^{-a_m|\phi_P-\phi_Q|}\cos\omega_m(\phi_P-\phi_Q)$,\\
-	$C_{m,I}(\phi_P,\phi_Q)$=$c_me^{-a_m|\phi_P-\phi_Q|}\sin\omega_m(\phi_P-\phi_Q)$\\
-	
-	If one takes $a_m=a$, $\omega_m=mu$ we can get the following form for $R(P,Q)$,
+		
+	Set $a_m=a$, $\omega_m=mu$ and we can get the following form for $R(P,Q)$,
 	\[
 		R(P,Q)=c_0e^{-a|\phi_P-\phi_Q|}+2e^{-a|\phi_P-\phi_Q|} \sum_{m=1}^{\infty}c_m\cos[m\theta(P,Q,u)],
 	\]
 	where $\theta(P,Q,u)=\Delta\lambda+u(\phi_P-\phi_Q)-2k\pi$, and $k$ is chosen such that $\theta(P,Q,u)\in[0,2\pi]$.\\
-	
-	
-	
-	Moreover, by carefully choosing functions for $C_m(\phi_P, \phi_Q)$ \cite{Huang2012} proposed some nonseparable covariance models ($R(P,Q)$) models valid on the sphere,
-	
+		
+		
+	Moreover, by carefully choosing functions for $C_m(\phi_P, \phi_Q)$ \cite{Huang2012} proposed some non-separable covariance models ($R(P,Q)$) models valid on the sphere,
+		
 	\begin{eqnarray}
-		R(P,Q) &=& Ce^{-a|\phi_P-\phi_Q|} \frac{1-p^2}{1-2p \cos\theta(P,Q,u)+p^2}  \\
-		R(P,Q) &=& Ce^{-a|\phi_P-\phi_Q|} \log\frac{1}{(1-2p\cos\theta(P,Q,u) + p^2)} \\
-		R(P,Q) &=& 2Ce^{-a|\phi_P-\phi_Q|}\left(\frac{\pi^4}{90}-\frac{\pi^2\theta^2(P,Q,u)}{12}+\frac{\pi\theta^3(P,Q,u)}{12}-\frac{\theta^4(P,Q,u)}{48}\right).
+		R(P,Q) &=& Ce^{-a|\phi_P-\phi_Q|} \frac{1-p^2}{1-2p \cos\theta(P,Q,u)+p^2} \label{model1} \\
+		R(P,Q) &=& Ce^{-a|\phi_P-\phi_Q|} \log\frac{1}{(1-2p\cos\theta(P,Q,u) + p^2)} \label{model2} \\
+		R(P,Q) &=& 2Ce^{-a|\phi_P-\phi_Q|}\left(\frac{\pi^4}{90}-\frac{\pi^2\theta^2(P,Q,u)}{12}+\frac{\pi\theta^3(P,Q,u)}{12}-\frac{\theta^4(P,Q,u)}{48}\right) \label{model3}
 	\end{eqnarray}
+		
 	
-	There is one big disadvantage for all of them. They are assumed not only stationarity on longitudes, but stationarity on latitudes as well. \\
-	
-	Modifying the covariance models to include non-stationarity
+		
+	\subsubsection{Modifying the covariance models to include non-stationarity}
+		
+	In this section we will discuss one big disadvantages of the covariance models proposed by \cite{Huang2012} and some solutions to over come the disadvantages. The biggest disadvantage for all of them are that it is  assumed not only stationarity on longitudes, but stationarity on latitudes as well. \\
 	
 	\begin{enumerate}
-		\item We have noticed that when $\phi_P = \phi_Q$, the first model reduces to
-		      \begin{eqnarray*}
-		      	R(P, Q) = C\frac{1-p^2}{1 - 2p\cos(\Delta\lambda)+p^2},
-		      \end{eqnarray*}
-		      and if $\Delta \lambda = 0$, the variance over all latitudes would be constant. This is not supposed to be the case, since both MSU data and TOMS data in figures \ref{MSU_data_var_lat} and \ref{TOMS_data_var_lat} shows that variance is highly depending on the latitude.
-		\item A modification of the above approach is to replace the function
+				
+		\item We have noticed that when $\phi_P = \phi_Q$, the model \ref{model1} reduces to
+		      \beq
+		      \nonumber
+		      R(P, P) = C\frac{1-p^2}{1 - 2p\cos(\Delta\lambda)+p^2}
+		      \eeq
+		      and if we set $\Delta \lambda = 0$, the variance of latitude $\phi_P$ over all latitudes can be given by,
+		      \beq
+		      \nonumber
+		      Var(P) = C\frac{1+p}{1 - p}
+		      \eeq
+		      		      
+		      is not a function of the latitude (a function of the parameter $p$) and it implies that variance is constant over latitudes. This is not supposed to be the case, since both MSU data and TOMS data in figures \ref{MSU_data_var_lat} and \ref{TOMS_data_var_lat} shows that variance is highly depending on the latitude.
+		      		      
+		\item We propose a modification to the above approach by replacing the \Cm function,
+		      		
 		      \[
 		      	C(\phi_P, \phi_Q) = Ce^{-a|\phi_P - \phi_Q|}
 		      \]
-		      by a non-stationary covariance function, which depends on the latitudes, even when $\phi_P = \phi_Q$. Here are the two functions that have been used in our analysis.
-		      \begin{eqnarray*}
-		      	\tilde{C}(\phi_P, \phi_Q) &=& C_1(C_2 - e^{-a|\phi_P|} - e^{-a|\phi_Q|} + e^{-a|\phi_P - \phi_Q|}), \\
-		      	\tilde{C}(\phi_P, \phi_Q) &=& C_1\left(C_2 - \frac{1}{\sqrt{a^2+\phi_P^2}} - \frac{1}{\sqrt{a^2+\phi_Q^2}} + \frac{1}{\sqrt{a^2+(\phi_P-\phi_Q)^2}}\right).
-		      \end{eqnarray*}
-		      Here $C_1, a > 0,$ and $C_2 \ge 1$ to ensure the positive definiteness of the above function. When $\phi_P = \phi_Q$, both functions are actually the function of $\phi_P$.
+		      		      
+		      by a non-stationary covariance function, which depends on the latitudes, even when $\phi_P = \phi_Q$. Consider the below two functions for \Cm.
+		      		      
+		      \begin{eqnarray}
+		      	\label{Cm_model1}
+		      	\tilde{C}(\phi_P, \phi_Q) &=& C_1(C_2 - e^{-a|\phi_P|} - e^{-a|\phi_Q|} + e^{-a|\phi_P - \phi_Q|}) \\
+		      	\label{Cm_model2}
+		      	\tilde{C}(\phi_P, \phi_Q) &=& C_1\left(C_2 - \frac{1}{\sqrt{a^2+\phi_P^2}} - \frac{1}{\sqrt{a^2+\phi_Q^2}} + \frac{1}{\sqrt{a^2+(\phi_P-\phi_Q)^2}}\right)
+		      \end{eqnarray}
+		      		      
+		      Here $C_1, a > 0,$ and $C_2 \ge 1$ to ensure the positive definiteness of the above function. When $\phi_P = \phi_Q$, both functions are actually a function of $\phi_P$.
+		      		      
 		      \begin{eqnarray*}
 		      	\tilde{C}(\phi_P, \phi_P) &=& C_1(C_2 - 2e^{-a|\phi_P|} + 1), \\
 		      	\tilde{C}(\phi_P, \phi_P) &=& C_1\left(C_2 - \frac{2}{\sqrt{a^2+\phi_P^2}} + \frac{1}{a}\right).
 		      \end{eqnarray*}
-		      
-		\item A more general non-stationary covariance function is given as following. If $C(\cdot) = C(x-y)$ is the stationary covariance function and $f(\omega) \ge 0$ is the corresponding spectral density, then
-		      
+		      		      
+		      % \item A more general non-stationary covariance function is given as following. If $C(\cdot) = C(x-y)$ is the stationary covariance function and $f(\omega) \ge 0$ is the corresponding spectral density, then
+		      		      
 		      \begin{prop}
 		      	%\prop\hfill\\
 		      	A more general non stationary covariance function is given as following. If $C(\cdot) = C(x-y)$ is the stationary covariance function and $f(\omega) \ge 0$ is the corresponding spectral density, then
 		      	\[
-		      		\tilde{C}(x, y) = C_2 - C(x) - C(y) + C(x-y), \quad \quad C_2 \ge \int_{-\infty}^\infty dF(\omega) = \int_{-\infty}^\infty f(\omega)d\omega > 0
+		      		\tilde{C}(x, y) = C_2 - C(x) - C(y) + C(x-y), 
+		      	\]
+		      	with 
+		      	\[
+		      		C_2 \ge \int_{-\infty}^\infty dF(\omega) = \int_{-\infty}^\infty f(\omega)d\omega > 0
 		      	\]
 		      	is the non stationary covariance function. Note that the covariance function $C(\cdot)$ implies that, by Bochner's theorem, there exists a bounded measure $F$ such that
 		      	\[
@@ -136,39 +182,50 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 		      		&=&\int_{-\infty}^\infty f(\omega)d\omega \left|\sum_{i=1}^n a_i(e^{-it_i\omega} - 1)\right|^2 \ge 0.
 		      	\end{eqnarray*}
 		      \end{prop}
-		      
-		      
+		      		      
+		      		      
 	\end{enumerate}
-	So we propose a five-parameter model for the covariance on a sphere
+	So we propose six five-parameter models which are combinations of both $\tilde{C}(\phi_P, \phi_Q)$, defined by a exponential family \ref{Cm_model1} and a power family \ref{Cm_model2}, and models (\ref{model1}, \ref{model2}, \ref{model3}) proposed by \cite{Huang2012} for the covariance on a sphere defined as follows,
+		
 	\[
 		R(P,Q) = \tilde{C}(\phi_P, \phi_Q) C(\theta(P,Q,u)),
 	\]
-	where $C_1 > 0, C_2 > 0, a, u, p$ can be estimated from the data.
+	where $\theta(P,Q,u)=\Delta\lambda+u(\phi_P-\phi_Q) \in [0,2\pi ] $, $C_1 > 0, C_2 > 0, a>0, u\in \R, p\in(0,1)$. 
+		
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{graphs/all_covariance_models}
+		\caption[The covariance between $30^0S$ and $50^0N$ (latitude $60^0$ and $140^0$) of three covariance models] {The covariance between $30^0S$ and $50^0N$ (latitude $60^0$ and $140^0$) of three covariance models with exponential family $ i.e. \tilde{C}(\phi_P, \phi_Q)$ given by \ref{Cm_model1} over 100 longitudes  for simplicity we set all parameters to be one.}
+	\end{figure}
 	
-	% Possible ways to obtain the estimates:
-	% \begin{enumerate}
-	% \item MLE, this can be done, but may be computational intensive
-	% \item Weighted least squares or simply least squares, this may be simpler, may not be as good as MLE, but it can be done without the assumption of Gaussian.
-	% \end{enumerate}
+	{\bf Remark 1} The parameters $C_1, C_2, a, p$ are scaling parameters of the covariance functions and $u$ is a location parameter. All covariance models have a similar pattern and share one property, when there is no location shift ($u = 1$) the maximum of $R(P,Q)$ occurs at $\lambda_{max} = |\phi_P -\phi_Q|$ and the minimum of $R(P,Q)$ occurs at $\lambda_{min} = \pi + \lambda_{max}$. 
+		
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{graphs/parameters_model1_2}
+		\caption[Covariance distribution for different parameters using model1:] {Covariance distribution for different parameter using model1:  (a)-parameter $p$, (b)-parameter $a$, (c)-parameter $C1$ (similar pattern for parameter $C2$), (d)-parameter u}
+	\end{figure}
+	
+	
 	
 	%%------------------------------------------------------------------%% 
 	\section{Method development}
 	%%------------------------------------------------------------------%%
-	
-	
-	We can construct normal independent (complex) random variate $W_m(\phi)$ associated with the variance-covariance matrix $C_m(\phi_P, \phi_Q)$ to construct an axially symmetric process. Then finite summation can be used to approximate above (\ref{eq:sym_process}) infinite summation as given below,
+		
+		
+	We can construct normal independent (complex) random variate $W_m(\phi)$ associated with the variance-covariance matrix $C_m(\phi_P, \phi_Q)$ to construct an axially symmetric process for a given latitude $\phi$. Then finite summation can be used to approximate above (\ref{eq:sym_process}) infinite summation as given below,
 	\beq
 	X(P) = X(\phi, \lambda) = \sum_{m=-N}^{N} W_m(\phi) e^{i m \lambda}
 	\eeq
 	where this would provide  the gridded data.
 	Since $W_m$'s are independent for $m = 1, 2, \cdots$, we have
-	
+		
 	\begin{eqnarray*}
 		Cov(X(P), {X(Q)}) &=& Cov\left(\sum_{m = -N}^{N} W_m(\phi_P) e^{i m \lambda_P}, \sum_{j=-N}^{N} {W_j(\phi_Q)} e^{i j \lambda_Q}\right) \\
 		&=& \sum_{m, j} e^{i m \lambda_P} e^{-i j \lambda_Q} Cov(W_m(\phi_P), {W_j(\phi_Q)}) \\
 		&=& \sum_{m} e^{im (\lambda_P - \lambda_Q)} C_m(\phi_P, \phi_Q)
 	\end{eqnarray*}
-	
+		
 	The above generated data will be complex random variates. Therefore to have the real-valued data observations or to obtain a real process, we need to have
 	\beq \label{eq:for_real}
 	C_{-m} (\phi_P, \phi_Q) = \overline{C_m(\phi_P, \phi_Q)}, \quad \mbox{for $m = 1, 2, \cdots, N$}
@@ -186,16 +243,16 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 		&=& C_m^r(\phi_P, \phi_Q) + i C_m^i(\phi_P, \phi_Q).
 	\end{eqnarray*}
 	If we let $W_{-m}(\phi) = \overline{W_m(\phi)}$, then the covariance function would satisfy the above relationship \ref{eq:for_real}. In addition, we will set the following,
-	
+		
 	\begin{eqnarray} \label{real_cov}
 		& & Cov(W_m^r(\phi_P), W_m^r(\phi_Q)) = Cov(W_m^i(\phi_P), W_m^i(\phi_Q)) = \frac{1}{2}C_m^r(\phi_P, \phi_Q) \label{real_cov},
 	\end{eqnarray}
 	\begin{eqnarray} \label{im_cov}
 		& & Cov(W_m^i(\phi_P), W_m^r(\phi_Q)) = - Cov(W_m^r(\phi_P), W_m^i(\phi_Q)) = \frac{1}{2}C_m^i(\phi_P, \phi_Q).
 	\end{eqnarray}
-	
+		
 	Therefore, if we denote $\utilde{W}_m(\phi) = (W_m^r(\phi), W_m^i(\phi))^T$, then the variance-covariance matrix for $\utilde{W}_m(\phi)$ is given by
-	
+		
 	\[
 		\frac{1}{2}\left(\begin{array}{ll}
 		C_m^r(\phi_P, \phi_Q)& -C_m^i(\phi_P, \phi_Q) \\
@@ -203,11 +260,11 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 		\end{array}
 		\right).
 	\]
-	
+		
 	However, we cannot have a vector of random variables $\utilde{W}_m(\phi)$ with a non-symmetric variance-covariance matrix unless $C_m^i(\phi_P, \phi_Q) = 0$. In the next section we will demonstrate how to generate $\utilde{W}_m(\phi)$ with a symmetric variance-covariance\\
-	
+		
 	The process given by (\ref{eq:sym_process}) is now simplified as the following (real) process,
-	
+		
 	\begin{eqnarray} \label{eq:finite_process}
 		X(P) &=& \sum_{m = -N}^N W_m(\phi) e^{im \lambda} =  W_0(\phi) + \sum_{m =1}^N W_m(\phi) e^{im \lambda} + \sum_{m =-1}^{-N} W_m(\phi) e^{im \lambda} \nonumber \\
 		&=& W_0(\phi) + \sum_{m =1}^N W_m(\phi) e^{im \lambda} + \sum_{m =1}^{N} \overline{W_m(\phi)} e^{-im \lambda} \nonumber \\
@@ -215,19 +272,19 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 		& & \left. +\ (W_m^r(\phi)-iW_m^i(\phi))(\cos(m \lambda) - i \sin(m \lambda))  \right]  \nonumber \\
 		&=& W_0(\phi) + 2 \sum_{m =1}^N \left[W_m^r(\phi)\cos(m\lambda) - W_m^i(\phi)\sin(m \lambda)\right].
 	\end{eqnarray}
-	
-	
-	
+		
+		
+		
 	%-------------------------------------% 
 	\subsection{Data generation}
 	%-------------------------------------% 
-	
-	Now for each fixed $m = 0, 1, 2, \cdots, N$, we consider  $W_m(\phi) = W_m^r(\phi) + i W_m^i(\phi)$ then $W_m^*(\phi) = W_m^r(\phi) - i W_m^i(\phi)$ (where $W_m^*(\phi)$ is the conjugate of $W_m(\phi)$). We may assume that $W_m^r(\phi)$ and $W_m^i(\phi)$ are independent, each following a (normal) distribution with mean zero and the same variance $\sigma_m^2(\phi) = \frac{1}{2}C_m^r(\phi, \phi)$, ($C_m^i(\phi, \phi) = 0$ implies $W_m^r(\phi)$ and $W_m^i(\phi)$ are uncorrelated, or independent for Gaussian). From \ref{circular_theory}, $W_m(\phi)$ is the circularly-symmetric complex random variable (\cite{Gallager2008}).  \\
-	
+		
+	Now for each fixed $m = 0, 1, 2, \cdots, N$, we consider  $W_m(\phi) = W_m^r(\phi) + i W_m^i(\phi)$ then $W_m^*(\phi) = W_m^r(\phi) - i W_m^i(\phi)$ (where $W_m^*(\phi)$ is the complex conjugate of $W_m(\phi)$). We may assume that $W_m^r(\phi)$ and $W_m^i(\phi)$ are independent, each following a (Gaussian) distribution with mean zero and the same variance $\sigma_m^2(\phi) = \frac{1}{2}C_m^r(\phi, \phi)$, ($C_m^i(\phi, \phi) = 0$ implies $W_m^r(\phi)$ and $W_m^i(\phi)$ are uncorrelated, or independent for Gaussian). In chapter 1 we introduced the concept of circularly-symmetry, thus according to \cite{Gallager2008} a complex random variable is circularly-symmetric if and only if it pseudo covariance is zero (\ref{circular_theory}). In this section we will show that the Gaussian random variable $W_m(\phi)$ is a circularly-symmetric complex random variable.  \\
+		
 	Now for a set of distinct latitudes $\Phi = \{\phi_1, \phi_2, \cdots, \phi_{n_l}\}$, we consider a sequence of complex random variables $\{W_m(\phi): \phi \in \Phi\}$, which forms a multivariate complex random vector $\utilde{W}_m = (W_m(\phi_1), W_m(\phi_2), \cdots, W_m(\phi_n))^T$ where $W_m(\phi_i) = W_m^r(\phi_i) + iW_m^r(\phi_i)$ with associated $2\times n_l$-dimensional real random vector
 	$$\utilde{V}_m = (W_m^r(\phi_1), W_m^i(\phi_1),W_m^r(\phi_2), W_m^i(\phi_2),\cdots, W_m^r(\phi_{n_l}), W_m^i(\phi_{n_l}))^T.$$
 	Now we calculate the covariance matrix $K_W = E(\utilde{W}_m\utilde{W}_m^*)$ (where $\utilde{W}_m^*$ is the conjugated transpose) and pseudo-covariance $M_W = E(\utilde{W}_m\utilde{W}_m^T)$. Further, from \ref{circular_theory} a complex random vector is circularly-symmetric if and only if $M_W$ is zero.
-	
+		
 	\begin{eqnarray*}
 		M_W & = & \left(\begin{array}{cccc}
 		E[W_m(\phi_1) W_m(\phi_1) ] & E[W_m(\phi_1) W_m(\phi_2) ]  & \cdots & E[W_m(\phi_1) W_m(\phi_{n_l}) ]\\
@@ -238,22 +295,22 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 		\right)\\
 		&=& {\bf 0}
 	\end{eqnarray*}
-	
-	We can easily show the above for $\forall\ i,j$,
-	
+		
+	We can show the above result for $\forall\ i,j$,
+		
 	\begin{eqnarray*}
 		& & E[W_m(\phi_i) W_m(\phi_j) ]\\
 		&=& E[(W_m^r(\phi_i) + i W_m^i(\phi_i))(W_m^r(\phi_j) + i W_m^i(\phi_j))] \\
 		&=& E(W_m^r(\phi_i)W_m^r(\phi_j)) - E(W_m^i(\phi_i)W_m^i(\phi_j)) + i[E(W_m^r(\phi_i)W_m^i(\phi_j)) + E(W_m^i(\phi_i)W_m^r(\phi_j))] \\
-		& & for\ i \ne j \\
+		& & \mbox{for $i \ne j$} \\
 		&=& \frac{1}{2}(C_m^r(\phi_i, \phi_j) - C_m^r(\phi_i, \phi_j)) + i [-\frac{1}{2} C_m^i(\phi_i, \phi_j) + \frac{1}{2}C_m^i(\phi_i, \phi_j)] = 0 \\
-		& & for\ i = j \\
+		& & \mbox{for $i = j$} \\
 		&=& \frac{1}{2}(C_m^r(\phi_i, \phi_i) - C_m^r(\phi_i, \phi_i)) + i [0 + 0] = 0 \quad ;W_m^r(\phi_i),W_m^i(\phi_i) \text{ are independent}  \\
 	\end{eqnarray*}
-	
-	
+		
+		
 	Therefore, $\utilde{W}_m$ is circularly-symmetric. In addition,
-	
+		
 	\begin{eqnarray*}
 		K_W & = & E(\utilde{W}_m\utilde{W}_m^*) \\
 		& = &\left(\begin{array}{cccc}
@@ -287,16 +344,19 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 		\right)\\
 		&=& Re(K_W) + iIm(K_W) \\
 	\end{eqnarray*}
-	
+		
 	Now,
 	\begin{eqnarray*}
 		K_V & = & E(\utilde{V}_m\utilde{V}_m^*) = E(\utilde{V}_m\utilde{V}_m^T) \\
 	\end{eqnarray*}
-	
+		
 	In order to generate $K_V$ for $n_l$-tuple case, we reorganize the vector $\utilde{V}_m$ into the following form.
-	\[
-		\utilde{V}_m = (W_m^r(\phi_1), W_m^r(\phi_2),\cdots,W_m^r(\phi_{n_l}), W_m^i(\phi_1), W_m^i(\phi_2), \cdots, W_m^r(\phi_{n_l}))^T = (Re(\utilde{W}_m), Im(\utilde{W}_m))^T
-	\]
+		
+	\begin{eqnarray*}
+		\utilde{V}_m  &=& (W_m^r(\phi_1),\cdots,W_m^r(\phi_{n_l}), W_m^i(\phi_1), \cdots, W_m^r(\phi_{n_l}))^T \\
+		&=& (Re(\utilde{W}_m), Im(\utilde{W}_m))^T
+	\end{eqnarray*}
+		
 	that is, we grouped all real components and imaginary components together. Hence,
 	\begin{eqnarray*}
 		K_V &=& E(\utilde{V}_m\utilde{V}_m^T) \\
@@ -307,12 +367,12 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 		\right)_{2n_{l}\times 2n_{l} } \\
 	\end{eqnarray*}
 	%from \ref{real_cov}, \ref{im_cov}, and
-	
+		
 	Since $\utilde{W}_m$ is circularly-symmetric from \ref{comlex_cov} we can get the following results,
-	
+		
 	\[ E[Re(\utilde{W}_m)Re(\utilde{W}_m)^T] = E[Im(\utilde{W}_m)Im(\utilde{W}_m)^T] = \frac{1}{2}(Re(K_W))_{n_{l}\times n_{l}} \]
 	\[ E[Re(\utilde{W}_m)Im(\utilde{W}_m)^T] = -E[Im(\utilde{W}_m)Re(\utilde{W}_m)^T] = \frac{1}{2}(Im(K_W))_{n_{l}\times n_{l}}\]
-	
+		
 	\begin{eqnarray*}
 		K_V&=& \frac{1}{2}\left( \begin{array}{ll}
 		Re(K_W) & Im(K_W)^T \\
@@ -324,22 +384,22 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 		\end{array}
 		\right)
 	\end{eqnarray*}
-	
+		
 	Since $K_V$ is a non-negative definite and matrix, it can be represented as follows,
 	\[ K_V = Q\Lambda Q^T, \]
 	where $\Lambda$ is a diagonal matrix with eigen values (real-positive) of $K_V$ and $Q$ are the corresponding orthonormal eigenvectors. We can choose $A = Q\Lambda^{1/2} Q^T$ to obtain,
 	\[\utilde{V}_m=A_{2n_{l}\times 2n_{l}}Z_{2n_{l}\times 1},\]
 	where $Z =\{z_1, z_2, \ldots, z_{n_l}, z_1^*, z_2^*, \ldots, z_{n_l}^*\}$ and each $z_i\sim N(0,1)$ hence we can get $\utilde{W}_m$.
 	Now  for each latitude $\phi_l, l = 1, 2, \cdots, n_l$ and $\lambda_k, k = 1, 2, \cdots, n_L$ ($N = n_L/2$), we denote the axially symmetric data (real) as $X(\phi_l, \lambda_k)$. These random variates can be obtained from the equation (\ref{eq:finite_process}), let's rewrite the equation as follows,
-	
+		
 	\begin{eqnarray} \label{eq:finite_process_2}
 		X(\phi_l,\lambda_k) &=& W_0(\phi_l) + 2 \sum_{m =1}^N \left[W_m^r(\phi_l)\cos(m\lambda_k) - W_m^i(\phi_l)\sin(m \lambda_k)\right]
 	\end{eqnarray}
-	
+		
 	%-------------------------------------% 
 	\subsection{Pseudo-code}
 	%-------------------------------------% 
-	
+		
 	\begin{itemize}
 		\item Choose a cross covariance function, $R(P,Q)$
 		\item Initialize the parameters ($C_1, C_2, a, u, p$) and choose a resolution $\phi_1,\ldots,\phi_{n_l}, \lambda_1, \ldots, \lambda_{n_L}$ (or $n_l\times n_L$),
@@ -349,44 +409,160 @@ Let $X(P)$ be a complex-valued random process on a unit sphere $S^2$, where $P =
 		      	\item use SVD to get $\utilde{V}_m$ ($n_l-tuples$)
 		      	\item get $\utilde{W}_m$'s from $\utilde{V}_m$
 		      \end{enumerate}
-		      
+		      		      
 		\item apply the equation (\ref{eq:finite_process_2}) to generate grid data.
 	\end{itemize}
-	
-	
+		
+		
 	%%------------------------------------------------------------------%% 
 	\section{Property of MOM}
 	%%------------------------------------------------------------------%% 
-	
+		
 	% We would like to test if the generated data follows the proposed covariance structure $i.e$ if
 	% 
 	%     \[ H_o: \Sigma = \Sigma_o \ vs\ H_a:\Sigma\ne \Sigma_o,\]
 	%     where $\Sigma_0$ is the theoretical covariance in other terms it is $R(P,Q)$, there are methods test the above hypothesis but our covariance structure is a 3-dimensional covariance matrix and we still do not have a better approach to test this hypothesis.
+		
+	\blue{Since mom, covariance estimator is biased and the variogram estimator is inconsistent which one should we use. I have added the comparison by both estimators) }\\
+		
+	The cross covariance can capture the covarince between two locations and any finite pairs of locations separated by a fixed distance (angle in the case of a sphere). In other words cross covariance can be used to to capture the covariance between points at two latitudes operated by $\Delta \lambda \in (0,2\pi)$.When a random process on a sphere is second-order stationary, cross covariance is a function of logitidual difference ($\Delta\lambda$). According to \cite{Wackernagel2013} the cross covariance function is not an even function and it is easy to observe that the proposed $R(P,Q)$ functions are valid on a sphere and they are cross covarince functions ($R(P,Q, \Delta\lambda) \ne R(P,Q,-\Delta\lambda)$). In contrast the cross variogram is an even function when the process is intrinsically stationary. We compute the empirical cross covariance and cross variogram using method of moments estimators and compared to its theoretical value.
+		
+	\subsubsection{Cross Covariance}
+		
+	The empirical cross covariance for axially symmetric processes on the sphere. For any two latitudes $\phi_P$ and $\phi_Q$ with $\{\lambda_i, i = 1, 2, \ldots, n\}$ representing the gridded longitudes on each circle, then $\hat{R}(\phi_P, \phi_Q, \Delta \lambda)$ is given by
+		
+	% 	\beq \label{emprical_var}
+	% 	\hat{R}(\phi_P, \phi_Q, \theta) = \frac{1}{n_L}\sum_{k=1}^{n_L}(X(\phi_P, \theta+\lambda_k)\cdot X(\phi_Q, \lambda_k)),
+	% 	\eeq
+	% 	where $\theta = m\Delta\lambda$.
+	% 	
+	% In general, the spatial processes are stationary at a given latitude but not within latitudes. 
 	
-	\blue{we might have to omit this section, add a discussion about variogram }
-	
-	We should conform the validity of proposed covariance functions $R(P,Q)$. Since $R(P,Q)$ functions are cross covariance functions, we can compute the empirical covariance, by method of moments and compare.
-	
-	We can estimate the cross covariance between any two arbitrary latitudes at each longitudinal difference (empirical covariance) based on method of moments and compare it with the theoretical $R(P,Q)$ values. According to \cite{Wackernagel2013} a cross covariance function is not an even function so does the proposed $R(P,Q)$ functions, $i.e.$ $R(P,Q, \Delta\lambda) \ne R(P,Q,-\Delta\lambda)$. The empirical (cross) covariance between any two latitudes $\phi_P$ and $\phi_Q$ with a zero mean processes can be given as follows,
-	
-	\beq \label{emprical_var}
-	\hat{R}(\phi_P, \phi_Q, \theta) = \frac{1}{n_L}\sum_{k=1}^{n_L}(X(\phi_P, \theta+\lambda_k)\cdot X(\phi_l, \lambda_k)),
+	%If the processes are not zero mean once could simply substract the product of means from the above MOM estimator.
+	% 
+	% The above estimate is clearly unbiased as we have, for fixed two locations $P, Q \in S^2$,
+	% \[
+	% 	E[\hat{R}(\phi_P, \phi_Q, \theta)] = R(P,Q).
+	% \]
+	% 
+	% Later we will prove this estimator is consistent, {\em i.e.,} for any $\varepsilon > 0$,
+	% \[
+	% 	\lim_{n \to \infty} P(|\hat{R}(\phi_P, \phi_Q, \theta) - R(P,Q)| > \varepsilon) = 0.
+	% \]
+		
+	\beq
+	\hat{R}(\phi_P, \phi_Q, \Delta \lambda)= \frac{1}{n}\sum_{i = 1}^n (X(\phi_P, \lambda_i + \Delta \lambda) - \bar{X}_P)(X(\phi_Q, \lambda_i) - \bar{X}_Q), 
 	\eeq
-	where $\theta = m\Delta\lambda$.
 	
-	In general, the spatial processes are stationary at a given latitude but not within latitudes. If the processes are not zero mean once could simply substract the product of means from the above MOM estimator. The above estimate is clearly unbiased as we have, for fixed two locations $P, Q \in S^2$,
+	where $\Delta \lambda = 0, 2\pi/n, 4\pi/n, \cdots, 2(N-1)\pi/n$ and $\bar{X}_P = \frac{1}{n}\sum_{i=1}^n X(\phi_P, \lambda_i)$ and similar for $\bar{X}_Q$. Now we will show that cross covarince estimator is biased, 
+	
+	\begin{eqnarray*}
+		E(\hat{R}(\phi_P, \phi_Q, \Delta \lambda)) &=& \frac{1}{n}\sum_{i = 1}^n E((X(\phi_P, \lambda_i + \Delta \lambda) - \bar{X}_P)(X(\phi_Q, \lambda_i) - \bar{X}_Q)) \\
+		&=& \frac{1}{n}\sum_{i=1}^n cov(X(\phi_P, \lambda_i+\Delta \lambda), X(\phi_Q, \lambda_i)) \\
+		& & - \frac{1}{n}\sum_{i = 1}^n E((X(\phi_P, \lambda_i + \Delta \lambda) - \mu_P)(\bar{X}_Q - \mu_Q)) \\
+		& & -\frac{1}{n}\sum_{i = 1}^n E((X(\phi_Q, \lambda_i) - \mu_Q)(\bar{X}_P - \mu_P)) \\
+		& & + \frac{1}{n}\sum_{i = 1}^n E((\bar{X}_P - \mu_P)(\bar{X}_Q - \mu_Q)) \\
+		&=& R(\phi_P, \phi_Q, \Delta \lambda) -E((\bar{X}_Q - \mu_Q)(\bar{X}_P - \mu_P)) - E((\bar{X}_P - \mu_P)(\bar{X}_Q - \mu_Q)) \\
+		& &  + E((\bar{X}_P - \mu_P)(\bar{X}_Q - \mu_Q)) \\
+		&=& R(\phi_P, \phi_Q, \Delta \lambda) - cov(\bar{X}_P, \bar{X}_Q).
+	\end{eqnarray*}
+	
+	Note that, 
+	
+	\begin{eqnarray*}
+		cov(\bar{X}_P, \bar{X}_Q) &=&  \frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n cov(X(\phi_P, \lambda_i), X(\phi_Q, \lambda_j)) \\
+		&=& \frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n R(\phi_P, \phi_Q, (i-j)*2\pi/n) \\
+		&=& \frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n \left( C_0(\phi_P, \phi_Q) \right.\\
+		& &  2\sum_{m=1}^\infty \left( C_{m, R}(\phi_P, \phi_Q) \cos(m*(i-j)*2\pi/n) \right. \\
+		& & \left.- C_{m, I}(\phi_P, \phi_Q) \sin(m*(i-j)*2\pi/n) \right) \\
+		&=& C_0(\phi_P, \phi_Q) + 2\sum_{m=1}^\infty C_{m, R}(\phi_P, \phi_Q) \left(\frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n \cos(m(i-j)*2\pi/n)\right) \\
+		& & - 2\sum_{m=1}^\infty C_{m, I}(\phi_P, \phi_Q) \left(\frac{1}{n^2}\sum_{i = 1}^n \sum_{j=1}^n \sin(m(i-j)*2\pi/n)\right) \\
+		&=& C_0(\phi_P, \phi_Q),
+	\end{eqnarray*}
+	
+	since
+	\begin{eqnarray*}
+		& & \sum_{i = 1}^n \sum_{j=1}^n \cos(m*(i-j)*2\pi/n) \\
+		&=& \sum_{i=1}^n \sum_{j=1}^n \left(\cos(m*i *2\pi/n)\cos(m*j*2\pi/n) - \sin(m*i *2\pi/n)\sin(m*j*2\pi/n) \right)\\
+		&=& \left(\sum_{i=1}^n \cos(m*i *2\pi/n)\right)^2 - \left(\sum_{i=1}^n \sin(m*i *2\pi/n)\right)^2 = 0
+	\end{eqnarray*}
+	and
+	\begin{eqnarray*}
+		& & \sum_{i = 1}^n \sum_{j=1}^n \sin(m*(i-j)*2\pi/n) \\
+		&=& \sum_{i=1}^n \sum_{j=1}^n \left(\sin(m*i *2\pi/n)\cos(m*j*2\pi/n) - \cos(m*i *2\pi/n)\sin(m*j*2\pi/n) \right)\\
+		&=& \left(\sum_{i=1}^n \cos(m*i *2\pi/n)\right)* \left(\sum_{i=1}^n \sin(m*i *2\pi/n)\right) \\
+		& & - \left(\sum_{i=1}^n \cos(m*i *2\pi/n)\right)* \left(\sum_{i=1}^n \sin(m*i *2\pi/n)\right) = 0
+	\end{eqnarray*}
+	since for any integer $m$, we have
 	\[
-		E[\hat{R}(\phi_P, \phi_Q, \theta)] = R(P,Q).
+		\sum_{k = 1}^{n} \cos(mk*2\pi/n) = \left\{\begin{array}{cc}
+		0, & \mbox{for any integer $m \ne 0$,}  \\
+		n, & \mbox{for $m = 0$}
+		\end{array}
+		\right. \mbox{ and }
+		\sum_{k = 1}^{n} \sin(mk*2\pi/n) = 0.
+	\]
+	Hence,
+	\[
+		cov(\bar{X}_P, \bar{X}_Q) = C_0 (\phi_P, \phi_Q).
 	\]
 	
-	Later we will prove this estimator is consistent, {\em i.e.,} for any $\varepsilon > 0$,
+	Therefore,
 	\[
-		\lim_{n \to \infty} P(|\hat{R}(\phi_P, \phi_Q, \theta) - R(P,Q)| > \varepsilon) = 0.
+		E(\hat{R}(\phi_P, \phi_Q, \Delta \lambda)) = R(\phi_P, \phi_Q, \Delta \lambda) - C_0 (\phi_P, \phi_Q).
 	\]
 	
+	The cross covariance estimator is biased and  when $\phi_P = \phi_Q$ this reduces to the same results we obtained for a random process on the circle.  
+		
+	\subsubsection{Cross variogram}
+		
+	In general when the covariance is known once can get the variogram ($2\gamma = C(0) - C(h)$), since the cross covariance is not an even function and the variogram is defined by taking the average of $R(P,Q, \Delta\lambda)$ and $R(P,Q,-\Delta\lambda)$ and we can derive the cross variogram as follows, 
+		
 	
+	\begin{eqnarray*}
+		\gamma(\phi_p, \phi_Q, \Delta\lambda) &=& \frac{1}{2}E\left((X(\phi_P, \lambda+\Delta \lambda) - X(\phi_P, \lambda))(X(\phi_Q, \lambda+\Delta \lambda) - X(\phi_Q, \lambda))\right) \\
+		&=& \frac{1}{2} E\left(((X(\phi_P, \lambda+\Delta \lambda) - \mu_P) - (X(\phi_P, \lambda)- \mu_P)) \right. \\
+		& & \left.((X(\phi_Q, \lambda+\Delta \lambda) - \mu_Q) - (X(\phi_Q, \lambda) - \mu_Q)\right) \\
+		&=& \frac{1}{2} \left(cov(X(\phi_P, \lambda+\Delta \lambda), X(\phi_Q, \lambda+\Delta \lambda)) - cov(X(\phi_P, \lambda+\Delta \lambda), X(\phi_Q, \lambda)) \right. \\
+		& & \left. - cov(X(\phi_P, \lambda), X(\phi_Q, \lambda + \Delta \lambda)) + cov(X(\phi_P, \lambda), X(\phi_Q, \lambda))  \right) \\
+		&=& \frac{1}{2} \left(R(\phi_P, \phi_Q, 0) - R(\phi_P, \phi_Q, \Delta \lambda) - R(\phi_P, \phi_Q, -\Delta \lambda) + R(\phi_P, \phi_Q, 0)  \right) \\
+		&=& R(\phi_P, \phi_Q, 0) - \frac{1}{2}(R(\phi_P, \phi_Q, \Delta \lambda) + R(\phi_P, \phi_Q, -\Delta \lambda)).
+	\end{eqnarray*}
+	
+	\beq
+	\gamma(\phi_p, \phi_Q, \Delta\lambda) =  R(\phi_p, \phi_Q, 0) - \frac{1}{2}(R(\phi_P, \phi_Q, \Delta \lambda) + R(\phi_P, \phi_Q, -\Delta \lambda)).
+	\eeq 
+	
+	Regarding the cross-variogram estimation for axially symmetric processes on the sphere, we also perform the MOM estimation as following.
+	
+	\beq
+	\hat{\gamma}(\phi_p, \phi_Q, \Delta\lambda) = \frac{1}{2n} \sum_{i=1}^n \left(X(\phi_P, \lambda_i+\Delta \lambda) - X(\phi_P, \lambda_i))(X(\phi_Q, \lambda_i+\Delta \lambda) - X(\phi_Q, \lambda_i))\right),
+	\eeq
+	
+	and we have
+	
+	
+	\begin{eqnarray*}
+		E(\hat{\gamma}_{PQ}(\Delta \lambda)) &=& \frac{1}{2n} \sum_{i=1}^n E\left(X(\phi_P, \lambda_i+\Delta \lambda) - X(\phi_P, \lambda_i))(X(\phi_Q, \lambda_i+\Delta \lambda) - X(\phi_Q, \lambda_i))\right) \\
+		&=& \frac{1}{2n} \sum_{i=1}^n \left( 2\gamma(\phi_p, \phi_Q, \Delta\lambda) \right) = \gamma(\phi_p, \phi_Q, \Delta\lambda),
+	\end{eqnarray*}
+	
+	which is unbiased. 
+	
+	{\bf Remark} The $R(P,Q)$ function can be given re arrange such that,  
+	
+	\[
+		R(\phi_P, \phi_Q, \Delta \lambda) = \frac{1}{2}(R(\phi_P, \phi_Q, \Delta \lambda) + R(\phi_P, \phi_Q, -\Delta \lambda))+\frac{1}{2}(R(\phi_P, \phi_Q, \Delta \lambda) - R(\phi_P, \phi_Q, -\Delta \lambda)) 
+	\]
+	
+	the cross-covariance function $R(\phi_P, \phi_Q, \Delta \lambda)$ is decomposed into two components: the even component (the first average) and the odd component (the second average). The cross-variogram is only related to the even component of the cross-covariance function, which is different from the case on the circle (the covaraince is an even function). Therefore, using the cross-variogram function is not good enough to characterize the cross-covariance function for the data from the sphere. 
+	
+	\blue{\cite{Wackernagel2013} says that cross variogram is not sufficient when there is a delayed affect example gas input and $CO_2$ output \\
+	How about consistency??}
+		
 	%-------------------------------------% 
 	\subsection{Results}
 	%-------------------------------------% 
-	\input{P1_results.tex}
 	
+	\input{P1_results.tex}
+		
