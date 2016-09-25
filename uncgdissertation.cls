@@ -311,12 +311,15 @@
   \pagenumbering{roman}}
 \newcommand\mainmatter{%
 
-\setlength{\abovedisplayskip}{24pt}  % Get triple space
+\setlength{\abovedisplayskip}{8pt}  % Get triple space
                                 % around equations
-\setlength{\belowdisplayskip}{\abovedisplayskip}
+%\setlength{\belowdisplayskip}{\abovedisplayskip} % old template
+\setlength{\belowdisplayskip}{16pt}
 
-\setlength{\abovedisplayshortskip}{\abovedisplayskip}
-\setlength{\belowdisplayshortskip}{\abovedisplayshortskip}
+%\setlength{\abovedisplayshortskip}{\abovedisplayskip}
+%\setlength{\belowdisplayshortskip}{\belowdisplayskip}
+\setlength{\abovedisplayshortskip}{8pt}
+\setlength{\belowdisplayshortskip}{16pt}
 
   \fancypagestyle{plain}{% 
     \fancyhf{} % clear all header and footer fields 

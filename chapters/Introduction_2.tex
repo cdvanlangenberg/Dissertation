@@ -1,0 +1,412 @@
+%%-------------------------Introduction---------------------------------------%%
+
+
+% \input{template.tex}
+
+% \begin{document}
+
+In this chapter we will give a brief introduction to some of the basic concepts in spatial statistics, which are necessary to follow for the rest of this dissertation. More specifically, we will have discuss about stationarity and intrinsic stationarity, covariance and variogram functions and their properties, mean square continuity and differentiability, spectral representations and spectral densities, complex random processes and Gaussian random vectors, as well as some basic properties related to circulant and circulant block matrices. Finally we will give an outline of this dissertation at the last section. %\\~\\
+
+
+%%------------------------------------------------------------------%%
+\section{Spatial random field}
+%%------------------------------------------------------------------%%
+A random process is a collection of random variables $\{Z(s): s\in D\}$, defined in a common probability space, that take values on a specific domain $D$. Generally, $D$ may take a variety of forms as given below.
+\begin{itemize}
+	\item $s \in D = N$: $Z(s)$ is a random sequence which is used in time series.
+	\item $s \in D = R^1$: $Z(s)$ is a random process which is also referred as a stochastic process.
+	\item $s \in D = R^d$: $Z(s)$ is a random filed or a spatial process if $d > 1$
+	\item $s \in D = S^2$: $Z(s)$ is a random process on the sphere.
+	\item $s \in D = R^d\times R$: $Z(s)$ is a spatio-temporal process which involves location and time.
+\end{itemize}
+
+A real-valued spatial process in $d$-dimensional Euclidean space $R^d$ or a spatial random field can be denoted as $\{Z(x): x \in D \subset \mathbb{R}^d\}$ where $x$ is the location, varying over a fixed domain $D$. The distribution of the random process $Z(s)$ is characterized by its finite-dimensional distribution function, that is, the distribution function of the random vector $ Z(\utilde{X})=(Z(x_1),\ldots, Z(x_n) )$ given by
+\beq
+F\{Z(h_1),\ldots, Z(h_n)\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n \},
+\eeq
+for any $n$ and any sequence of locations $(x_1, x_2, \ldots, x_n)$.
+
+
+%\blue{? comment : more words}
+
+%-------------------------------------%
+\subsection{Stationarity and Isotropy}
+%-------------------------------------%
+
+A spatial random field $Z(x)$ is said to be strictly stationary, if for all finite $n,\ \xn \in \mathbb{R}^d$, $h_1, \ldots, h_n\in\mathbb{R} \mbox{ and } x\in \mathbb{R}^d$, $Z(x)$ is invariant under translation, that is,
+
+\beq
+P\{Z(x_1+x)\le h_1, \ldots, Z(x_n+x)\le h_n\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n\}
+\eeq
+
+Strict stationarity is normally too strong a condition as it involves the distribution of the random field. Another commonly used but weaker assumption is the weak stationarity. More specifically, a random process $Z(x)$ is weakly stationary if
+\begin{eqnarray}
+	E(Z(x))   & = & \mu \nonumber \\
+	E(Z^2(x)) & < & \infty \nonumber \\
+	C(h)      & = & Cov(Z(x),Z(x+h))
+\end{eqnarray}
+
+In other words a random process $Z(x)$ is weakly stationary (or simply stationarity throughout the rest of this dissertation) if it has constant mean and finite second moment and its (auto-)covariance function $C(h)$ solely depends on the spatial distance of two locations. Further, a strictly stationary random field with finite second moment is weakly stationary, but weak stationarity does not imply strict stationarity unless $Z(x)$ is a Gaussian random field, under which both stationarity are equivalent, as the finite-dimensional distribution of a Gaussian random field is multivariate normal and is uniquely determined by the first and second moments. \\
+
+The auto-covariance function $C(h)$ of a stationary process $Z(x)$ on $\R^d$ has the following properties.
+
+\begin{enumerate}[(i)]
+	\item $C(0) \ge 0$;
+	\item $C(h) = C(-h)$;
+	\item $|C(h)| \le  C(0)$;
+	\item If $C_1(h), C_2(h), \ldots, C_n(h)$ are valid covariance functions then each of the following functions $C(h)$ is also a valid covariance function.
+	
+	      \begin{enumerate}
+	      	\item $C(h) = a_1C_1(h)+a_2C_2(h)$, $\forall a_1,a_2\ge 0$;
+	      	\item $C(h) = C_1(h)C_2(h)$;
+	      	\item $\underset{n\to\infty} {\lim}\ C_n(h)=C(h),\ \forall h\in \R^d$.
+	      \end{enumerate}
+	
+\end{enumerate}
+
+A function $C(\cdot)$ on $\mathbb{R}^d$ is non-negative definite if and only if
+
+\beq \label{cov_pd}
+\sum_{i,j=1}^{N} a_i a_j C(x_i - x_j) \ge 0,
+\eeq
+for any integer $N$, any constants $a_1, a_2, \ldots, a_N$, and any locations $x_1, x_2, \ldots, x_N \in \mathbb{R}^d$. Positive definiteness is a necessary and sufficient condition such that a function is a valid covariance function. \\
+
+		
+A weakly stationary process with a covariance function $C(||h||)$ which is free from direction is called isotropy. The random field, $Z(x)$, on $\mathbb{R}^d$ is strictly isotropy if the joint distributions are invariant under all rigid motions. {\em i.e.,} for any orthogonal $d\times d$ matrix $H$ and any $x\in \R^d$
+
+\beq
+P\{Z(Hx_1+x)\le h_1, \ldots, Z(Hx_n+x)\le h_n\} = P\{ Z(x_1)\le h_1,\ldots, Z(x_n)\le h_n\}
+\eeq
+
+Isotropy assumes that it is not required to distinguish one direction from another for the random field $Z(x)$.\\
+
+Variogram function is an alternative to the covariance function proposed by Matheron (1973). It is defined as the variance of the difference between random fields at two locations, that is
+\begin{align}
+	2\gamma(h) & = Var(Z(s+h) -Z(x)).
+\end{align}
+Here $\gamma(h)$ is called the semivariogram. If the variogram function solely depends on the distance of the two locations, then the process with finite constant mean is said to be intrinsically stationary. If $Z(x)$ is further assumed to be stationary with covariance function $C(h)$, then $\gamma(h) = C(0) - C(h)$. Intrinsic stationarity is defined in terms of variogram and it is more general than (weak) stationarity that is defined in terms of covariance. Clearly, when $C(h)$ is known, we can obtain $\gamma(h)$ but the reverse is not true. For example we consider a linear semivariogram function given below,
+\[
+	\gamma(h) = \left \{ \begin{array}{cc}
+	a^2+\sigma^2h & h>0 \\
+	0 & otherwise \\
+	\end{array}
+	\right.
+\]
+when $\underset{h \to \infty} {\lim} \gamma(h) \to \infty$ thus the process with the above semivariogram is not weakly stationary and $C(h)$ does not exist. \\
+
+Parallel to the positive definiteness about the covariance function, the variogram is conditionally negative definite, that is,
+\beq
+\sum_{i,j=1}^{N} a_i a_j 2\gamma(x_i - x_j) \le 0,
+\eeq
+for any integer $N$, any constants $a_1, a_2, \ldots, a_N$ with $\sum_{i=1}^N a_i = 0$, and any locations $x_1, x_2, \ldots, x_N \in \mathbb{R}^d$.
+
+%\blue{spectral representation of variogram}
+
+%-------------------------------------%
+\subsection{Mean square continuity \& differentiability}
+%-------------------------------------%
+
+There is no simple relationship between $C(h)$ and the smoothness of $Z(x)$. For a sequence of random variables $X_1, X_2,\ldots$ and a random variable $X$ defined on a common probability space. Define $X_n\overset{L^2}\to X$ if $E(X^2)<\infty$ and $E(X_n - X)^2\to 0$ as $n \rightarrow \infty$. We then say $\{X_n\}$ converges in $L^2$ if there exists such a $X$.\\
+
+Suppose $Z(x)$ is a random field on $\R^d$, then $Z(x)$ is mean square continuous at $x$ if
+\[
+\lim_{h\to 0} E(Z(x+h)-Z(x))^2 =0.
+\]
+If $Z(x)$ is stationary and $C(\cdot)$ is the covariance function then $E(Z(x+h)-Z(x))^2=2(C(0)-C(h))$. Therefore $Z(x)$ is mean square continuous if and only if $C(\cdot)$ is continuous at the origin.
+
+%-------------------------------------%
+\subsection{Spectral representation of a random field}
+%-------------------------------------%
+
+Suppose $\omega_1,\ldots, \omega_n \in \mathbb{R}^d$ and let $Z_1, \ldots, Z_n$ be mean zero complex random variables with  $E(Z_i\bar{Z_j})=0, i\ne j\ and\ E|Z_i|^2=f_i$. Then the random sum
+\beq Z(x) = \sum_{k=1}^n Z_k e^{i\omega_k^Tx}.\eeq
+is a weakly stationary complex random field in $\mathbb{R}^d$ with covariance function $C(x) = \sum_{k=1}^n f_k e^{i\omega_k^Tx}$\\
+
+Further, if we think about the integral as a limit in $L^2$ of the above random sum, then the covariance function can be represented as,
+\beq 
+C(x) = \int_{\mathbb{R}^d} e^{i\omega^Tx} F(d\omega)
+\eeq
+where $F$ is the so-called spectral distribution. There is a more general result from Bochner.
+
+%-------------------------------------%
+\begin{thm}[Bochner's Theorem]\hfill \\
+%-------------------------------------%
+	
+	A complex valued covariance function $C(\cdot)$ on $\mathbb{R}$ for a weakly stationary mean square continuous complex-valued random field on $\mathbb{R}^d$ if and only if it can be represented as above, where $F$ is a positive measure.
+\end{thm}
+
+If $F$ has a density (spectral density, denoted by $f$) with respect to Lebesgue measure, ($i.e.$ if such $f$ exists) we can use the inversion formula to obtain $f$
+\beq
+f(\omega) = \frac{1}{(2\pi)^d}  \int_{\mathbb{R}^d} e^{-i\omega^Tx} C(x) dx
+\eeq
+
+%-------------------------------------%
+\subsection{Spectral densities}
+%-------------------------------------%
+
+Here we provide some examples of isotropic covariance functions and their corresponding spectral densities.
+\begin{enumerate}[(i)]
+	\item Rational Functions that are even,  non-negative and integrable the corresponding covariance functions can be expressed in terms of elementary functions. For example if $f(\omega) =\phi (\alpha^2+\omega^2)^{-1}$, then $C(h) = \pi\phi\alpha^{-1}e^{-\alpha|h|}$ (obtained by contour integration).
+	
+	\item Gaussian are the most commonly used covariance function for a smooth process on $\mathbb{R}$ where the covariance function is given by $C(h)=ce^{-\alpha h^2}$ and the corresponding spectral density is $ f(\omega) = \frac{1}{2\sqrt{\pi\alpha}}c e^{\frac{-\omega^2}{4\alpha}}$.
+
+%    \item Spherical covariance function is given by $C(h) = $ and its corresponding spectral density is $f(\omega) = $.
+	
+	\item $Mat\acute{e}rn$ class has more practical use and more frequently used in spatial statistics. The spectral density of the form $f(\omega) =\frac{1}{\phi(\alpha^2+\omega^2)^{\nu+1/2}}$ where $\phi,\nu,\alpha>0$ and the corresponding covariance function given by,
+	
+	      \beq
+	      C(h) = \frac{\pi^{1/2}\phi}{2^{\nu-1}\Gamma(\nu+1/2)\alpha^{2\nu}} (\alpha|h|)^{\nu} Y_{\nu} (\alpha|t|)
+	      \eeq
+	
+	      where $Y_{\nu}$ is the modified Bessel function, the larger the $\nu$ smoother the $Y$. Further, $Y$ will be $m$ times square differentiable iff $\ \nu>m$. When $\nu$ is in the form of $m+1/2$ with $m$ a non negative integer. The spectral density is rational and the covariance function is in the form of $e^{-\alpha|h|}\cdot$ polynomial$(|h|)$ for example, when $\nu=\frac{1}{2}$ $C(h)$ corresponds to exponential model and $\nu=\frac{3}{2}$ is transformation of exponential family of order 2.     
+	
+	      \begin{eqnarray*}
+	      	\nu = 1/2 &:& C(h) = \pi\phi\alpha^{-1}e^{-\alpha|h|}\\
+	      	\nu = 3/2 &:& C(h) = \frac{1}{2}\pi\phi\alpha^{-3}e^{-\alpha|h|}(1+\alpha|h|)\\
+	      \end{eqnarray*}
+	
+\end{enumerate}
+
+%%------------------------------------------------------------------%%
+\section{Circularly-symmetric Gaussian random vectors}
+%%------------------------------------------------------------------%%
+
+Let $\utilde{Z} = (Z_1, Z_2, \ldots, Z_n)^T$, where $Z_j = (Z_j^{Re}, Z_j^{Im})^T$ and $j=1,2,\ldots, n$ be a zero mean $2n$ complex random vector of dimension $2n$. Then its covariance matrix $K_Z$ and the pseudo-covariance matrix $M_Z$ are defined as follow.
+
+\beq \label{complex_cov}
+K_{\utilde{Z}} = E[\utilde{Z}\utilde{Z}^*]
+\eeq
+
+\beq \label{complex_pcov}
+M_{\utilde{Z}} = E[\utilde{Z}\utilde{Z}^T]
+\eeq
+
+where $\utilde{Z}^*$ is the conjugate transpose of $\utilde{Z}$.\\
+
+Generally, to characterize the relationship of a complex random vector, one needs both covariance and pseudo-covariance matrices. First note that a complex random variable $Z = Z^{Re} + iZ^{Im}$ is (complex) Gaussian, if $Z^{Re}, Z^{Im}$ both are real and they are jointly Gaussian. Now we consider a vector $\utilde{Z}=(Z_1, Z_2)^T$ where $Z_1=Z_1^{Re }+i Z_1^{Im}$ and $Z_2=Z_1^*$ ($Z_2^{Re}=Z_1^{Re }, Z_2^{Im}=-Z_1^{Im}$). The four real and imaginary parts of $\utilde{Z}$ are jointly Gaussian (each follows $N(0,1/2)$) (so $\utilde{Z}$ is complex Gaussian). \\
+
+The covariance and pseudo-covariance matrices defined by \ref{complex_cov} and \ref{complex_pcov}, respectively, are given by\\
+\[
+M_Z = E \begin{bmatrix}
+Z_1^2 & Z_1Z_1^*\\
+Z_1Z_1^* & Z_1^2
+\end{bmatrix} =
+\begin{bmatrix}
+0 & 1\\
+1 & 0
+\end{bmatrix}
+\]
+and
+\[
+K_Z= E \begin{bmatrix}
+Z_1Z_1^*  & Z_1^2\\
+Z_1^2     & Z_1Z_1^*
+\end{bmatrix} =
+\begin{bmatrix}
+1 & 0\\
+0 & 1
+\end{bmatrix}
+\]
+
+It is easy to note that $E[Z_1^2] = E[Z_1^{Re}Z_1^{Re}-Z_1^{Im}Z_1^{Im}] = 1/2 -1/2 = 0$. If both $Z_1$ and $Z_2$ are real, then covariance and pseudo-covariance matrices are the same, {\em i.e.}, $M_Z \equiv K_Z$   \\
+
+The covariance matrix of real $2n$ random vector $\utilde{Z}=(\utilde{Z}^{Re}, \utilde{Z}^{Im})^T$, where $\utilde{Z}^{Re} = (Z_1^{Re}, Z_1^{Re}, \ldots, Z_1^{Re})$ and $\utilde{Z}^{Im} = 
+(Z_1^{Im}, Z_2^{Im}, \ldots, Z_n^{Im})$ can be determined by both $K_{\utilde{Z}}$ and $M_{\utilde{Z}}$ given as follow.
+
+\begin{eqnarray}
+	E[\utilde{Z}^{Re}\utilde{Z}^{Re}] &=& \frac{1}{2}Re(K_{\utilde{Z}} + M_{\utilde{Z}}), \nonumber\\
+	E[\utilde{Z}^{Im}\utilde{Z}^{Im}] &=& \frac{1}{2}Re(K_{\utilde{Z}} - M_{\utilde{Z}}), \nonumber\\
+	E[\utilde{Z}^{Re}\utilde{Z}^{Im}] &=& \frac{1}{2}Im(-K_{\utilde{Z}} + M_{\utilde{Z}}), \nonumber\\
+	E[\utilde{Z}^{Im}\utilde{Z}^{Re}] &=& \frac{1}{2}Im(K_{\utilde{Z}} + M_{\utilde{Z}}) \label{comlex_cov}
+\end{eqnarray}
+
+We can get the covariance of $\utilde{Z}=(\utilde{Z}^{Re}, \utilde{Z}^{Im})^T$ as follows,
+
+\begin{eqnarray*}
+	Cov(\utilde{Z}) &=& E(\utilde{Z}\utilde{Z}^T) \\
+	&=& \left( \begin{array}{ll}
+	E[\utilde{Z}^{Re}\utilde{Z}^{Re}] &  E[\utilde{Z}^{Re}\utilde{Z}^{Im}] \\
+	E[\utilde{Z}^{Im}\utilde{Z}^{Re}] &  E[\utilde{Z}^{Im}\utilde{Z}^{Im}]
+	\end{array}
+	\right) \\
+\end{eqnarray*}
+
+Now we introduce circularly-symmetric random variables and vectors. A complex random variable $Z$ is circularly-symmetric if both $Z$ and $e^{i\phi} Z$ have the same probability distribution for all real $\phi$.  Since $E[e^{i\phi}Z] = e^{i\phi}E[Z]$, any circularly-symmetric complex random variable must have $E[Z]=0$, in other words its mean must be zero. \\
+
+For a circularly-symmetric complex random vector, we have the following theorem [Gallager, 2008].
+\begin{thm}[Gallager, 2008] \label{circular_theory} \hfill \\
+	Let $\utilde{Z}$ be a zero mean Gaussian random vector then $M_{\utilde{Z}}=0$ if and only if $\utilde{Z}$ is circularly-symmetric.
+\end{thm}
+
+
+
+In spatial statistics, sometimes it is more convenient to use complex valued random functions, rather than real valued random functions. We say, $Z(x)=U(x) + i V(x)$ is a complex random field if $U(x),V(x)$ are real random fields. If $U(x),V(x)$ are stationary so does $Z(x)$. The covariance function can be defined as,
+\begin{eqnarray*}
+	C(h) = cov(Z(x+h), \overline{Z(x)}), \quad C(-h)=\overline{C(h)}.
+\end{eqnarray*}
+For any complex constants $c_1,\ldots, c_n,$ and any locations $x_1, x_2, \ldots, x_n$,
+\beq
+\sum_{i,j=1}^n c_i\bar{c_j}C(x_i-x_j)\ge 0
+\eeq
+
+%%------------------------------------------------------------------%%
+\section{Circulant matrix}
+%%------------------------------------------------------------------%%
+
+A square matrix $A_{n\times n}$ is a circulant matrix if the elements of each row (except first row) has the previous row shifted by one place to the right.
+
+\begin{eqnarray}
+	A = circ[a_o, a_1,\cdots,a_{n-1}] &=& \left[
+		\begin{array}{lllll}
+			a_0     & a_1     & a_2    & \cdots & a_{n-1} \\
+			a_{n-1} & a_0     & a_1    & \cdots & a_{n-2} \\
+			a_{n-2} & a_{n-1} & a_0    & \cdots & a_{n-3} \\
+			\vdots  & \vdots  & \vdots & \ddots & \vdots  \\
+			a_1     & a_2     & a_3    & \cdots & a_0
+		\end{array}
+	\right].
+\end{eqnarray}
+
+The eigenvalues of $A$ are given by
+\begin{eqnarray*}
+	\lambda_l & = & \sum_{k=0}^{n-1} a_k e^{i2lk\pi/n} \\
+	& = & \sum_{k=0}^{n-1}a_k \rho_l^k, \quad \quad l = 0, 1, 2, \cdots, n-1,
+\end{eqnarray*}
+
+where $\rho_l = e^{i2\pi l/n}$ represents the $l$th root of 1, and the corresponding (unitary) eigenvector is given by
+\[
+	\psi_l = \frac{1}{\sqrt{n}}(1, \rho_l, \rho_l^2, \cdots, \rho_l^{n-1})^T.
+\]
+
+If matrix $A$ is real symmetric, that is, $a_i = a_{n-i}$, then its eigenvalues are real. More specifically, for even $n=2N$ the eigenvalues $\lambda_j = \lambda_{n-j}$ or there are either two eigenvalues or none with odd multiplicity, for odd $n=2N-1$ the eigenvalue $\lambda_0$ equal to any $\lambda_j$ for $1\le j \le N-1$ or $\lambda_0$ occurs with odd multiplicity. A square matrix $B$ is Hermitian, if and only if $B^* = B$ where $B^*$ is the complex conjugate. If $B$ is real then $B^* = B^T$. According to \cite{Tee2005} Hermitian matrices has a full set of orthogonal eigenvectors with corresponding real eigenvalues.
+
+
+
+%-------------------------------------%
+\subsection{Block circulant matrices}
+%-------------------------------------%
+
+The idea of a block circulant matrix was first proposed by \cite{Muir1920}. A matrix $B_{np\times np}$ is a block-circulant matrix if it has the following form,
+
+
+\begin{eqnarray}
+	B = bcirc[A_o, A_1,\cdots,A_{n-1}] &=& \left[
+		\begin{array}{lllll}
+			A_0     & A_1     & A_2    & \cdots & A_{n-1} \\
+			A_{n-1} & A_0     & A_1    & \cdots & A_{n-2} \\
+			A_{n-2} & A_{n-1} & A_0    & \cdots & A_{n-3} \\
+			\vdots  & \vdots  & \vdots & \ddots & \vdots  \\
+			A_1     & A_2     & A_3    & \cdots & A_0
+		\end{array}
+	\right].
+\end{eqnarray}
+
+where $A_j$ are ($p \times p$) sub-matrices of complex or real valued elements. \cite{DeMazancourt1983} proposed some methodologies to find the inverse of $B$. Let $M$ be a block-permutation matrix
+
+\begin{eqnarray*}
+	M = \left[
+		\begin{array}{lllll}
+			0       & I_p     & 0      & \cdots & 0 \\
+			0       & 0       & I_p    & \cdots & 0 \\
+			\vdots  & \vdots  & \vdots & \ddots & \vdots  \\
+			0       & 0       & 0      & \cdots & I_p \\
+			I_p     & 0     & 0    & \cdots & 0
+		\end{array}
+	\right].
+\end{eqnarray*}
+
+where $I_p$ is $p\times p$ identity matrix and $B$ can be defined as follows,
+
+\[
+B = \sum_{k=0}^{n-1} A_k M^k.
+\]
+
+Define $M^0$ as ($np\times np$) identity matrix and the eigenvalues of $M$ given by $\rho_l$, the eigenmatrix of $M$ can be given by $Q_{np\times np}=\{ \utilde{\psi_0}, \utilde{\psi_1},\ldots, \utilde{\psi_{n-1}} \}$. From \cite{Trapp1973} it can be shown that $Q^{-1} = Q^*/n$ where $Q^*$ is the conjugate transpose of $Q$ now we can write,
+
+\[
+M = QDQ^{-1} = \frac{QDQ^*}{n}
+\]
+
+where $D$ is a diagonal matrix and the diagonal elements $D_i \quad i=0,1, n-1$ are the discrete Fourier transform of the blocks $A_j$,
+
+\[
+D_i = \sum_{k=0}^{n-1} A_k e^{i2lk\pi/n}
+\]
+
+That is the inverse of matrix $B$ takes the following form,
+
+\begin{eqnarray*}
+	B^{-1} = Q\cdot\left(
+		\begin{array}{llll}
+			D_0^{-1}  & 0              & \cdots & 0 \\
+			0         & D_1^{-1}       & \cdots & 0 \\
+			\vdots    & \vdots         & \ddots & \vdots  \\
+			0         & 0              & \cdots & D_n{-1}
+		\end{array}
+	\right)\cdot Q^{-1}.
+\end{eqnarray*}
+
+The eigenmatrix $Q$ is solely depending on the dimension of $B$ and the eigenvalues of $B$ ($\rho_l$'s) or in other words $B$ is not depending on the blocks ($A_j$'s), {\em i.e.} for any block diagonal matrix $D_{np \times np}$, $QDQ^{-1}$ is a block circulant matrix and immediately follows that the inverse of the matrix $B$ is also a block circulant matrix.\\
+
+When $A_{j_{1\times 1}}$, $B=A$, $D_i^{-1}=\lambda^{-1}$, and the eigenmatrix has a dimension of $n\times n$ then
+
+\[
+A^{-1} = Q \Lambda^{-1} Q^T \quad \mbox{where $\Lambda = \{\lambda_0, \ldots, \lambda_{n-1} \}$}
+\]
+
+When $A$ is real symmetric $Q$ is real also symmetric and $Q^{-1}=Q^T$.\\
+
+
+\blue{We need to add in the special case when $A_j$'s are symmetric (\blue{by Tee, add citation})}
+
+\section{The outline of this dissertation}
+
+In Chapter 2, we explore some of the properties of commonly used covariance and variogram estimators on the circle based on method of moments. Contrasting to the results given in time series and the Euclidean space, the MOM covariance estimator is biased and possibly nonidentificable due to the unestimable bias. On the other hand, the MOM variogram estimator is unbiased, but it can be shown to be inconsistent. Chapter 3 first introduces the random process on the sphere. We then discuss the homogeneous process and the spectral representation for its covariance function on the sphere. Our main focus on this chapter is the axially symmetric process and its covariance function representation, through the discrete fourier transform. The parametric models for characterizing such processes are also discussed. In particular, we extend the models given in \cite{Huang2012} and provide some graphical properties of those models. These extended models will be fully implemented in Chapter 4 for axially symmetric data generation. In Chapter 4, we explore the result given in \cite{Huang2012} to implement an algorithm for axially symmetric data generation. In particular, we observe that \blue{$\ldots$ (more to come)}\\
+
+		In general for covariance function defined on a sphere (\cite{Stein2007}) requires triple summation and required to estimate $O(n^3)$ parameters. In contrast, the covariance function  defined by \cite{Huang2012} requires to estimate $O(n^2)$ parameters which is a huge reduction of computational compelextity and we will continue to use this covariance models in our approach on global data generation which is discussed in chapter 4.\\
+		
+. Finally, Chapter 5 gives a summary of this research and provides some further research directions.   
+
+
+
+
+%\bibliography{biblography}
+%\end{document}
+%
+%%-------------------------------------%
+%		\begin{thm}[Mercer's theorem (simplified version)] \label{mercer}  \hfill \\
+%			%-------------------------------------%
+%			
+%			A kernal $K:[a,b]\times [a,b] \to \R$ be a symmetric continuous function that is non-negative definite,
+%			
+%			\[
+%				\sum_{i=1}^{n}\sum_{j=1}^{n} a_i a_j K(s, t) \ge 0 \quad \mbox{and} \quad K(s,t) = K(t,s)
+%			\]
+%			
+%			for all $(s,t)\in [a,b]$ and $a_i>0$. Let $T_K:L_2 \to L_2$ be an intergral operator defined by
+%			
+%			\[
+%				[T_Kf](\cdot) = \int_{a}^{b} K(\cdot,s)f(s)ds
+%			\]
+%			
+%			is positive, for all $f\in L_2$
+%			
+%			\[
+%				\int_{a}^{b} K(s, t)f(s)f(t)dsdt \ge 0.
+%			\]
+%			
+%			The corresponding orthonormal eigen functions $\psi_i\in L_2$ and non negative eigen values $\lambda_i \ge 0$ of the operator $T_K$ is defined as
+%			
+%			\[
+%				T_K(\psi_i(\cdot)) = \int K(\cdot, s)\psi(s)ds = \lambda_i\psi_i(\cdot), \quad \int \psi_i(\cdot)\psi_j(\cdot) = \delta_{ij}
+%			\]
+%			
+%			
+%			then the kernal $K(\cdot)$ is a uniformly convergent series in terms of eigen functions and associated eigen values of $T_K$ as follows,
+%			
+%			\[
+%				K(s,t) = \sum_{j=1}^{\infty} \lambda_i \psi_i(s)\psi_i(t)
+%			\]
+%			
+%		\end{thm}
+%
