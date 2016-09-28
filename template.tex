@@ -17,6 +17,9 @@
 \usepackage{color, multirow, setspace, fancyhdr,graphicx}
 \usepackage{undertilde}
 \usepackage[bottom]{footmisc}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{subcaption}
 
 %\doublespacing
 \pagestyle{empty}
@@ -33,14 +36,16 @@
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{defn}{Definition}[section]
 \newtheorem{prop}{Proposition}[section]
-
+\newcommand{\pro}[1]{\begin{prop}{#1}\end{prop}}
+\newtheorem{rmk}{Remark}
+\newcommand{\rmark}[1]{\begin{rmk}{#1}\end{rmk}}
 
 \numberwithin{equation}{section}
 \renewcommand{\footrulewidth}{0.1pt}
 \renewcommand{\headrulewidth}{0.1pt}
 
 
-\newcommand{\eqn}[1]{{\begin{equation}}{#1}{\end{equation}}}
+\newcommand{\eqn}[1]{\begin{equation}{#1}\end{equation}}
 
 \newcommand{\beq}{\begin{equation}}
 \newcommand{\eeq}{\end{equation}}

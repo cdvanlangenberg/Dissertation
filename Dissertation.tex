@@ -12,6 +12,9 @@
 \usepackage{undertilde}
 \usepackage{float}
 \usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{subcaption}
 
 
 %%------------------------------------------------------------------%% 
@@ -50,8 +53,11 @@
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{defn}{Definition}[section]
 \newtheorem{prop}{Proposition}[section]
+\newcommand{\pro}[1]{\begin{prop}{#1}\end{prop}}
+\newtheorem{rmk}{Remark}
+\newcommand{\rmark}[1]{\begin{rmk}{#1}\end{rmk}}
 
-\newcommand{\eqn}[1]{{\begin{equation}}{#1}{\end{equation}}}
+\newcommand{\eqn}[1]{\begin{equation}{#1}\end{equation}}
 
 %\newcommand{\beq}{\begin{equation}}
 %\newcommand{\eeq}{\end{equation}}
@@ -206,9 +212,10 @@ In memory of my fater, Donald Anthony Vanlangenberg
 %% If you choose not to have appendices, comment out the \appendix
 %% line and the chapters below.
 %%------------------------------------------------------------------%%
-%\appendix
-%\chapter{Appendix Title Goes Here}
-%Appendix material goes here.
+\appendix
+\chapter{Data snapshots for Model 1 and Model 3}  \label{appendixA}
+%\section*{\centering Appendix A }
+\input{chapters/appendixA.tex}
 
 %%------------------------------------------------------------------%%
 \backmatter % required

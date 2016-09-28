@@ -1,0 +1,78 @@
+%%%%%%%% this is the Appendix A n in data generation paper
+%%%%%%%% details of deriving C_m
+
+%\input{template.tex}
+%\begin{document}
+
+In general for covariance function defined on a sphere (\cite{Stein2007}) requires triple summation and required to estimate $\mathcal{O}(n^3)$ parameters. In contrast, the covariance function  defined by \cite{Huang2012} requires to estimate $\mathcal{O}(n^2)$ parameters which is a huge reduction of computational complexity. We continued to use this covariance models discussed on chapter 4 in our approach on global data generation. In our approach it is very crucial to derive \Cm based on a known $R(P,Q)$, the detailed steps to derive \Cm for model1 (\ref{model1}) is given below,
+
+%% C_m(P,Q) 
+%% C_1\left(C_2 - e^{-a|\phi_P|} - e^{-a|\phi_Q|} + e^{-a|\phi_P - \phi_Q|}\right)
+
+\begin{eqnarray*}
+	R(P, Q) &=& R(\phi_P, \phi_Q, \Delta \lambda) = \tilde{C}(\phi_P, \phi_Q) \frac{1-p^2}{1 - 2p \cos(\Theta)+p^2},
+\end{eqnarray*}
+
+where $\Theta = \Delta \lambda + u(\phi_P - \phi_Q),$ with some choice of $C_1, C_2, a, u,$ and $p$.
+
+Now,
+
+\begin{eqnarray*}
+	C_m(\phi_P, \phi_Q) &=& \frac{1}{2\pi} \int_{-\pi}^\pi R(\phi_P, \phi_Q, \Delta \lambda) e^{-im\Delta \lambda}d\Delta \lambda \\
+	&=& \tilde{C}(\phi_P, \phi_Q) \frac{1}{2\pi}\int_{-\pi}^\pi \frac{1-p^2}{1 - 2p \cos(\Theta+p^2} e^{-im\Delta \lambda}d\Delta \lambda
+\end{eqnarray*}
+
+Next we focus on the following integration.
+
+\begin{eqnarray*}
+	\int_{-\pi}^\pi \frac{1-p^2}{1 - 2p \cos(x+b)+p^2} e^{-imx}dx ,
+\end{eqnarray*}
+
+where we set $x=\Delta\lambda$ and $b=u(\phi_P -\phi_Q)$ and we have,
+
+\begin{eqnarray*}
+	\frac{1-p^2}{1 - 2p \cos(x+b)+p^2} &=& \frac{2-2p\cos(x+b)-(1-2p \cos(x+b)+p^2)}{1-2p \cos(x+b)+p^2}\\
+	&=& 2\times \frac{1-p\cos(x+b)}{1-2p \cos(x+b)+p^2}-1 \\
+	&=& 2\times \sum_{n=0}^{\infty}p^n\cos n(x+b)-1  \\
+	&=& 1 + 2 \sum_{n=1}^{\infty}p^n (\cos nx \cos(nb) - \sin(nx) \sin(nb)).
+\end{eqnarray*}
+Therefore, for $m \ne 0$,
+\begin{eqnarray*}
+	& & \int_{-\pi}^\pi \frac{1-p^2}{1 - 2p \cos(x+b)+p^2} e^{-imx}dx \\
+	&=& \int_{-\pi}^\pi \left[1 + 2 \sum_{n=1}^{\infty}p^n (\cos nx \cos(nb) - \sin(nx) \sin(nb))\right]  e^{-imx}dx \\
+	&=& \int_{-\pi}^\pi e^{-imx}dx + 2 \sum_{n=1}^{\infty}p^n \int_{-\pi}^\pi \left[\cos nx \cos(nb) - \sin(nx) \sin(nb)\right]  e^{-imx}dx \\
+	&=& 2 \sum_{n=1}^{\infty}p^n \left[\cos(nb)  \int_{-\pi}^\pi \cos(nx) e^{-imx} dx - \sin(nb)  \int_{-\pi}^\pi \sin(nx) e^{-imx}dx \right] \\
+	&=& 2 \sum_{n=1}^{\infty}p^n \left[ \pi \cos(nb) \delta(n, m) + \pi i\sin(nb)\right] \\
+	&=& 2\pi p^m e^{imb}
+\end{eqnarray*}
+That is, for $m \ne 0$,
+
+\begin{eqnarray*}
+	C_m(\phi_P, \phi_Q)  &=& \tilde{C}(\phi_P, \phi_Q) \frac{1}{2\pi} (2\pi p^m e^{imb}) \\
+	&=& \tilde{C}(\phi_P, \phi_Q) p^m e^{imb}.
+\end{eqnarray*}
+And for $m = 0$, $C_0(\phi_P, \phi_Q) = \tilde{C}(\phi_P, \phi_Q)$.\\
+
+In summary,
+
+\begin{eqnarray*}
+	C_m(\phi_P, \phi_Q) &=& \left\{ \begin{array}{ll}
+	\tilde{C}(\phi_P, \phi_Q), & m = 0 \\
+	\tilde{C}(\phi_P, \phi_Q)p^m e^{imb}, & m \ne 0.
+	\end{array}
+	\right.\\
+	%&=& C_1\left(C_2 - e^{-a|\phi_P|} - e^{-a|\phi_Q|} + e^{-a|\phi_P - \phi_Q|}\right)p^m (\cos(mu(\phi_P - \phi_Q))+i \sin(mu(\phi_P - \phi_Q))).
+\end{eqnarray*}
+
+If the process is longitudinally reversible one can set $u=0$ suppose $\tilde{C}(\phi_P, \phi_Q)$ given by \ref{Cm_model1} then \Cm for model1,
+
+\begin{eqnarray*}
+	C_m(\phi_P, \phi_Q) &=& \left\{ \begin{array}{ll}
+	C_1\left(C_2 - e^{-a|\phi_P|} - e^{-a|\phi_Q|} + e^{-a|\phi_P - \phi_Q|}\right)  & m = 0 \\
+	C_1\left(C_2 - e^{-a|\phi_P|} - e^{-a|\phi_Q|} + e^{-a|\phi_P - \phi_Q|}\right)p^m & m \ne 0.
+	\end{array}
+	\right.
+\end{eqnarray*}
+
+
+%\end{document}

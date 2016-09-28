@@ -131,20 +131,20 @@ There were some missing values in this data set. \cite{Stein2007} used the avera
 \begin{table}[H]
 \label{parameters}
 \centering
-\begin{tabular}{l|l|l|l}
+\begin{tabular}{l|l|l}
 \hline 
-Family & C(h)  & Parameters & Validity \\ \hline \hline
-$Mat\acute{e}rn$ &  $\frac{\sigma^2}{2^{\nu-1}\Gamma(\nu)} (\frac{h}{\phi})^{\nu} Y_{\nu}(\frac{h}{\phi})$  & $\nu, \sigma^2, \phi$ & $R^3, S^2$ when $\nu\le 0.5$ \\ 
+Family & C(h)  & Parameters \\ \hline \hline
+$Mat\acute{e}rn$ &  $\frac{\sigma^2}{2^{\nu-1}\Gamma(\nu)} (\frac{h}{\phi})^{\nu} Y_{\nu}(\frac{h}{\phi})$  & $\nu, \sigma^2, \phi$  \\ 
 
-Spherical & $\sigma^2(1-\frac{3h}{2\phi}+\frac{1}{2}(\frac{h}{\phi})^3)I_{0\le h\le \phi}$ & $\phi, \sigma^2$& $R^3, S^3$ \\
+Spherical & $\sigma^2(1-\frac{3h}{2\phi}+\frac{1}{2}(\frac{h}{\phi})^3)I_{0\le h\le \phi}$ & $\phi, \sigma^2$ \\
 
-Exponential & $\sigma^2exp\{-(h/\phi)\}$ & $\phi, \sigma^2$ & $R^3$ \\
+Exponential & $\sigma^2exp\{-(h/\phi)\}$ & $\phi, \sigma^2$  \\
 
-Gaussian & $\sigma^2exp \{-(h/\phi)^2\}$ & $\phi, \sigma^2$ & $R^3$ \\
+Gaussian & $\sigma^2exp \{-(h/\phi)^2\}$ & $\phi, \sigma^2$  \\
 
-Power & $\sigma^2(C_0-(h/\phi)^{\alpha}$ & $\phi, \sigma^2$ & $R^3 \alpha\in [0,2],S^2 \alpha \in (1,2]$ \\ \hline
+Power* & $\sigma^2(C_0-(h/\phi)^{\alpha}$ & $\phi, \sigma^2$ \\ \hline
 \end{tabular}
-\caption{Commonly used covariance and variogram models}
+\caption{Commonly used covariance models in $\R^3$ * valid if $\alpha\in [0,2]$ }
 \end{table}
 
 %\blue{Fill the above table later  }
