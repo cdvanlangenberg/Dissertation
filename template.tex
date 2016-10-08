@@ -1,5 +1,6 @@
 \documentclass[12pt, amstex, letterpaper] {report} %{article}
 
+
 \usepackage[margin=1in]{geometry}
 \topmargin -0.5in \textwidth 6.5in \textheight 9in
 \footskip .5in
@@ -20,6 +21,7 @@
 \usepackage{graphicx}
 \usepackage{framed}
 \usepackage{subcaption}
+\usepackage{amsthm}
 
 %\doublespacing
 \pagestyle{empty}
@@ -33,10 +35,12 @@
 
 \includecomment{comment}
 
-\newtheorem{thm}{Theorem}[section]
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{defn}{Definition}[section]
-\newtheorem{prop}{Proposition}[section]
+\newtheorem{prop}{Proposition}
 \newcommand{\pro}[1]{\begin{prop}{#1}\end{prop}}
+
+%\newtheorem{proof}{proof}
 \newtheorem{rmk}{Remark}
 \newcommand{\rmark}[1]{\begin{rmk}{#1}\end{rmk}}
 
@@ -60,6 +64,8 @@
 \newcommand\floor[1]{\lfloor{#1}\rfloor}
 \newcommand\ceil[1]{\lceil{#1}\rceil}
 
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Sp}{\mathbb{S}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\pd}{positive definite }

@@ -1,16 +1,12 @@
 %%-------------------------Data generation---------------------------------------%%
 
-There are no practically useful parametric models available, for our knowledge only models available so far, \cite{stein1999} with 170 parameters to estimate and \cite{CressieJohannesson2008} more than 396 parameters to estimate. The previous studies have argued that many processes on a sphere are not homogeneous, especially in the direction of latitude. \cite{JunStein2008} proposed flexible class of parametric covariance models to capture the non-stationarity of global data. They used Discrete Fourier Transform (DFT) to the data on regular grids and calculated the exact likelihood for large data sets. Furthermore, they used Legendre polynomials to remove the spatial trends when fitting models to global data.  
-\cite{Huang2012} proposed a class of statistical processes that are axially symmetric and covariance functions that depend on longitudinal differences. Moreover, they have proposed longitudinally reversible processes and some motivations to construct axially symmetric processes.
+In Chapter 4 we discussed about random process on the sphere and so far very few studies have attempted to model global data on a unit sphere ($\Sp^2$). The previous studies have argued that many processes on a sphere are not homogeneous, especially in the direction of latitude (\cite{Stein2007}). In order to capture non stationarity \cite{JunStein2007} proposed spatio-tempo covariance functions on the sphere by applying first order differential operator to fully symmetric spatio-tempo processes on sphere.  Further, \cite{JunStein2008} proposed flexible class of parametric covariance models to capture the non-stationarity of global data. Discrete Fourier Transform (DFT) was used for the data on regular grids and calculated the exact likelihood for large data sets. Furthermore, they used Legendre polynomials to remove the spatial trends when fitting models to global data (\cite{Stein2007}). Li \cite{Li2013} discussed about the issues associated when modeling axially symmetric spatial random fields on a sphere. Further, They proposed convolution methods to generate random fields with a class of $Mat\acute{e}rn$-type kernel functions by allowing the parameters in the kernel function to vary with latitude. Moreover, they were able to generate flexible class of covariance functions and capture the non-stationary properties on a sphere. It is a well known phenomenon that inverting a $n\times n$ matrix cost $\mathcal{O}(n^3)$. However in spatial spatial systems the covariance matrices are very large and inverting these matrices could be beyond the current computational resources. For example the MSU data was observed on a $72^0\times 144^0$ grid which result in a covarince matrix with a dimension $10368\times 10368$. One could use the properties of covariance matrix, block circulant, to compute the inverse of covarince matrix (\cite{DeMazancourt1983,Vescovo1997, Tee2005, JunStein2008, Li2013}). Our proposed covarince models $R(P,Q)$ are in fact block circulant matrices and the inverting cost is $\mathcal{O}(n_Ln{_l}^3)$ (\cite{Li2013}) where $n_L$ is the number of longitudes and $n_l$ is the number of latitudes. 
 
-Li \cite{Li2013} discussed about the issues associated when modeling axially symmetric spatial random fields on a sphere. Further, They proposed convolution methods to generate random fields with a class of $Mat\acute{e}rn$-type kernel functions by allowing the parameters in the kernel function to vary with location. Moreover, they were able to generate flexible class of covariance functions and capture the non-stationary properties on a sphere. Monte Carlo Markov Chain (MCMC) is another approach to model non-stationary covariance models on a sphere. \cite{BolinLindgren2011} (continuation of the work proposed in \cite{Lindgren2011} ) constructed a class of stochastic field models using Stochastic Partial Differential Equations (SPDEs). Non stationary covariance models were obtained by spatially varying the parameters in the SPDEs, they argue that this method is more efficient than standard MCMC procedures. 
+% In general for covariance function defined on a sphere (\cite{Stein2007}) requires triple summation and required to estimate $\mathcal{O}(n^3)$ parameters. In contrast, the covariance function  defined by \cite{Huang2012} requires to estimate $\mathcal{O}(n^2)$ parameters which is a huge reduction of computational complexity. We continued to use this covariance models discussed on chapter 4 in our approach on global data generation.
 
-\cite{HitczenkoStein2012} discuss about the properties of an existing class of models for axially symmetric Gaussian processes on the sphere. They applied first-order differential operators to an isotropic process. draw conclusions about the local properties of the processes. Under some restrictions they derived explicit forms for the spherical harmonic representation of these processes covariance functions, and make conclusions about the local properties of the processes.
+The global data generation process on a sphere discussed on this dissertation is primarily based on the axially symmetric covariance structure introduced by \cite{Jones1963} and as continuation of axially symmetric process on a sphere developed by \cite{Huang2012}. In this chapter, we first layout the details and methodologies of generating data on a sphere using a circularly-symmetric matrices. Then we provide a pseudo code for global data generation process and discuss about the simulation setup. Finally, we use cross variogram and cross covariance to compare the simulated data.  \\
 
-$Mat\acute{e}rn$ covariance models are widely used when modeling spatial data, but when the smoothness parameter ($\nu$) is greater than 0.5 it is not valid for the homogeneous processes on the Earth surface with great circle distance. \cite{JeongJun2015} proposed $Mat\acute{e}rn$-like covariance functions for smooth processes on the earth surface that are valid with great circle distance (models were tested on sea levels pressure data).
-
-
-The global data generation process on a sphere discussed on this dissertation is primarily based on the axially symmetric covariance structure introduced by \cite{Jones1963} and as continuation of axially symmetric process on a sphere developed by \cite{Huang2012}.  Let $X(P)$ be a complex-valued random process defined on a unit sphere $S^2$, where $P = (\lambda, \phi) \in S^2$ with longitude $\lambda \in [-\pi, \pi)$ and latitude $\phi \in [0, \pi]$. In chapter 4 we discussed how to formulate a valid covariance function for continuous axially symmetric processes on a sphere and was given by \ref{R(PQ)-01}. Now, in the light of \cite{Huang2012}[remark 2.5] a continuous axially symmetric process, $X(P)$ on a unit sphere , is given by
+Let $X(P)$ be a complex-valued random process defined on a unit sphere $S^2$, where $P = (\lambda, \phi) \in S^2$ with longitude $\lambda \in [-\pi, \pi)$ and latitude $\phi \in [0, \pi]$. In chapter 4 we discussed how to formulate a valid covariance function for continuous axially symmetric processes on a sphere and was given by \ref{R(PQ)-01}. Now, in the light of \cite{Huang2012}[remark 2.5] a continuous axially symmetric process, $X(P)$ on a unit sphere , is given by
 			
 	\beq \label{process_sphere}
 	X(P) = X(\phi, \lambda) = \sum_{m=-\infty}^{\infty} W_{m, \nu}(\phi) e^{i m \lambda}\psi_{m,\nu} (\phi),
@@ -34,12 +30,7 @@ The global data generation process on a sphere discussed on this dissertation is
 			
 	with $\mbox{E}(W_m(\phi_P) \overline{W_n(\phi_Q)}) = \delta_{m,n} C_m(\phi_P, \phi_Q)$. \\
 		
-	%-------------------------------------% 
-	\subsection{Deriving \Cm}
-	%-------------------------------------%	
-	\input{chapters/getCm.tex}	
-			
-		
+
 	%%------------------------------------------------------------------%% 
 	\section{Method development}
 	%%------------------------------------------------------------------%%
@@ -133,7 +124,8 @@ The global data generation process on a sphere discussed on this dissertation is
 	\begin{eqnarray*}
 		& & E[W_m(\phi_i) W_m(\phi_j) ]\\
 		&=& E[(W_m^r(\phi_i) + i W_m^i(\phi_i))(W_m^r(\phi_j) + i W_m^i(\phi_j))] \\
-		&=& E(W_m^r(\phi_i)W_m^r(\phi_j)) - E(W_m^i(\phi_i)W_m^i(\phi_j)) + i[E(W_m^r(\phi_i)W_m^i(\phi_j)) + E(W_m^i(\phi_i)W_m^r(\phi_j))] \\
+		&=& E(W_m^r(\phi_i)W_m^r(\phi_j)) - E(W_m^i(\phi_i)W_m^i(\phi_j)) \\
+		& & + i[E(W_m^r(\phi_i)W_m^i(\phi_j)) + E(W_m^i(\phi_i)W_m^r(\phi_j))] \\
 		& & \mbox{for $i \ne j$} \\
 		&=& \frac{1}{2}(C_m^r(\phi_i, \phi_j) - C_m^r(\phi_i, \phi_j)) + i [-\frac{1}{2} C_m^i(\phi_i, \phi_j) + \frac{1}{2}C_m^i(\phi_i, \phi_j)] = 0 \\
 		& & \mbox{for $i = j$} \\
@@ -153,30 +145,31 @@ The global data generation process on a sphere discussed on this dissertation is
 		\end{array}
 		\right)\\
 		& = &\left(\begin{array}{cccc}
-		C_m^r(\phi_1, \phi_1) & C_m^r(\phi_1, \phi_2)+iC_m^i(\phi_1, \phi_2) & \cdots & C_m^r(\phi_1, \phi_{n_l})+iC_m^i(\phi_1, \phi_{n_l})\\
-		C_m^r(\phi_2, \phi_1)-iC_m^i(\phi_2, \phi_1) & C_m^r(\phi_2, \phi_2) & \cdots & C_m^r(\phi_2, \phi_{n_l})+iC_m^r(\phi_2, \phi_{n_l})\\
+		C_{11}^r & C_{12}^r+iC_{12}^i & \cdots & C_{1n_l}^r+iC_{1n_l}^i\\
+		C_{21}^r-iC_{21}^i & C_{22}^r & \cdots & C_{2n_l}^r+iC_{2n_l}^i\\
 		\vdots & \vdots  & \ddots & \vdots \\
-		C_m^r(\phi_{n_l}, \phi_1)-iC_m^i(\phi_{n_l}, \phi_1) & C_m^r(\phi_{n_l}, \phi_2)-iC_m^r(\phi_{n_l}, \phi_2) & \cdots & C_m^r(\phi_{n_l}, \phi_{n_l})\\
+		C_{n_l1}^r-iC_{n_l1}^i & C_{n_l2}^r-iC_{n_l2}^i & \cdots & C_{n_ln_l}^r\\
 		\end{array}
 		\right) \\
 		& = &\left(\begin{array}{cccc}
-		C_m^r(\phi_1, \phi_1) & C_m^r(\phi_1, \phi_2) & \cdots & C_m^r(\phi_1, \phi_{n_l})\\
-		C_m^r(\phi_2, \phi_1) & C_m^r(\phi_2, \phi_2) & \cdots & C_m^r(\phi_2, \phi_{n_l})\\
+		C_{11}^r & C_{12}^r & \cdots & C_{1n_l}^r\\
+		C_{21}^r & C_{22}^r & \cdots & C_{2n_l}^r\\
 		\vdots & \vdots  & \ddots & \vdots \\
-		C_m^r(\phi_{n_l}, \phi_1) & C_m^r(\phi_{n_l}, \phi_2) & \cdots & C_m^r(\phi_{n_l}, \phi_{n_l})\\
+		C_{n_l1}^r & C_{n_l2}^r & \cdots & C_{n_ln_l}^r\\
 		\end{array}
-		\right) \\
-		& & + i
+		\right) + i
 		\left(\begin{array}{cccc}
-		0 & C_m^i(\phi_1, \phi_2) & \cdots & C_m^i(\phi_1, \phi_{n_l})\\
-		-C_m^i(\phi_2, \phi_1) & 0 & \cdots & C_m^i(\phi_2, \phi_{n_l})\\
+		0 & C_{12}^i & \cdots & C_{1n_l}^i\\
+		-C_{21}^i & 0 & \cdots & C_{2n_l}^i\\
 		\vdots & \vdots  & \ddots & \vdots \\
-		-C_m^i(\phi_{n_l}, \phi_1) & -C_m^i(\phi_{n_l}, \phi_2) & \cdots & 0\\
+		-C_{n_l1}^i & -C_{n_l2}^i & \cdots &  0\\
 		\end{array}
 		\right)\\
-		&=& Re(K_W) + iIm(K_W) \\
+		&=& Re(K_W) + iIm(K_W), \\
 	\end{eqnarray*}
-			
+	
+	where $C_m^r(\phi_i, \phi_j) = C_{ij}^r$ and $C_m^i(\phi_i, \phi_j) = C_{ij}^i$.
+	
 	Now,
 	\begin{eqnarray*}
 		K_V & = & E(\utilde{V}_m\utilde{V}_m^*) = E(\utilde{V}_m\utilde{V}_m^T) \\
@@ -233,15 +226,18 @@ The global data generation process on a sphere discussed on this dissertation is
 	% \subsection{Inverting the covariance matrix}
 	% %-------------------------------------% 
 	
-	\rmark{It is a well known phenomenon that inverting a $n\times n$ matrix cost $\mathcal{O}(n^3)$. However in spatial spatial systems the covariance matrices are very large. For example the MSU data was observed on a $72^0\times 144^0$ grid which result in a covarince matrix with a dimension $10368\times 10368$. Li argued that one can use the properties of covariance matrix, block circulant, in order to compute the inverse of covarince matrix. The suggested covarince models $R(P,Q)$ is in fact a block circulant matrix and the inverting cost is $\mathcal{O}(n_Ln{_l}^3)$ (\cite{Li2013}) where $n_L$ is the number of longitudes and $n_l$ is the number of latitudes. For the above decomposition the eigen values and eigen vectors of $K_V$ is required and the computational cost is $\mathcal{O}((2n_l)^2)$). However according to Gallenger \cite{Gallager2008} one could use the matrix $K_W$ where the cost is $\mathcal{O}(n_l^2)$.}
+	\rmark{For the above decomposition the eigen values and eigen vectors of $K_V$ is required and the computational cost is $\mathcal{O}((2n_l)^2)$). However according to Gallenger \cite{Gallager2008} one could use $K_W$ to get the eigen values and eigen vectors where the cost is $\mathcal{O}(n_l^2)$.}
 	
 	
 	%-------------------------------------% 
-	\subsection{Pseudo-code}
+	%\subsection{\bf Pseudo-code}
 	%-------------------------------------% 
 		
-	\begin{framed}
+
+	  \begin{algorithm}[Pseudo-code] \label{pseudo_code}
+	  \hfill \\
 		\begin{itemize}
+			  \begin{framed}
 			\item Choose a cross covariance function, $R(P,Q)$
 			\item Initialize the parameters ($C_1, C_2, a, u, p$) and choose a resolution $\phi_1,\ldots,\phi_{n_l}, \lambda_1, \ldots, \lambda_{n_L}$ (or $n_l\times n_L$),
 			\item Derive \Cm based on $R(P,Q)$ where $m=0,1,\ldots,n_L/2$,
@@ -252,12 +248,75 @@ The global data generation process on a sphere discussed on this dissertation is
 			      \end{enumerate}
 			      		      		      
 			\item apply the equation (\ref{eq:finite_process_2}) to generate grid data.
+			\end{framed}
 		\end{itemize}
-	\end{framed}
-			
+	\end{algorithm}
+	
 	%-------------------------------------% 
+	\section{Simulation setup}
+	%-------------------------------------%
+	
+In chapter 4 we discussed about the affects of each parameter and for the simulations we fixed the parameters as follows, 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+ \hline
+ & Parameter values\\ \hline
+Set 1 : & $C_1 = 1, C_2 = 1, a = 1, u = 1$, $p=0.5$ \\
+Set 2 : & $C_1 = 1, C_2 = 2, a = 3, u = 1$, $p=0.6$ \\ \hline 
+\end{tabular}
+\caption{Parameter values }
+\end{table}
+
+to generate data on a sphere. The parameter $u$ is the location parameter and $u=0$ provides a longitudinally reversible process on a sphere. It is somewhat difficult to model the covariance structure in other terms to generate data when it is closer to Earth's pole (the complexity can be observed in MSU and TOMS data). Therefore we generated the data on $[0,2\pi/3] \times [0,2\pi]$ (equivalent to $[-\pi/3,\pi/3] \times [-\pi,\pi]$ ) grid, with a grid resolution of $1^0\times 2^0$ ({\em i.e } $n_l = 120, n_L=180 \Rightarrow$ 21600 spatial points). 
+
+The \Cm function for all three proposed models as follows, 
+				\begin{table}[H]
+				\centering
+				\begin{tabular}{|l|l|l|}
+					\hline
+					Model   & $c_m$                                         & Parameters                               \\ 
+					\hline \hline
+					model 1 & : $c_m = Cp^m  \mbox{ and } c_0 = C$          & $m=0, \pm 1, \pm 2,... \quad p\in (0,1)$ \\
+					model 2 & : $c_m = \frac{Cp^m}{m} \mbox{ and } c_0 = 0$ & $m=\pm 1, \pm 2,... \quad p\in (0,1)$    \\
+					model 3 & : $c_m = \frac{C}{m^4} \mbox{ and } c_0 = 0$  & $m=\pm 1, \pm 2,...$                     \\
+					\hline
+				\end{tabular}
+				\label{Cm_table}
+				\caption{The $c_m$ functions for the proposed covariance models in global data generation process.}
+			\end{table}
+
+	%-------------------------------------% 
+	\subsection{\bf Deriving ${\bf C_m}$ for model 1}
+	%-------------------------------------%	
+	\input{chapters/getCm.tex}	
+	
+ The model 1 yields a non zero mean ($c_0 \ne 0$) random process on a sphere, if the process is non-zero mean we showed that (in chapter 4) cross covariance is bias with a bias $c_0$. In contrast,model 2 and 3 yields a zero mean process on a sphere. \\
+ 
+ In contrast to the proposed $C_m$ approach one could directly use the \cov matrix ($i.e. R(P,Q)$) to generate data on $\Sp^2$. The covariance matrix is a real block circuant matix as will take the following form,
+ 
+ \begin{eqnarray}
+	R(P,Q) &=& \left[
+		\begin{array}{lllll}
+			R_0     & R_1     & R_2    & \cdots & R_{n_L-1} \\
+			R_{n_L-1} & R_0     & R_1    & \cdots & R_{n_L-2} \\
+			R_{n_L-2} & R_{n_L-1} & R_0    & \cdots & R_{n_L-3} \\
+			\vdots  & \vdots  & \vdots & \ddots & \vdots  \\
+			R_1     & R_2     & R_3    & \cdots & R_0
+		\end{array}
+	\right]_{n_ln_L\times n_ln_L}
+\end{eqnarray}
+
+\noi where $R_j$'s are $n_l\times n_l$ sub-matrices of real-valued elements; here $R_0$ is the \cov matrix between latitudes at logitude 1, $R_1$ is the \cov matrix between latitudes at logitude 1 and longitude 2, and so on. For the data generation process one would need to compute $R(P,Q)^{1/2}$ in order to use algorithm \ref{pseudo_code}. \cite{Li2013} pointed out some approaches to find the eigen values using the properties of block circulant matrices $i.e.$ all eigen values are related to $R_0, R_1, \ldots, R_{n_L-1}$ sub matrices (each $R_j$ provides $n_l$ eigen values). However, these eigen values to could be real or complex-valued.  \cite{Tee2005} proposed some methods to find the eigen values when sub matirices are symmetric. It is somewhat unclear to find eigen values and eigen vectors (to obtain $R(P,Q)^{1/2}$)) of a block circulant matrix when the sub matrices are not symmetric. 
+
+\vskip 24pt
+
+ 	%-------------------------------------% 
 	\section{Results}
 	%-------------------------------------% 
 		
 	\input{P1_results.tex}
+	
+
 			

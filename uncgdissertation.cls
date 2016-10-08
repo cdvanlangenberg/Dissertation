@@ -515,10 +515,10 @@
 
 \newcommand\subsection{\@startsection{subsection}{2}
 \z@{0.5\linespacing}{.5em} %\z@{\linespacing}{.5em}%
-  {\normalfont\itshape}}
+  {\normalfont\itshape\textbf}}
 
 \newcommand\subsubsection{\@startsection{subsubsection}{3}
-\z@\z@{\fontdimen2\font}%
+\z@\z@{\fontdimen2\font\textbf}%
   \itshape}
 
 %Changed above.
@@ -1526,7 +1526,7 @@ Committee Co-chair &
 \newtheorem{theorem}{Theorem}[chapter]
 \renewcommand{\thetheorem}{\arabic{chapter}.\arabic{theorem}}
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{prop}[theorem]{Proposition}
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{algorithm}[theorem]{Algorithm}
@@ -1536,7 +1536,7 @@ Committee Co-chair &
 \newtheorem{example}[theorem]{Example}
 % Remark type object style and numbering
 \theoremstyle{remark}
-\newtheorem*{remark}{Remark}  % the star makes them not numbered
+\newtheorem{remark}{\bf Remark} % the star makes them not numbered
 \newtheorem*{notation}{Notation}
 
 %% The hyperref and bookmark packages should be loaded last to give

@@ -15,6 +15,8 @@
 \usepackage{graphicx}
 \usepackage{framed}
 \usepackage{subcaption}
+\usepackage{multirow}
+
 
 
 %%------------------------------------------------------------------%% 
@@ -50,17 +52,16 @@
 %% A central location to add your favorite macros.  A few examples are
 %% given below.  See tips for samples.
 
-\newtheorem{thm}{Theorem}[section]
-\newtheorem{defn}{Definition}[section]
-\newtheorem{prop}{Proposition}[section]
+\newtheorem{thm}{\bf Theorem}
+
+\newtheorem{defn}{Definition}
+%\newtheorem{prop}{\bf Proposition}
 \newcommand{\pro}[1]{\begin{prop}{#1}\end{prop}}
-\newtheorem{rmk}{Remark}
-\newcommand{\rmark}[1]{\begin{rmk}{#1}\end{rmk}}
+%\newtheorem{rmk}{\bf Remark}
+\newcommand{\rmark}[1]{\begin{remark}{#1}\end{remark}}
+\newcommand{\noi}{\noindent}
 
 \newcommand{\eqn}[1]{\begin{equation}{#1}\end{equation}}
-
-%\newcommand{\beq}{\begin{equation}}
-%\newcommand{\eeq}{\end{equation}}
 
 \newcommand{\beq}{\begin{equation}}
 \newcommand{\eeq}{ \end{equation} }
@@ -73,9 +74,12 @@
 \newcommand\floor[1]{\lfloor{#1}\rfloor}
 \newcommand\ceil[1]{\lceil{#1}\rceil}
 
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Sp}{\mathbb{S}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\pd}{positive definite }
+\newcommand{\cov}{covariance }
 
 \newcommand{\code}[1]{{\small\texttt{#1}}}
 \newcommand{\pkg}[1]{{\normalfont\textsf{#1}}}
@@ -177,11 +181,11 @@ In memory of my fater, Donald Anthony Vanlangenberg
 
 %%------------------------------------------------------------------%%
 \chapter{Literature Review}
-\input{chapters/literature.tex}
+\input{chapters/literature_2.tex}
 
 
 %%------------------------------------------------------------------%%
-\chapter{Covariance and Variogram Estimation on the Cricle}
+\chapter{Asymptotics of estimators on a circle}
 \input{chapters/circle_2.tex}
 
 %%------------------------------------------------------------------%%
@@ -213,7 +217,7 @@ In memory of my fater, Donald Anthony Vanlangenberg
 %% line and the chapters below.
 %%------------------------------------------------------------------%%
 \appendix
-\chapter{Data snapshots for Model 1 and Model 3}  \label{appendixA}
+\chapter{Data snapshots for all Models}  \label{appendixA}
 %\section*{\centering Appendix A }
 \input{chapters/appendixA.tex}
 

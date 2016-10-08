@@ -14,19 +14,19 @@
 
 \section{Spatial Data}
 
-What does it mean by spatial data? In general, spatial data or in other words geospatial data is information about a physical object or a measurement that can be represented by numerical values in a geographic coordinate system. As \cite{Cressie1993} pointed out spatial data appeared to be in the form of maps in 1686 and spatial modeling paper in 1907. There are many questions that geoscientists and engineers are interested about spatial data. Many questions naturally arise such as how to model a spatial process and then use the model to make predictions about unobserved locations. There are many challenges when modeling spatial data; every point (location observed) is a random variable and only one observation/measurement is available. However, the number of unknowns to estimate are quite large compared to the available data, which is definitely a high-dimensional problem. As an example, if data were observed at 10 locations, one is estimating the variance-covariance matrix to characterize the spatial dependency for future predictions. Then there will have 55 unknown entities in the variance-covariance matrix to be estimated.
+What does it mean by spatial data? In general, spatial data or in other words geospatial data is information about a physical object or a measurement that can be represented by numerical values in a geographic coordinate system. Spatial data appeared to be in the form of maps in 1686 and spatial modeling did not start until 1907 (\cite{Cressie1993}). There are many questions that geoscientists and engineers are interested about spatial data. Many questions naturally arise such as how to model a spatial process and then use these models to make predictions about unobserved locations. There are many challenges when modeling spatial data; every point (location observed) is a random variable and only one observation/measurement is available. However, the number of unknowns to estimate are quite large compared to the available data, which is definitely a high-dimensional problem. As an example, if data were observed at 10 locations, one is estimating the variance-covariance matrix to characterize the spatial dependency for future predictions. Then there will have 55 unknown entities in the variance-covariance matrix to be estimated. We will dicuss about some basic properties of geo-spatial data by exploring some popular data sets in the literature. \\
 
-\begin{figure}[H]
-\label{MSU_data_latitude}
-\centering
-\includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/location.pdf}
-\caption{Some arbitary saptial data at 10 random locations}
-\end{figure}
+% \begin{figure}[H]
+% \label{MSU_data_latitude}
+% \centering
+% \includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/location.pdf}
+% \caption{Some arbitary saptial data at 10 random locations}
+% \end{figure}
 
 
-\subsection{MSU data}
+%\subsection{MSU data}
 
-Since 1978 Microwave Sounding Units (MSU) measure radiation emitted by the earth's atmosphere from NOAA polar orbiting satellites. The different channels of the MSU measure different frequencies of radiation proportional to the temperature of broad vertical layers of the atmosphere. Tropospheric and lower stratospheric temperature data are collected by NOAA's TIROS-N polar-orbiting satellites and adjusted for time-dependent biases by the Global Hydrology and Climate Center at the University of Alabama in Huntsville (UAH)\footnote{\url{https://www.ncdc.noaa.gov/temp-and-precip/msu/overview}}. More information about how the data is been processed can be found in \cite{ChristySpencerBraswell2000}. Satellites do not measure temperature directly but measure radiances in various wavelength bands and then mathematically inverted to obtain the actual temperature.
+Since 1978 Microwave Sounding Units (MSU) measure radiation emitted by the earth's atmosphere from NOAA polar orbiting satellites. The different channels of the MSU measure different frequencies of radiation proportional to the temperature of broad vertical layers of the atmosphere. Tropospheric and lower stratospheric temperature data are collected by NOAA's TIROS-N polar-orbiting satellites and adjusted for time-dependent biases by the Global Hydrology and Climate Center at the University of Alabama in Huntsville (UAH)\footnote{\url{https://www.ncdc.noaa.gov/temp-and-precip/msu/overview}}. More information about how the data is been processed can be found in \cite{ChristySpencerBraswell2000}. Satellites do not measure temperature directly but measure radiances in various wavelength bands and then mathematically inverted to obtain the actual temperature. 
 
 % Channel 2 mainly measures tropospheric temperatures, while Channel 4 measures temperatures in the lower stratosphere. The analysis of the satellite temperature record represented here begins in 1979.
 
@@ -34,10 +34,10 @@ Since 1978 Microwave Sounding Units (MSU) measure radiation emitted by the earth
 \label{MSU_data}
 \centering
 \includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/MSU_data.pdf}
-\caption{MSU data observed (without removing any spatial trends) in August 2002 : resolution $2.5^\circ \mbox{ latitude} \times 2.5^\circ \mbox{ longitude}$. It is easy to observe that variation is higher towards the north and south poles.}
+\caption{MSU data observed (without removing any spatial trends) in August 2002 : resolution $2.5^\circ \mbox{ latitude} \times 2.5^\circ \mbox{ longitude}$ (10368 gridded points).}
 \end{figure}
-
-The MSU data were observed at $2.5^\circ \mbox{latitude} \times 2.5^\circ \mbox{longitude}$ with total number of data observations of size 10368.
+\vfill
+% The MSU data were observed at $2.5^\circ \mbox{latitude} \times 2.5^\circ \mbox{longitude}$ with total number of data observations of size 10368.
 
 
 % \begin{figure}[H]
@@ -48,23 +48,26 @@ The MSU data were observed at $2.5^\circ \mbox{latitude} \times 2.5^\circ \mbox{
 % \end{figure}
 
 \begin{figure}[H]
-\label{MSU_data_latitude}
-\centering
-\includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/MSU_data_latitude.pdf}
-\caption{MSU data (August 2002), data distribution at each latitude (the spread is very high near north and south poles)}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{graphs//MSU_data_latitude}
+		\caption{distribution at each latitude}
+		\label{MSU_data_latitude}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{graphs/MSU_data_var_lat}
+		\caption{variance at each latitude}
+		\label{MSU_data_var_lat}
+	\end{subfigure}
+	\caption[MSU data distribution at each latitude (data between $60^\circ S$ and $60^\circ N$ were considered)]{MSU data distribution at each latitude (data between $60^\circ S$ and $60^\circ N$ were considered)}
+	\label{compare_varigram_sim_2}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/MSU_data_var_lat.pdf}
-\caption{MSU data (August 2002) between $60^\circ S$ and $60^\circ N$, the variance at each latitude (variance is almost zero near the equator)}
-\label{MSU_data_var_lat}
-\end{figure}
 
-\newpage
-\subsection{TOMS data}
+Level 3 Total Ozone Mapping Spectrometer (TOMS) data \footnote{\url{http://disc.sci.gsfc.nasa.gov/data/datapool/TOMS}} is another popluar global data set discussed literature which has more than 20000 sapatial points (gridded points) (\cite{Stein2007}, \cite{CressieJohannesson2008}, \cite{JunStein2008}). There were some missing values in this data set. \cite{Stein2007} used the average of 8 neighboring locations to replace the missing values. They used spherical harmonics with associated Legendre polynomials of up to 78 covariates to remove the spatial trends to study axially symmetry (discussed in chapter 4) of the global data. 
 
-Extracted from \cite{Stein2007} ``The Nimbus-7 satellite carried a Total Ozone Mapping Spectrometer (TOMS) instrument that measured total column ozone daily from November 1, 1978 to May 6, 1993. This satellite followed a Sun-synchronous polar orbit with an orbital frequency of 13.825 orbits a day (cycle time about 104 minutes). As the satellite orbited, a scanning mirror repeatedly scanned across a track about 3000 km wide, each track yielding 35 total column ozone measurements. This version of the data is known as Level 2 and is publicly available \footnote{\url{http://disc.sci.gsfc.nasa.gov/data/datapool/TOMS/Level 2/}}. "
+% Extracted from \cite{Stein2007} ``The Nimbus-7 satellite carried a Total Ozone Mapping Spectrometer (TOMS) instrument that measured total column ozone daily from November 1, 1978 to May 6, 1993. This satellite followed a Sun-synchronous polar orbit with an orbital frequency of 13.825 orbits a day (cycle time about 104 minutes). As the satellite orbited, a scanning mirror repeatedly scanned across a track about 3000 km wide, each track yielding 35 total column ozone measurements. This version of the data is known as Level 2 and is . "
 
 \begin{figure}[H]
 \label{TOMS_data}
@@ -73,60 +76,47 @@ Extracted from \cite{Stein2007} ``The Nimbus-7 satellite carried a Total Ozone M
 \caption{TOMS data: resolution $1^\circ \mbox{latitude } \times 1.25^\circ \mbox{ longitude}$ in May, 1-6 1990. The instrument used backscattered sunlight, therefore measurements were not available south of $73^\circ S$ during this week.}
 \end{figure}
 
-There were some missing values in this data set. \cite{Stein2007} used the average of 8 neighboring locations to replace the missing values. Further, he used spherical harmonics with associated Legendre polynomials of up to 78 covariates to remove the spatial trends to study axial symmetry of the data.
-\begin{figure}[H]
-\centering
-\includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/TOMS_data_latitude.pdf}
-\caption{TOMS data: data distribution at each latitude (data between $50^\circ S$ and $50^\circ N$ were considered)}
-\label{TOMS_data_latitude}
-\end{figure}
 
 \begin{figure}[H]
-\centering
-\includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/TOMS_data_var_lat.pdf}
-\caption{TOMS data: between $50^\circ S$ and $50^\circ N$, the variance at each latitude (variance is almost zero near the equator)}
-\label{TOMS_data_var_lat}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{graphs//TOMS_data_latitude}
+		\caption{distribution at each latitude}
+		\label{TOMS_data_latitude}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{graphs/TOMS_data_var_lat}
+		\caption{variance at each latitude}
+		\label{TOMS_data_var_lat}
+	\end{subfigure}
+	\caption[TOMS data distribution at each latitude (data between $50^\circ S$ and $50^\circ N$ were considered)]{TOMS data distribution at each latitude (data between $50^\circ S$ and $50^\circ N$ were considered)}
+	\label{compare_varigram_sim_2}
 \end{figure}
 
-\subsection{Challenges}
 
-\begin{enumerate}
-\item There have been extensive statistical research on methodologies and techniques developed under the Euclidean space $R^d$. These approaches that are valid in $R^d$ have been applied to analyze global-scale data in recent years, due to global networks and satellite sensors that have been used to monitor a wide array of global-scale processes and variables. However, this can have unforeseen impacts, such as making use of models that are valid in $R^d$ but in fact might not be valid under spherical coordinate systems. \cite{HuangZhangRobeson2011} have investigated some of commonly used covariance models that are valid in $R^d$, and they pointed out that many of those are actually invalid on the sphere.
-\item Note that, as we will see later, the spectral representation of the process on the sphere is a summation of Legendre polynomials, which is distinct from its planar counterpart as represented by an integration of Bessel functions. This distinction can be understood through group representation theory, which is the basis for an exciting new line of research we are currently pursuing.
-\end{enumerate}
+Both MSU and TOMS data demonstrate strong variation when it is closer to Earth's poles. This shows how complex is collecting Geo-spatial data, furthermore, it is very expensive and time consuming. Next we discuss about the challenges when modeling spatial data.  
+\\
 
-\blue{Organize!!!}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{enumerate}
+% \begin{figure}[H]
+% \centering
+% \includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/TOMS_data_latitude.pdf}
+% \caption{TOMS data: data distribution at each latitude (data between $50^\circ S$ and $50^\circ N$ were considered)}
+% \label{TOMS_data_latitude}
+% \end{figure}
+% 
+% \begin{figure}[H]
+% \centering
+% \includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/TOMS_data_var_lat.pdf}
+% \caption{TOMS data: between $50^\circ S$ and $50^\circ N$, the variance at each latitude (variance is almost zero near the equator)}
+% \label{TOMS_data_var_lat}
+% \end{figure}
 
-\item Axially symmetry, which means that a process is invariant to rotations about the Earth's axis. The idea was first proposed by \cite{Jones1963}, where the covariance function depends on the longitudes only through their difference.
+% \subsection{Challenges}
 
-\item In the study of a random process on a sphere, homogeneity (covariance depends solely on distance between locations) was assumed. However, this assumption may not be reasonable for actual data. \cite{Stein2007} argued that Total Ozone Mapping Spectrometer (TOMS) data varies strongly with latitudes and homogeneous models are not suitable. Further, \cite{CressieJohannesson2008}, \cite{JunStein2008}, \cite{BolinLindgren2011} pointed out that homogeneity assumption is not reasonable.   
+\section{Literature}
 
-\item There are no methods to test axially symmetry in real data. However, this assumption is more plausible and reasonable when modeling spatial data. For example, temperature, moisture, etc. most likely symmetric on longitudes rather than latitudes. \cite{Stein2007} propose a method to model axially symmetric process on a sphere (the fitted model is not the best, but this was a good start).
-
-\item There are no practically useful parametric models available, for our knowledge only models available so far, \cite{stein1999} with 170 parameters to estimate and \cite{CressieJohannesson2008} more than 396 parameters to estimate.
-%\blue{add description about the data}
-
-\item When modeling spatial data stationary models are less useful;\cite{JunStein2008} has proposed flexible class of parametric covariance models to capture the non-stationarity of global data. They used Discrete Fourier Transform (DFT) to the data on regular grids and calculated the exact likelihood for large data sets. Furthermore, they used Legendre polynomials to remove the spatial trends when fitting models to global data.
-
-\item \cite{Lindgren2011} analyzed global temperature data with a non-stationary model defined on a sphere using Gaussian Markov Random Fields (GMRF) and Stochastic Partial Differential Equations (SPDE)
-
-\item Monte Carlo Markov Chain (MCMC) is another approach to model non-stationary covariance models on a sphere. \cite{BolinLindgren2011} (continuation of the work proposed in \cite{Lindgren2011} ) constructed a class of stochastic field models using Stochastic Partial Differential Equations (SPDEs). Non stationary covariance models were obtained by spatially varying the parameters in the SPDEs, they argue that this method is more efficient than standard MCMC procedures. There are many articles followed this techniques but we will not discuss more details about these methods.
-
-\item Spatio-temporal mixed-effects model for dimension reduction was proposed by \cite{KatzfussCressie2011}. They used MOM parameter estimation method (similar approach in FRS). This work is also based on \cite{CressieJohannesson2008} spatial only Fixed Rank model. These methods are eventually focused on Bayesian approach and are less interested about topic.
-
-\item The previous studies have argued that many processes on a sphere are not homogeneous, especially in latitude direction. \cite{Huang2012} proposed a class of statistical processes that are axially symmetric and covariance functions that depend on longitudinal differences. Moreover, they have proposed longitudinally reversible processes and some motivations to construct axially symmetric processes. The covariance models implemented in this dissertation are modified versions of the covariance models proposed by \cite{Huang2012}.  
-
-\item \cite{HitczenkoStein2012} discuss about the properties of an existing class of models for axially symmetric Gaussian processes on the sphere. They applied first-order differential operators to an isotropic process. draw conclusions about the local properties of the processes. Under some restrictions they derived explicit forms for the spherical harmonic representation of these processes covariance functions, and make conclusions about the local properties of the processes.
-
-\item The issues associated when modeling axially symmetric spatial random fields on a sphere was discussed by \cite{Li2013}. They proposed convolution methods to generate random fields with a class of $Mat\acute{e}rn$-type kernel functions by allowing the parameters in the kernel function to vary with location. Moreover, they were able to generate flexible class of covariance functions and capture the non-stationary properties on a sphere. Used FFT to get the determinant and the inverse efficiently. Further, semi-parametric variogram estimation method using spectral representation was proposed for intrinsically stationary random fields on $S^2$.     
-
-%\item \cite{HeatonKatzfussBerrettEtAl2014}
-
-\item  $Mat\acute{e}rn$ covariance models are widely used when modeling spatial data, but when the smoothness parameter ($\nu$) is greater than 0.5 it is not valid for the homogeneous processes on the Earth surface with great circle distance. \cite{JeongJun2015} proposed $Mat\acute{e}rn$-like covariance functions for smooth processes on the earth surface that are valid with great circle distance (models were tested on sea levels pressure data).  
-
-\end{enumerate}
+There have been extensive statistical research on methodologies and techniques developed under the Euclidean space $R^d$. These approaches that are valid in $R^d$ have been applied to analyze global-scale data in recent years, due to global networks and satellite sensors that have been used to monitor a wide array of global-scale processes and variables. Some commonly used covariance models that are valid on $R^3$, 
 
 \begin{table}[H]
 \label{parameters}
@@ -146,6 +136,63 @@ Power* & $\sigma^2(C_0-(h/\phi)^{\alpha}$ & $\phi, \sigma^2$ \\ \hline
 \end{tabular}
 \caption{Commonly used covariance models in $\R^3$ * valid if $\alpha\in [0,2]$ }
 \end{table}
+
+However, this can have unforeseen impacts, such as making use of models that are valid in $R^d$ but in fact might not be valid under spherical coordinate systems. \cite{HuangZhangRobeson2011} have investigated some of commonly used covariance models that are valid in $R^d$, and they pointed out that many of those are actually invalid on the sphere. $Mat\acute{e}rn$ covariance models are widely used when modeling spatial data, but when the smoothness parameter ($\nu$) is greater than 0.5 it is not valid for the homogeneous processes on the Earth (\cite{Gneiting2013}). \\
+
+Note that, as we will see later, the spectral representation of the process on the sphere is a summation of Legendre polynomials, which is distinct from its planar counterpart as represented by an integration of Bessel functions. This distinction can be understood through group representation theory, which is the basis for an exciting new line of research we are currently pursuing.\\
+
+
+
+% \section{Literature}
+
+		The main emplasis of this dissertation is on random process on a sphere and our primary focus is on covariance models on $S^2$. In general for covariance function defined on a sphere (\cite{Stein2007}) requires triple summation and required to estimate $\mathcal{O}(n^3)$ parameters. Geo-spatial (or satellite) data leads to large data sets and computational cost could be extremly expensive. In contrast, the covariance function  defined by \cite{Huang2012} requires to estimate $\mathcal{O}(n^2)$ parameters which is a huge reduction of computational complexity. All covariance models that are valid on $R^3$ are not valid on $S^2$ (\cite{HuangZhangRobeson2011}) and it is necessary to use $S^2$ instead of $R^3$ when studying about random processes on Earth and isotropy is often assumed (\cite{Yadrenko1983, Yaglom1987}). However, many studies have pointed out this assumption is not reasonable (\cite{Stein2007, JunStein2008, BolinLindgren2011}) for random processes on the sphere primarily on Earth. \cite{Stein2007} argued that Total Ozone Mapping Spectrometer (TOMS) data varies strongly with latitudes and homogeneous models are not suitable. Moreover, aerosol depth (AOD) from Multi-angle Imaging Spectrometer (MISR), Sea Surface Temperature (SST) from RRMM Microwave Imager (TMI) are some other example for anisotropy global data on a sphere (on Earth). \cite{JunStein2008} proposed flexible class of paramertric covariance models to capture the non stationarity.  In order to study non homogeneous processes on the sphere \cite{Jones1963} introduces the concept of axially symmetry, where the covarince between two spatial points depend on the longitudes only through their difference  between two points. This assumption is more plausible and reasonable when modeling spatial data. For example, temperature, moisture, etc. most likely symmetriy on longitudes rather than latitudes. \cite{Stein2007} used spherical harmonics to model axially symmetric process on a sphere. There are no practically useful parametric models available and to our knowledge only models available so far, \cite{stein1999} with 170 parameters to estimate and \cite{CressieJohannesson2008} more than 396 parameters to estimate. Monte Carlo Markov Chain (MCMC) is another approach to model non-stationary covariance models on a sphere. \cite{Lindgren2011} analyzed global temperature data with a non-stationary model defined on a sphere using Gaussian Markov Random Fields (GMRF) and Stochastic Partial Differential Equations (SPDE). Further \cite{BolinLindgren2011} constructed a class of stochastic field models using SPDEs and non stationary covariance models were obtained by spatially varying the parameters in the SPDEs, this method is more efficient than standard MCMC procedures. \cite{HitczenkoStein2012} applied first-order differential operators to an isotropic process to draw conclusions about the local properties of the processes. \cite{Li2013} used convolution methods with $Mat\acute{e}rn$-type kernal functions to capture the non-stationarity of random fields on a sphere. \cite{Huang2012} proposed a class of statistical processes that are axially symmetric and covariance functions that depend on longitudinal differences. Moreover, they proposed some ideas about longitudinally reversible processes and some motivations to construct axially symmetric processes on a sphere.
+
+
+\section{The outline of this dissertation}
+In Chapter 3 we explore some of the properties of commonly used covariance and variogram estimators on the circle based on Method of Moments (MOM). In contrasting to the results given in time series and the Euclidean space, the MOM covariance estimator is biased and the true \cov function is non idenentifiable based on the MOM estimator. On the other hand, the MOM variogram estimator is unbiased, but it can be shown to be inconsistent. Chapter 4 first introduce the random process on the sphere. We then discuss the homogeneous process and the spectral representation for its covariance function on the sphere. Our main focus on this chapter is the axially symmetric process and its covariance function representation through the discrete fourier transform. The parametric models for characterizing such processes are also discussed. In particular, we extend the models given in \cite{Huang2012} and provide some graphical properties of those models. These extended models will be fully implemented in Chapter 5 for axially symmetric data generation. In Chapter 5, we explore the result given in \cite{Huang2012} to implement an algorithm for axially symmetric data generation. In particular, we observe that our proposed method on data generation perform better based on cross variogram. Finally, Chapter 6 gives a summary of this research and provides some further research directions.   
+
+
+
+% 
+% 
+% 
+% Monte Carlo Markov Chain (MCMC) is another approach to model non-stationary covariance models on a sphere. \cite{BolinLindgren2011} (continuation of the work proposed in \cite{Lindgren2011} ) constructed a class of stochastic field models using Stochastic Partial Differential Equations (SPDEs). Non stationary covariance models were obtained by spatially varying the parameters in the SPDEs, they argue that this method is more efficient than standard MCMC procedures. 
+% 
+% \cite{HitczenkoStein2012} discuss about the properties of an existing class of models for axially symmetric Gaussian processes on the sphere. They applied first-order differential operators to an isotropic process. draw conclusions about the local properties of the processes. Under some restrictions they derived explicit forms for the spherical harmonic representation of these processes covariance functions, and make conclusions about the local properties of the processes.
+% 
+% $Mat\acute{e}rn$ covariance models are widely used when modeling spatial data, but when the smoothness parameter ($\nu$) is greater than 0.5 it is not valid for the homogeneous processes on the Earth surface with great circle distance. \cite{JeongJun2015} proposed $Mat\acute{e}rn$-like covariance functions for smooth processes on the earth surface that are valid with great circle distance (models were tested on sea levels pressure data).
+% 
+% \begin{enumerate}
+% 
+% \item Axially symmetry, which means that a process is invariant to rotations about the Earth's axis. The idea was first proposed by \cite{Jones1963}, where the covariance function depends on the longitudes only through their difference.
+% 
+% \item In the study of a random process on a sphere, homogeneity (covariance depends solely on distance between locations) was assumed. However, this assumption may not be reasonable for actual data. \cite{Stein2007} argued that Total Ozone Mapping Spectrometer (TOMS) data varies strongly with latitudes and homogeneous models are not suitable. Further, \cite{CressieJohannesson2008}, \cite{JunStein2008}, \cite{BolinLindgren2011} pointed out that homogeneity assumption is not reasonable.   
+% 
+% \item There are no methods to test axially symmetry in real data. However, this assumption is more plausible and reasonable when modeling spatial data. For example, temperature, moisture, etc. most likely symmetric on longitudes rather than latitudes. \cite{Stein2007} propose a method to model axially symmetric process on a sphere (the fitted model is not the best, but this was a good start).
+% 
+% \item There are no practically useful parametric models available, for our knowledge only models available so far, \cite{stein1999} with 170 parameters to estimate and \cite{CressieJohannesson2008} more than 396 parameters to estimate.
+% %\blue{add description about the data}
+% 
+% \item When modeling spatial data stationary models are less useful;\cite{JunStein2008} has proposed flexible class of parametric covariance models to capture the non-stationarity of global data. They used Discrete Fourier Transform (DFT) to the data on regular grids and calculated the exact likelihood for large data sets. Furthermore, they used Legendre polynomials to remove the spatial trends when fitting models to global data.
+% 
+% \item \cite{Lindgren2011} analyzed global temperature data with a non-stationary model defined on a sphere using Gaussian Markov Random Fields (GMRF) and Stochastic Partial Differential Equations (SPDE)
+% 
+% \item Monte Carlo Markov Chain (MCMC) is another approach to model non-stationary covariance models on a sphere. \cite{BolinLindgren2011} (continuation of the work proposed in \cite{Lindgren2011} ) constructed a class of stochastic field models using Stochastic Partial Differential Equations (SPDEs). Non stationary covariance models were obtained by spatially varying the parameters in the SPDEs, they argue that this method is more efficient than standard MCMC procedures. There are many articles followed this techniques but we will not discuss more details about these methods.
+% 
+% \item Spatio-temporal mixed-effects model for dimension reduction was proposed by \cite{KatzfussCressie2011}. They used MOM parameter estimation method (similar approach in FRS). This work is also based on \cite{CressieJohannesson2008} spatial only Fixed Rank model. These methods are eventually focused on Bayesian approach and are less interested about topic.
+% 
+% \item The previous studies have argued that many processes on a sphere are not homogeneous, especially in latitude direction. \cite{Huang2012} proposed a class of statistical processes that are axially symmetric and covariance functions that depend on longitudinal differences. Moreover, they have proposed longitudinally reversible processes and some motivations to construct axially symmetric processes. The covariance models implemented in this dissertation are modified versions of the covariance models proposed by \cite{Huang2012}.  
+% 
+% \item \cite{HitczenkoStein2012} discuss about the properties of an existing class of models for axially symmetric Gaussian processes on the sphere. They applied first-order differential operators to an isotropic process. draw conclusions about the local properties of the processes. Under some restrictions they derived explicit forms for the spherical harmonic representation of these processes covariance functions, and make conclusions about the local properties of the processes.
+% 
+% %\item The issues associated when modeling axially symmetric spatial random fields on a sphere was discussed by \cite{Li2013}. They proposed convolution methods to generate random fields with a class of $Mat\acute{e}rn$-type kernel functions by allowing the parameters in the kernel function to vary with location. Moreover, they were able to generate flexible class of covariance functions and capture the non-stationary properties on a sphere. Used FFT to get the determinant and the inverse efficiently. Further, semi-parametric variogram estimation method using spectral representation was proposed for intrinsically stationary random fields on $S^2$.     
+% 
+% %\item \cite{HeatonKatzfussBerrettEtAl2014}
+% 
+% \item  $Mat\acute{e}rn$ covariance models are widely used when modeling spatial data, but when the smoothness parameter ($\nu$) is greater than 0.5 it is not valid for the homogeneous processes on the Earth surface with great circle distance. \cite{JeongJun2015} proposed $Mat\acute{e}rn$-like covariance functions for smooth processes on the earth surface that are valid with great circle distance (models were tested on sea levels pressure data).  
+% 
+% \end{enumerate}
+
 
 %\blue{Fill the above table later  }
 

@@ -1,34 +1,192 @@
-\input{template.tex}
+\documentclass[phd]{uncgdissertation}
+% default is 12pt, phd, doublespaced.
+% Masters students should use the ma on as shown below.
+% \documentclass[ma]{uncgdissertation}
 
-\begin{document}
-\bibliographystyle{apalike}
+%%------------------------------------------------------------------%%
+%%------------------------- Import Packages ------------------------%%
+%%------------------------------------------------------------------%%
+%% This is where you can put other packages that you may need. 
+%% Note that several packages including amsmath, amsthm, amsfonts,
+%% hyperref have already been loaded.  
+\usepackage{undertilde}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage[font=doublespacing]{caption}
+
+
+
+%%------------------------------------------------------------------%% 
+%%--------------------------- Content ------------------------------%%
+%%------------------------------------------------------------------%%
+%% Members of committee
+%% Masters students are required to have chair plus two
+%% PhD students require chair plus three.
+%% The class can handle up to chair plus five.
+\chair{Haimeng Zhang}      % Guidelines say don't use Dr.
+\member{Sat Gupta}    % Guidelines say don't use Dr.
+\member{Scott Richter}    % Guidelines say don't use Dr.
+\member{Xiaoli Gao}    % Guidelines say don't use Dr.
+\member{Shan Suthaharan}    % Guidelines say don't use Dr.
+
+%% Your name goes here.
+\student{Christopher D.}{Vanlangenberg} 
+%% Some other options
+
+%% Thesis Title
+%%    +  Capitalize first letter of important words. 
+%%    +  Use inverted pyramid shape if title spans more than one line.
+%%  Note: You can force break the title onto multiple lines using
+%%  \break instead of \\. 
+\title{Data Generation and Esimation for Axially Symmertic Processes on the Sphere }
+
+%% Degree year.  
+\degreeyear{2016}
+
+%%------------------------------------------------------------------%% 
+%%----------------------- Personal Macros --------------------------%%
+%%------------------------------------------------------------------%%
+%% A central location to add your favorite macros.  A few examples are
+%% given below.  See tips for samples.
+
+\newtheorem{thm}{\bf Theorem}
+
+\newtheorem{defn}{Definition}
+%\newtheorem{prop}{\bf Proposition}
+\newcommand{\pro}[1]{\begin{prop}{#1}\end{prop}}
+\newcommand{\rmark}[1]{\begin{remark}{#1}\end{remark}}
+\newcommand{\noi}{\noindent}
+
+\newcommand{\eqn}[1]{\begin{equation}{#1}\end{equation}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{ \end{equation} }
+
+\newcommand{\blue}[1]{\textcolor{blue}{\emph{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{\emph{#1}}}
+
+\newcommand{\xn}{x_1,\ldots, x_n}
+\newcommand{\Xn}{X_1,\ldots, X_n}
+\newcommand\floor[1]{\lfloor{#1}\rfloor}
+\newcommand\ceil[1]{\lceil{#1}\rceil}
+
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Sp}{\mathbb{S}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\pd}{positive definite }
+\newcommand{\cov}{covariance }
+
+\newcommand{\code}[1]{{\small\texttt{#1}}}
+\newcommand{\pkg}[1]{{\normalfont\textsf{#1}}}
+\newcommand{\var}[1] {{\normalfont\textbf{#1}}}
+
+\newcommand{\Cm}{$C_m(\phi_P, \phi_Q)\ $}
+
+
+%% In order to get singlespacing, uncomment the line below.
+%\renewcommand{\doublespacing}{\singlespacing}
+
+%%------------------------------------------------------------------%%
+
+\begin{document}  % required
 \SweaveOpts{concordance=TRUE}
+\frontmatter      % required
 
-\title{{\bf\Large Data Generation and Estimation for Axially Symmetric Processes on the Sphere }}
-
-
-\author{Chris Vanlangenberg\footnote{cdvanlan@uncg.edu} \\
-\bigskip
-Advisor: Dr. Haimeng Zhang\footnote{h\_zhang5@uncg.edu}\\ \small{University of North Carolina at Greensboro}\\
-\small \today}
-
-\maketitle 
-\thispagestyle{empty}
+%%------------------------------------------------------------------%%
+%% -------------------------- Abstract -----------------------------%%
+%%------------------------------------------------------------------%%
 \input{chapters/abstract.tex}
 
+%%------------------------------------------------------------------%%
+%%---------------------------- Title page --------------------------%%
+%%------------------------------------------------------------------%%
+%% The title page is required. 
+\maketitlepage  
 
-\newpage
+%%------------------------------------------------------------------%%
+%% ------------------------ Copyright page -------------------------%%
+%%------------------------------------------------------------------%%
+%% This page is required if you opt for a copyright.  Otherwise, don't
+%% include it.
+\makecopyrightpage
+
+%%------------------------------------------------------------------%%
+%%---------------------------- Dedication --------------------------%%
+%%------------------------------------------------------------------%%
+%% The dedication is often short.  Longer statements are usually in
+%% the acknowledgements.  The dedication is optional.
+
+\begin{dedication}
+In memory of my fater, Donald Anthony Vanlangenberg
+\end{dedication}
+
+%%------------------------------------------------------------------%%
+%%------------------------ Approval page  --------------------------%%
+%%------------------------------------------------------------------%%
+%% The approval page is required.  If all of your infomation is entered
+%% correctly in the contents section, this should come out correctly.
+\makeapprovalpage
+
+%%------------------------------------------------------------------%%
+%%-------------------------- Acknowledgements ----------------------%%
+%%------------------------------------------------------------------%%
+%% The acknowledgements are optional but highly recommended.  See tips
+%% for details. 
+\begin{acknowledgements}
+\textcolor{red}{Complete later...............!}
+\end{acknowledgements}
+
+%%------------------------------------------------------------------%%
+%%----------------------------- Preface ----------------------------%%
+%%------------------------------------------------------------------%%
+%% The preface is optional.
+%\begin{preface}
+%Your (optional) preface goes here.  See tips for description.
+%\end{preface}
+
+%%------------------------------------------------------------------%%
+%%---------------------- Table of Contents -------------------------%%
+%%------------------------------------------------------------------%%
+%% The table of contents is required.  
+\tableofcontents % required 
+
+
+%%------------------------------------------------------------------%%
+%%---------------------- List of Tables ----------------------------%%
+%%------------------------------------------------------------------%%
+% recommended if you have tables.  
+\listoftables   
+
+
+%%------------------------------------------------------------------%%
+%%---------------------- List of Figures ---------------------------%%
+%%------------------------------------------------------------------%%
+% recommended if you have figures
+\listoffigures   
+
+
+%%------------------------------------------------------------------%%
+%% This signifies that you are done with the frontmatter and ready to
+%% proceed to the main part.  The rest of your document goes below.
+\mainmatter % required
+
+
 %%------------------------------------------------------------------%%
 \chapter{Introduction}
 \input{chapters/Introduction_2.tex}
 
 %%------------------------------------------------------------------%%
 \chapter{Literature Review}
-\input{chapters/literature.tex}%
+\input{chapters/literature_2.tex}
 
 
 %%------------------------------------------------------------------%%
-\chapter{Covariance and Variogram Estimation on the Cricle}
+\chapter{Asymptotics of estimators on a circle}
 \input{chapters/circle_2.tex}
 
 %%------------------------------------------------------------------%%
@@ -40,12 +198,34 @@ Advisor: Dr. Haimeng Zhang\footnote{h\_zhang5@uncg.edu}\\ \small{University of N
 \input{chapters/datageneration_2.tex}
 
 %%------------------------------------------------------------------%%
-\chapter{Future Research (due August 28)}
+\chapter{Future Research}
 \input{chapters/future.tex}
 
-\bibliography{biblography}
+%%------------------------------------------------------------------%%
+%%------------------------ Bibliography ----------------------------%%
+%%------------------------------------------------------------------%%
+%% Replace the myreferences with the name of your bib file.  Then you
+%% can run bibtex as usual.  See tips for details.
+%%------------------------------------------------------------------%%
 
-\section*{\centering Appendix A } \label{appendixA}
+\bibliography{biblography}
+\bibliographystyle{amsalpha}
+
+%%------------------------------------------------------------------%%
+%%------------------------- Appendices -----------------------------%%
+%%------------------------------------------------------------------%%
+%% If you choose not to have appendices, comment out the \appendix
+%% line and the chapters below.
+%%------------------------------------------------------------------%%
+\appendix
+\chapter{Data snapshots for all Models}  \label{appendixA}
+%\section*{\centering Appendix A }
 \input{chapters/appendixA.tex}
+
+%%------------------------------------------------------------------%%
+\backmatter % required
+%%------------------------------------------------------------------%%
+%%----------------------- YOU ARE FINISHED ! -----------------------%%
+%%------------------------------------------------------------------%%
 
 \end{document}

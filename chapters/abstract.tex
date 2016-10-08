@@ -1,20 +1,23 @@
 \begin{abstract}
-\textcolor{red}{Review and update later}
 
-\noindent Global-scale processes and phenomena are of utmost importance in the geophysical sciences. Data from global networks and satellite sensors have been used to monitor a wide array of processes and variables, such as temperature, precipitation, etc. In this dissertation, we are planning to achieve explicitly the following objectives,
-
-\begin{enumerate}
-
-\item Develop both non-parametric and parametric approaches to model global data dependency.
-
-\item Generate global data based on given covariance structure.
-
-\item Develop kriging methods for global prediction.
-
-\item Explore one or more of the popularly discussed global data sets in literature such as MSU (Microwave Sounding Units) data, the tropospheric temperature data from National Oceanic and Atmospheric and TOMS (Total Ozone Mapping Spectrometer) data, total column ozone from the Laboratory for Atmospheres at NASA's Goddard Space Flight Center Administration satellite-based Microwave Sounding Unit.
-
-\end{enumerate}
-
-\noindent Global scale data have been widely studied in literature. A common assumption on describing global dependency is the second order stationarity. However, with the scale of the Earth, this assumption is in fact unrealistic. In recent years, researchers have focused on studying the so-called axially symmetric processes on the sphere, whose spatial dependency often exhibit homogeneity on each latitude, but not across the latitudes due to the geophysical nature of the Earth. In this research, we have obtained some results on the method of non-parametric estimation procedure, in particular, the method of moments, in the estimation of spatial dependency. Our initial result shows that the spatial dependency of axially symmetric processes exhibits both anti-symmetric and symmetric characteristics across latitudes. We will also discuss detailed methods on generating global data and finally we will outline our methodologies on kriging techniques to make global prediction.
+Data from global networks and satellite sensors have been used to monitor a wide array of processes and variables, such as temperature, precipitation, etc. The modeling and analysis of global data has been extensively studied in the realm of spatial statistics in recent years. In this dissertation, we present our research in the following two areas. In the first project we consider the asymptotics of the popularly used covariance and variogram estimators based on Method of Moments (MOM) for stationary processes on the circle. Although it has been known that such estimators are asymptotically unbiased and consistent when modeling the stationary process on Euclidean spaces, our findings on the circle seem to contradict these results. Specifically, we show that the MOM covariance estimator is biased and the true covariance function may not be identifiable based on this estimator. On the other hand, the MOM variogram estimator is unbiased but inconsistent under the assumption of Gaussianity. Our second research focus is on global data generation. Our proposed parametric models generalize some of existing parametric models to capture the variation across latitudes when modeling the covariance structure of axially symmetric processes on the sphere. We demonstrate that the axially symmetric data on the sphere can be decomposed as Fourier series on circles, where the Fourier random coefficients can be expressed as circularly-symmetric complex random vectors. We develop an algorithm to generate axially symmetric data that follows the given covariance structure. All of the above theories and results are supplemented via simulations. 
 
 \end{abstract}
+
+% \textcolor{red}{Review and update later}
+% 
+% \noindent Global-scale processes and phenomena are of utmost importance in the geophysical sciences. Data from global networks and satellite sensors have been used to monitor a wide array of processes and variables, such as temperature, precipitation, etc. In this dissertation, we are planning to achieve explicitly the following objectives,
+% 
+% \begin{enumerate}
+% 
+% \item Develop both non-parametric and parametric approaches to model global data dependency.
+% 
+% \item Generate global data based on given covariance structure.
+% 
+% \item Develop kriging methods for global prediction.
+% 
+% \item Explore one or more of the popularly discussed global data sets in literature such as MSU (Microwave Sounding Units) data, the tropospheric temperature data from National Oceanic and Atmospheric and TOMS (Total Ozone Mapping Spectrometer) data, total column ozone from the Laboratory for Atmospheres at NASA's Goddard Space Flight Center Administration satellite-based Microwave Sounding Unit.
+% 
+% \end{enumerate}
+% 
+% \noindent Global scale data have been widely studied in literature. A common assumption on describing global dependency is the second order stationarity. However, with the scale of the Earth, this assumption is in fact unrealistic. In recent years, researchers have focused on studying the so-called axially symmetric processes on the sphere, whose spatial dependency often exhibit homogeneity on each latitude, but not across the latitudes due to the geophysical nature of the Earth. In this research, we have obtained some results on the method of non-parametric estimation procedure, in particular, the method of moments, in the estimation of spatial dependency. Our initial result shows that the spatial dependency of axially symmetric processes exhibits both anti-symmetric and symmetric characteristics across latitudes. We will also discuss detailed methods on generating global data and finally we will outline our methodologies on kriging techniques to make global prediction.
