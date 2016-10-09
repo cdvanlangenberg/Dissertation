@@ -30,10 +30,12 @@ Since 1978 Microwave Sounding Units (MSU) measure radiation emitted by the earth
 \label{MSU_data}
 \centering
 \includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/MSU_data.pdf}
-\caption{MSU data observed (without removing any spatial trends) in August 2002 : resolution $2.5^\circ \mbox{ latitude} \times 2.5^\circ \mbox{ longitude}$ (10368 gridded points).}
+\caption[The MSU data were observed in August 2002 at $2.5^\circ \mbox{latitude} \times 2.5^\circ \mbox{longitude}$]{The MSU data were observed in August 2002 at $2.5^\circ \mbox{latitude} \times 2.5^\circ \mbox{longitude}$ with 10368 total number of observations.}
 \end{figure}
+
 \vfill
- The MSU data were observed at $2.5^\circ \mbox{latitude} \times 2.5^\circ \mbox{longitude}$ with total number of data observations of size 10368.
+
+
 
 %%%%%%%%%%%%%%%%% below graph is not required
  % \begin{figure}[H]
@@ -58,12 +60,14 @@ Since 1978 Microwave Sounding Units (MSU) measure radiation emitted by the earth
 		\caption{variance at each latitude}
 		\label{MSU_data_var_lat}
 	\end{subfigure}
-	\caption[MSU data distribution at each latitude (data between $60^\circ S$ and $60^\circ N$ were considered)]{MSU data distribution at each latitude (data between $60^\circ S$ and $60^\circ N$ were considered)}
+	\caption[MSU data distribution at each latitude (data between $60^\circ S$ and $60^\circ N$]{MSU data distribution at each latitude (data between $60^\circ S$ and $60^\circ N$ were considered)}
 	\label{compare_varigram_sim_2}
 \end{figure}
 
 
 Level 3 Total Ozone Mapping Spectrometer (TOMS) data \footnote{\url{http://disc.sci.gsfc.nasa.gov/data/datapool/TOMS}} is another popluar global data set discussed literature which has more than 20000 sapatial points (gridded points) (\cite{Stein2007}, \cite{CressieJohannesson2008}, \cite{JunStein2008}). There were some missing values in this data set. \cite{Stein2007} used the average of 8 neighboring locations to replace the missing values. They used spherical harmonics with associated Legendre polynomials of up to 78 covariates to remove the spatial trends to study axially symmetry (discussed in chapter 4) of the global data.
+
+\vfill
 
 % Extracted from \cite{Stein2007} ``The Nimbus-7 satellite carried a Total Ozone Mapping Spectrometer (TOMS) instrument that measured total column ozone daily from November 1, 1978 to May 6, 1993. This satellite followed a Sun-synchronous polar orbit with an orbital frequency of 13.825 orbits a day (cycle time about 104 minutes). As the satellite orbited, a scanning mirror repeatedly scanned across a track about 3000 km wide, each track yielding 35 total column ozone measurements. This version of the data is known as Level 2 and is . "
 
@@ -72,7 +76,7 @@ Level 3 Total Ozone Mapping Spectrometer (TOMS) data \footnote{\url{http://disc.
 \label{TOMS_data}
 \centering
 \includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/TOMS_data.pdf}
-\caption{TOMS data: resolution $1^\circ \mbox{latitude } \times 1.25^\circ \mbox{ longitude}$ in May, 1-6 1990. The instrument used backscattered sunlight, therefore measurements were not available south of $73^\circ S$ during this week.}
+\caption [TOMS data: resolution $1^\circ \mbox{latitude } \times 1.25^\circ \mbox{ longitude}$ in May, 1-6 1990.]{TOMS data: resolution $1^\circ \mbox{latitude } \times 1.25^\circ \mbox{ longitude}$ in May, 1-6 1990. The instrument used backscattered sunlight, therefore measurements were not available south of $73^\circ S$ during this week.}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,29 +93,31 @@ Level 3 Total Ozone Mapping Spectrometer (TOMS) data \footnote{\url{http://disc.
 		\caption{variance at each latitude}
 		\label{TOMS_data_var_lat}
 	\end{subfigure}
-	\caption[TOMS data distribution at each latitude (data between $50^\circ S$ and $50^\circ N$ were considered)]{TOMS data distribution at each latitude (data between $50^\circ S$ and $50^\circ N$ were considered)}
+	\caption[TOMS data distribution at each latitude (data between $50^\circ S$ and $50^\circ N$]{TOMS data distribution at each latitude (data between $50^\circ S$ and $50^\circ N$ were considered)}
 	\label{compare_varigram_sim_2}
 \end{figure}
 
 
 Both MSU and TOMS data demonstrate strong variation when it is closer to Earth's poles. This shows the complexity of geospatial data. In addition, collecting geospatial data could be very expensive and time consuming. Next we discuss about the challenges when modeling spatial data.
-\\
 
- \begin{figure}[H]
- \centering
- \includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/TOMS_data_latitude.pdf}
- \caption{TOMS data: data distribution at each latitude (data between $50^\circ S$ and $50^\circ N$ were considered)}
- \label{TOMS_data_latitude}
- \end{figure}
 
- \begin{figure}[H]
- \centering
- \includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/TOMS_data_var_lat.pdf}
- \caption{TOMS data: between $50^\circ S$ and $50^\circ N$, the variance at each latitude (variance is almost zero near the equator)}
- \label{TOMS_data_var_lat}
- \end{figure}
+ % \begin{figure}[H]
+ % \centering
+ % \includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/TOMS_data_latitude.pdf}
+ % \caption[OMS data: data distribution at each latitude (data between $50^\circ S$]{TOMS data: data distribution at each latitude (data between $50^\circ S$ and $50^\circ N$ were considered)}
+ % \label{TOMS_data_latitude}
+ % \end{figure}
+ % 
+ % \begin{figure}[H]
+ % \centering
+ % \includegraphics [width=0.8\textwidth, keepaspectratio]{graphs/TOMS_data_var_lat.pdf}
+ % \caption{TOMS data: between $50^\circ S$ and $50^\circ N$, the variance at each latitude (variance is almost zero near the equator)}
+ % \label{TOMS_data_var_lat}
+ % \end{figure}
 
 % \subsection{Challenges}
+
+
 
 \section{Literature review}
 
@@ -132,7 +138,7 @@ Exponential & $\sigma^2exp\{-(h/\phi)\}$ & $\phi, \sigma^2$  \\
 Gaussian & $\sigma^2exp \{-(h/\phi)^2\}$ & $\phi, \sigma^2$  \\ \hline
 %Power* & $\sigma^2(C_0-(h/\phi)^{\alpha}$ & $\phi, \sigma^2$ \\ \hline
 \end{tabular}
-\caption{Commonly used covariance models in $\R^3$} %* valid if $\alpha\in [0,2]$ }
+\caption[Commonly used covariance models in $\R^3$]{Commonly used covariance models in $\R^3$} %* valid if $\alpha\in [0,2]$ }
 \end{table}
 
 However, this can have unforeseen impacts, such as making use of models that are valid in $R^d$ but in fact might not be valid under spherical coordinate systems. \cite{HuangZhangRobeson2011} have investigated some of commonly used covariance models that are valid in $R^d$, and they pointed out that many of those are actually invalid on the sphere. In particular they indicated (later proved by \cite{Gneiting2013}) that the commonly used $Mat\acute{e}rn$ covariance model is not valid if the smoothness parameter ($\nu$) is greater than 0.5, when modeling the homogeneous processes on the Earth. \\

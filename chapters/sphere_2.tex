@@ -88,10 +88,9 @@ The construction of covariance models is critical for spatial prediction. Howeve
 			$(1+\theta^2/a^2)^{-1}$ &  No      \\ [2ex] Hole - effect & $\sin
 			a\theta / \theta$ & No    \\ \hline \hline
 		\end{tabular}
-		\caption{Validity of covariance functions on the sphere, $a >
-			0,\theta \in [0,\pi]$. \\ $^*$When $\alpha \in (0,1]$, power model is
-				valid on the sphere  for some $c_0 \ge \int_0^\pi
-				(\theta/a)^{\alpha} \sin \theta d \theta$.} \label{tab:t1}				
+		\caption [Validity of covariance functions on the sphere]{Validity of covariance functions on the sphere, $a >0,\theta \in [0,\pi]$.\\
+		$^*$When $\alpha \in (0,1]$, power model is valid on the sphere  for some $c_0 \ge \int_0^\pi
+				(\theta/a)^{\alpha} \sin \theta d \theta$.} \label{tab:cov_sphere}				
 		\end{table}
 			
 Furthermore, they conjectured (later proved by \cite{Gneiting2013}) that the Mat$\acute{e}$rn covariance function is only valid on the sphere when the smoothness parameter $\nu\in(0,1/2]$. Other way of constructing the valid homogeneous covariance function on the sphere is by using the valid covariance function in $R^3$. Specifically, \cite{Yadrenko1983} showed that if $K(\cdot)$ is valid isotropic covariance function on $\R^3$ then
@@ -327,7 +326,7 @@ where $\Theta=\Delta\lambda+u(\phi_P-\phi_Q) \in [0,2\pi ] $, $C_1 > 0, C_2 > 0,
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.9\textwidth]{graphs/all_covariance_models}
-				\caption[The covariance between $30^0S$ and $50^0N$ (latitude $60^0$ and $140^0$) of three covariance models] {The covariance between $30^0S$ and $50^0N$ (latitude $60^0$ and $140^0$) of three covariance models with exponential family $ i.e. \tilde{C}(\phi_P, \phi_Q)$ given by \ref{Cm_model1} over 100 longitudes, for simplicity fixed $C_1 = C_2 = a = u = 1$ and $p = 0.5$.}
+				\caption[The covariance between $30^0S$ and $50^0N$ (latitude $60^0$ and $140^0$) of three] {The covariance between $30^0S$ and $50^0N$ (latitude $60^0$ and $140^0$) of three covariance models with exponential family $ i.e. \tilde{C}(\phi_P, \phi_Q)$ given by \ref{Cm_model1} over 100 longitudes, for simplicity fixed $C_1 = C_2 = a = u = 1$ and $p = 0.5$.}
 			\end{figure}
 				
 {\bf Remark 1.} The parameters $C_1, C_2, a, p$ are scaling parameters of the covariance functions and $u$ is a location parameter. All covariance models have a similar pattern and share one property, when there is no location shift ($u = 1$) the maximum of $R(P,Q)$ occurs at $\lambda_{max} = |\phi_P -\phi_Q|$ and the minimum of $R(P,Q)$ occurs at $\lambda_{min} = \pi + \lambda_{max}$.  \\
@@ -335,7 +334,7 @@ where $\Theta=\Delta\lambda+u(\phi_P-\phi_Q) \in [0,2\pi ] $, $C_1 > 0, C_2 > 0,
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.9\textwidth]{graphs/parameters_model1_2}
-				\caption[Covariance distribution for different parameters using model1:] {Covariance distribution for different parameter using model1:  (a)-parameter $p$, (b)-parameter $a$, (c)-parameter $C1$ (similar pattern for parameter $C2$), (d)-parameter u}
+				\caption[Covariance distribution for different parameter using model1:] {Covariance distribution for different parameter using model1:  (a)-parameter $p$, (b)-parameter $a$, (c)-parameter $C1$ (similar pattern for parameter $C2$), (d)-parameter u}
 				\label{fig_parameter_comp}
 			\end{figure}
 			
