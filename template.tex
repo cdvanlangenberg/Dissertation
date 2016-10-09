@@ -22,6 +22,8 @@
 \usepackage{framed}
 \usepackage{subcaption}
 \usepackage{amsthm}
+\usepackage{subcaption}
+%\usepackage[font=doublespacing]{caption}
 
 %\doublespacing
 \pagestyle{empty}
@@ -43,6 +45,7 @@
 %\newtheorem{proof}{proof}
 \newtheorem{rmk}{Remark}
 \newcommand{\rmark}[1]{\begin{rmk}{#1}\end{rmk}}
+\newcommand{\noi}{\noindent}
 
 \numberwithin{equation}{section}
 \renewcommand{\footrulewidth}{0.1pt}
@@ -69,12 +72,10 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\pd}{positive definite }
-
-
+\newcommand{\cov}{covariance }
 
 \newcommand{\code}[1]{{\small\texttt{#1}}}
 \newcommand{\pkg}[1]{{\normalfont\textsf{#1}}}
 \newcommand{\var}[1] {{\normalfont\textbf{#1}}}
-\newcommand{\Cm}{$C_m(\phi_P, \phi_Q)\ $}
 
-\newcommand{\jun}{\cite{JunStein2008}}
+\newcommand{\Cm}{$C_m(\phi_P, \phi_Q)\ $}

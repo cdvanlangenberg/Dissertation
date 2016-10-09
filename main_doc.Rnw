@@ -178,7 +178,7 @@ In memory of my fater, Donald Anthony Vanlangenberg
 
 %%------------------------------------------------------------------%%
 \chapter{Introduction}
-\input{chapters/Introduction_2.tex}
+\input{chapters/Introduction_3.tex}
 
 %%------------------------------------------------------------------%%
 \chapter{Literature Review}
@@ -195,7 +195,7 @@ In memory of my fater, Donald Anthony Vanlangenberg
 
 %%------------------------------------------------------------------%%
 \chapter{Global Data Generation and Estimation on the Sphere}
-\input{chapters/datageneration_2.tex}
+\input{chapters/datageneration_3.tex}
 
 %%------------------------------------------------------------------%%
 \chapter{Future Research}

@@ -1,0 +1,51 @@
+\input{template.tex}
+
+\begin{document}
+\bibliographystyle{apalike}
+\SweaveOpts{concordance=TRUE}
+
+\title{{\bf\Large Data Generation and Estimation for Axially Symmetric Processes on the Sphere }}
+
+
+\author{Chris Vanlangenberg\footnote{cdvanlan@uncg.edu} \\
+\bigskip
+Advisor: Dr. Haimeng Zhang\footnote{h\_zhang5@uncg.edu}\\ \small{University of North Carolina at Greensboro}\\
+\small \today}
+
+\maketitle 
+\thispagestyle{empty}
+\input{chapters/abstract.tex}
+
+
+\newpage
+%%------------------------------------------------------------------%%
+\chapter{Introduction}
+\input{chapters/Introduction_3.tex}
+
+%%------------------------------------------------------------------%%
+\chapter{Literature Review}
+\input{chapters/literature_2.tex}%
+
+
+%%------------------------------------------------------------------%%
+\chapter{Asymptotics of estimators on a circle}
+\input{chapters/circle_2.tex}
+
+%%------------------------------------------------------------------%%
+\chapter{Parametric Models on a Sphere}
+\input{chapters/sphere_2.tex}
+
+%%------------------------------------------------------------------%%
+\chapter{Global Data Generation and Estimation on the Sphere}
+\input{chapters/datageneration_3.tex}
+
+%%------------------------------------------------------------------%%
+\chapter{Future Research}
+\input{chapters/future.tex}
+
+\bibliography{biblography}
+
+\section*{\centering Appendix A } \label{appendixA}
+\input{chapters/appendixA.tex}
+
+\end{document}
