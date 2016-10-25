@@ -6,39 +6,36 @@
 %%-------------------------Random process on sphere---------------------------------------%%
 
 %%------------------------------------------------------------------%%
-\section{Random process on a sphere}
+\section{Random Process on a Sphere}
 %%------------------------------------------------------------------%%
 	
-Suppose $X \in \{X(P): P\in S^2\}$ ($S^2$ unit sphere), defined in a common probability space, where $P=(\lambda, \phi) \in S^2$ with longitude $\lambda \in [-\pi, \pi)$ and latitude $\phi \in [0, \pi]$. Suppose the process is continuous in quadratic mean with respect to the location $P$ and has finite second moment, then the process can be represented by spherical harmonics (\cite{Jones1963},\cite{LiNorth1997, Huang2012}), with the sum converging in mean squares.
-			
-	\beq \nonumber
+Suppose the process $X \in \{X(P): P\in \Sp^2\}$ ($\Sp^2$ unit sphere), defined in a common probability space, where $P=(\lambda, \phi) \in \Sp^2$ with longitude $\lambda \in [-\pi, \pi)$ and latitude $\phi \in [0, \pi]$, is continuous in quadratic mean with respect to the location $P$ and has finite second moment, then it can be represented by spherical harmonics (\cite{Jones1963},\cite{LiNorth1997, Huang2012}), with the sum converging in mean squares.
+	\[
 	X(P) = \sum_{\nu=0}^\infty \sum_{m=-\nu}^{\nu} Z_{\nu,m} e^{i m \lambda} P_{\nu}^m (\cos \phi).
-	\eeq
+	\]
 Here $P_{\nu}^m(\cdot)$ are normalized associated Legendre polynomials such that their squared integral on $[-1, 1]$
 is 1, and $Z_{\nu,m}$ are complex-valued coefficients satisfying	
-	\beq \nonumber
-	Z_{\nu,m} = \int_{S^2} X(P) e^{-im \lambda} P_{\nu}^m (\cos \phi) d P.
-	\eeq
+	\[
+	Z_{\nu,m} = \int_{\Sp^2} X(P) e^{-im \lambda} P_{\nu}^m (\cos \phi) d P.
+	\]
 				
 	Without loss of generality, we suppose that the process $X(P)$ is with zero mean, which implies $E(Z_{\nu,m}) = 0$. Let $P = (\lambda_P, \phi_P)$ and $Q=(\lambda_Q, \phi_Q)$ be two arbitrary locations on the sphere, the covariance function of the process is given by
 	\begin{eqnarray*} \label{rpq_1}
 		R(P, Q) &=& \mbox{E}(X(P) \overline{X(Q)}) \\
 		&=& \sum_{\nu=0}^\infty \sum_{\mu=0}^\infty \sum_{m=-\nu}^{\nu} \sum_{n=-\mu}^{\mu} \mbox{E}(Z_{\nu,m} \overline{Z}_{\mu,n}) e^{im \lambda_P} P_{\nu}^m(\cos \phi_P) e^{-i n \lambda_Q} P_{\mu}^n (\cos \phi_Q),
 	\end{eqnarray*}
-
-where $\bar{Z}$ denotes the complex conjugate of $Z$. Note that the continuity of $X(P)$ on every point $P$ implies that $R(P, Q)$ is continuous at all pairs of $(P, Q)$ \cite[page 83]{Leadbetter1967}. \\
-	
+\noi where $\bar{Z}$ denotes the complex conjugate of $Z$. Note that the continuity of $X(P)$ on every point $P$ implies that $R(P, Q)$ is continuous at all pairs of $(P, Q)$ \cite[page 83]{Leadbetter1967}.
 	
 	%%------------------------------------------------------------------%%
-	\subsection{\bf Homogeneous covariance functions on sphere}
+	\subsection{Homogeneous Covariance Functions on Sphere}
 	%%------------------------------------------------------------------%%
 	
-Under the assumption of homogeneity (or isotropy), the covariance function of a random process $X(\cdot)$ on $S^2$ is invariant under the rotations. More specifically, a homogeneous random process on the sphere satisfies
+Under the assumption of homogeneity (or isotropy), the covariance function of a random process $X(\cdot)$ on $\Sp^2$ is invariant under the rotations. More specifically, a homogeneous random process on the sphere satisfies
 	\begin{eqnarray*}
-	E(X(P)) &=& \mu \quad \mbox{for any } P \in S^2, \\
+	E(X(P)) &=& \mu \quad \mbox{for any } P \in \Sp^2, \\
 		Cov(X(P),X(Q)) &=& C(\theta_{PQ}),
 	\end{eqnarray*}
-where $\theta_{PQ}$ is the spherical angle between two locations $P, Q$, which is given by 
+where $\theta_{PQ}$ is the spherical angle between two locations $P, Q$, given by 
 	\begin{eqnarray*}
 		\theta_{PQ}  = \arccos\left(\sin(\phi_P)\sin(\phi_Q) + \cos(\phi_P)\cos(\phi_Q)\cos(\lambda_P-\lambda_Q)\right).
 	\end{eqnarray*}
@@ -47,13 +44,14 @@ Parallel to the requirement for a valid covariance function in $\R^d$, a valid c
 	\begin{eqnarray*}
 	\sum_{i,j=1}^{N} a_i a_j C(\theta_{P_iP_j}) \ge 0,
     \end{eqnarray*}
-for any integer $N$, any constants $a_1, a_2, \ldots, a_N$, and any locations $P_1, P_2, \ldots, P_N \in S^2$. \\
+for any integer $N$, any constants $a_1, a_2, \ldots, a_N$, and any locations $P_1, P_2, \ldots, P_N \in \Sp^2$. \\
 
-According to \cite{schoenberg1942}, a real continuous function $C(\theta)$ is a valid covariance function on $S^2$ if and only if it can be written in the following form
-	\begin{eqnarray*}
-	C(\theta) = \sum_{k = 0}^\infty c_k P_k(\cos\theta), 
+According to \cite{schoenberg1942}, a real continuous function $C(\theta)$ is a valid covariance function on $\Sp^2$ if and only if it can be written in the following form
+	
+	\begin{eqnarray*} \label{covs2_sum}
+	C(\theta) = \sum_{k = 0}^\infty c_k P_k(\cos\theta) \quad \theta \in [0,\pi],
 	\end{eqnarray*}
-where $P_k(\cdot)$ is the Legendre polynomial, and $\forall c_k\ge 0$ and $\sum_k c_k < \infty$. A general result of the above representation on $S^d$ can also be found in \cite{schoenberg1942}. \\
+\noi where $P_k(\cdot)$ is the Legendre polynomial, and $\forall c_k\ge 0$ and $\sum_k c_k < \infty$. A general result of the above representation on $\Sp^d$ can also be found in \cite{schoenberg1942}. \\
 	
 Note the Legendre polynomials $P_k(\cdot)$ are orthogonal in the following sense
 	\[
@@ -65,13 +63,16 @@ with $\delta_{nm} = 1$ if $n=m$ and 0 otherwise. Hence the coefficients $c_k$ ca
 	\eeq
 One can directly use the above integral to evaluate the validity of a covariance function on the sphere by checking if $c_k$ is non-negative and $\sum_k c_k < \infty$ . \\
 	
-The construction of covariance models is critical for spatial prediction. However, the covariance models that are valid on $\R^d$ may not be valid on the sphere ($S^2$). For example, \cite{HuangZhangRobeson2011} evaluated the validity of commonly used covariance that are valid on $\R^d$ and summarized their findings in the following table.
+The construction of covariance models is critical for spatial prediction. However, the covariance models that are valid on $\R^d$ may not be valid on the sphere ($\Sp^2$). For example, \cite{HuangZhangRobeson2011} evaluated the validity of commonly used covariance that are valid on $\R^d$ and summarized their findings in the following table.
 
 	\begin{table}[H]
 		\label{valid_cov_models}
 		\centering
+		\caption [Validity of Covariance Functions on The Sphere]{Validity of covariance functions on the sphere, $a >0,\theta \in [0,\pi]$}
+		\label{tab:cov_sphere}
+		\vskip 16pt
 		\begin{tabular}[htb]{lll} \hline \hline
-			Model & Covariance function & Validity  $S^2$           \\   \hline Spherical  &
+			Model & Covariance function & Validity  $\Sp^2$           \\   \hline Spherical  &
 			$\left(1-\frac{3\theta}{2a} + \frac{1}{2}
 			\frac{\theta^3}{a^3}\right){\bf 1}_{(\theta \le a)}$ & Yes   \\
 			[2ex]
@@ -80,7 +81,7 @@ The construction of covariance models is critical for spatial prediction. Howeve
 			$\exp \{-\left(\frac{\theta}{a}\right) \}$ & Yes \\ [2ex]
 			\hspace{0.2in} Gaussian & $\exp\left\{-\left(\frac{\theta}{a} \right)^2
 			\right\}$  & No \\ [2ex]
-			Power$^*$   & $c_0 - (\theta/a)^\alpha$ & Yes for  $\alpha \in (0,1] $  \\
+			Power$^*$  & $c_0 - (\theta/a)^\alpha$ & Yes for  $\alpha \in (0,1] $  \\
 			& & No for $\alpha \in (1,2]$ \\ [2ex]
 			Radon transform of order 2         & $e^{-\theta/a}(1+\theta/a)$ &
 			No        \\ [2ex] Radon transform of order 4         &
@@ -88,56 +89,54 @@ The construction of covariance models is critical for spatial prediction. Howeve
 			$(1+\theta^2/a^2)^{-1}$ &  No      \\ [2ex] Hole - effect & $\sin
 			a\theta / \theta$ & No    \\ \hline \hline
 		\end{tabular}
-		\caption [Validity of covariance functions on the sphere]{Validity of covariance functions on the sphere, $a >0,\theta \in [0,\pi]$.\\
-		$^*$When $\alpha \in (0,1]$, power model is valid on the sphere  for some $c_0 \ge \int_0^\pi
-				(\theta/a)^{\alpha} \sin \theta d \theta$.} \label{tab:cov_sphere}				
+	\vskip 8pt	
+$^*$When $\alpha \in (0,1]$, power model is valid on the sphere  for some $c_0 \ge \int_0^\pi (\theta/a)^{\alpha} \sin \theta d \theta$.
 		\end{table}
-			
-Furthermore, they conjectured (later proved by \cite{Gneiting2013}) that the Mat$\acute{e}$rn covariance function is only valid on the sphere when the smoothness parameter $\nu\in(0,1/2]$. Other way of constructing the valid homogeneous covariance function on the sphere is by using the valid covariance function in $R^3$. Specifically, \cite{Yadrenko1983} showed that if $K(\cdot)$ is valid isotropic covariance function on $\R^3$ then
-		\[
-			C(\theta) = K(2\sin(\theta/2))
-		\]
-is a valid isotropic covariance function on the unit sphere, where $\theta$ is the greatest circle distance on the sphere.\\
+		 
+Furthermore, they conjectured (later proved by \cite{Gneiting2013}) that the Mat$\acute{e}$rn covariance function is only valid on the sphere when the smoothness parameter $\nu\in(0,1/2]$. Other way of constructing the valid homogeneous covariance function on the sphere is by using the valid covariance function in $\R^3$. Specifically, \cite{Yadrenko1983} showed that if $K(\cdot)$ is valid isotropic covariance function on $\R^3$ then
+\[
+	C(\theta) = K(2\sin(\theta/2))
+\]
+is a valid isotropic covariance function on the unit sphere, where $\theta$ is the greatest circle distance on the sphere.
 			
 		%%------------------------------------------------------------------%%
-		\subsection{Variogram on a sphere}
+		\subsection{Variogram on a Sphere}
 		%%------------------------------------------------------------------%%
 			
-			
-Parallel to the case of circle, if a random process $X(\cdot)$ on a sphere is intrinsically stationary on $S^2$, then one has $E(X(P))=\mu$, an unknown constant for all $P\in S^2$ and the variogram function between any two locations $P, Q \in S^2$ depends only on the spherical angle $\theta_{PQ}$			
+Parallel to the case of circle, if a random process $X(\cdot)$ on a sphere is intrinsically stationary on $\Sp^2$, then one has $E(X(P))=\mu$, an unknown constant for all $P\in \Sp^2$ and the variogram function between any two locations $P, Q \in \Sp^2$ depends only on the spherical angle $\theta_{PQ}$	
 		\[
-			Var(X(P)-X(Q)) = 2\gamma(\theta_{PQ}) \quad , \forall P, Q \in S^2
+			Var(X(P)-X(Q)) = 2\gamma(\theta_{PQ}), \quad \forall P, Q \in \Sp^2
 		\]
-			
 		The variogram function is conditionally negative definite, that is,
 		\[
 			\sum_{i,j=1}^{N} a_i a_j 2\gamma(\theta_{P_iP_j}) \le 0,
 		\]
-			
-for any integer $N$, any constants $a_1, a_2, \ldots, a_N$ with $\sum_i a_i = 0$, and any locations $P_1, P_2, \ldots P_N \in S^2$. Immediately from \ref{covs2_sum}, for a continuous function $2\gamma(\cdot)$ with $\gamma(0)=0$, the variogram is negative definite if and only if
+for any integer $N$, any constants $a_1, a_2, \ldots, a_N$ with $\sum_i a_i = 0$, and any locations $P_1, P_2, \ldots P_N \in \Sp^2$. Immediately from \eqref{covs2_sum}, for a continuous function $2\gamma(\cdot)$ with $\gamma(0)=0$, the variogram is negative definite if and only if
 		\beq
-		\gamma(\theta) = \sum_{k = 0}^\infty c_k(1-P_k(\cos\theta))
+		\gamma(\theta) = \sum_{k = 0}^\infty c_k(1-P_k(\cos\theta)), \quad \theta [0,\pi]
 		\eeq
 where $P_{k}(\cdot)$ are Legendre polynomials, $\forall c_k\ge 0$ and $\sum c_k < \infty$. \\
 			
-It is known that in $\R^d$, one can always obtain the variogram from the stationary covariance function with $\gamma(\theta) = C(0) - C(\theta)$ but not the converse. However, in $S^2$ \cite{Yaglom1961} argued that for a valid $\gamma(\theta), \theta \in [0,\pi]$ one can always construct the covariance function $C(\theta)=c_0-\gamma(\theta)$ for some $c_0 \ge \int_0^{\pi} \gamma(\theta)\sin(\theta)d\theta$. \\
+It is known that in $\R^d$, one can always obtain the variogram from the stationary covariance function with $\gamma(\theta) = C(0) - C(\theta)$ but not the converse. However, in $\Sp^2$ \cite{Yaglom1961} argued that for a valid $\gamma(\theta), \theta \in [0,\pi]$ one can always construct the covariance function $C(\theta)=c_0-\gamma(\theta)$ for some $c_0 \ge \int_0^{\pi} \gamma(\theta)\sin(\theta)d\theta$. \\
 			
-Here is the outline of this chapter. We first introduce axially symmetric random processes on the sphere and the representation for its covariance function. Next, we propose parametric models to generalize some of existing parametric models to capture the variation across latitudes when modeling the covariance structure of axially symmetric processes on the sphere. Finally, we discuss the properties of the cross-covariance and cross-variogram estimators based on Method of Moments.\\
+Here is the outline of this chapter. We first introduce axially symmetric random processes on the sphere and the representation for the covariance function. Next, we propose parametric models to generalize some of existing parametric models to capture the variation across latitudes when modeling the covariance structure of axially symmetric processes on the sphere. Finally, we discuss the properties of the cross-covariance and cross-variogram estimators based on Method of Moments.
 		
 		
 		%%------------------------------------------------------------------%%
-		\section{Axial symmetry}
+		\section{Axial Symmetry}
 		%%------------------------------------------------------------------%%
 
-For an axially symmetric process $X(P), P \in S^2$ on the sphere, the covariance function $R(P,Q)$ at two locations $P=(\phi_P, \lambda_P), Q(\phi_Q,\lambda_Q) \in S^2$ is given by 					 \[
+For an axially symmetric process $X(P), P \in \Sp^2$ on the sphere, the covariance function $R(P,Q)$ at two locations $P=(\phi_P, \lambda_P), Q(\phi_Q,\lambda_Q) \in \Sp^2$ is given by 					 
+\[
 R(\phi_P, \phi_Q, \lambda_P, \lambda_Q) = R(\phi_P, \phi_Q, \lambda_P-\lambda_Q).
 \]
-Following the discussion given in (\cite{Huang2012}), the covariance function can be expressed as the following summations.					
+Following the discussion given in (\cite{Stein2007, Huang2012}), the covariance function can be expressed as the following summations.					
 		\begin{eqnarray} \label{axially-symmetry-cov}
 			R(P,Q)  & = & R(\phi_P, \phi_Q, \lambda_P-\lambda_Q) \nonumber \\
 			& = & \sum_{m=-\infty}^{\infty} \sum_{\nu=|m|}^\infty \sum_{\mu=|m|}^\infty f_{\nu,\mu,m} e^{im (\lambda_P-\lambda_Q)} P_{\nu}^m(\cos \phi_P) P_{\mu}^m (\cos \phi_Q),
 		\end{eqnarray}
-where $f_{\nu,\mu, m} = \overline{f}_{\mu, \nu, m}$ and for each fixed integer $m$,\\ the matrix $F_m(N) = \{ f_{\nu,\mu,m} \}_{\nu,\mu=|m|,|m|+1, \ldots, N }$ must be positive definite for all $N \ge |m|$. Furthermore, if we denote
+
+\noi where the matrix $F_m(N) = \{ f_{\nu,\mu,m} \}_{\nu,\mu=|m|,|m|+1, \ldots, N }$ must be positive definite for all $N \ge |m|$ and $f_{\nu,\mu, m} = \overline{f}_{\mu, \nu, m}$ and for each fixed integer $m$. Furthermore, if we denote
 \[
 C_m(\phi_P, \phi_Q) = \sum_{\nu=|m|}^\infty \sum_{\mu=|m|}^\infty f_{\nu,\mu,m} P_{\nu}^m(\cos \phi_P) P_{\mu}^m (\cos \phi_Q),
 \]
@@ -145,7 +144,8 @@ then
 		\beq \label{R(PQ)-01}
 		R(P,Q) = R(\phi_P,\phi_Q,\Delta\lambda) = \sum_{m = -\infty}^{\infty}e^{im\Delta\lambda}C_m(\phi_P,\phi_Q) \quad m=0, \pm 1, \pm 2,...
 		\eeq
-where $\Delta\lambda = \lambda_P - \lambda_Q \in [-\pi, \pi]$ and $\phi_P, \phi_Q \in [0,\pi]$. Here the complex bivariate continuous function \Cm satisfies the following conditions.
+		
+\noi where $\Delta\lambda = \lambda_P - \lambda_Q \in [-\pi, \pi]$ and $\phi_P, \phi_Q \in [0,\pi]$. Here the complex bivariate continuous function \Cm has the following properties.
 
 		%-------------------------------------%
 		%\subsection{\bf Properties of \Cm}
@@ -155,63 +155,13 @@ where $\Delta\lambda = \lambda_P - \lambda_Q \in [-\pi, \pi]$ and $\phi_P, \phi_
 			\item $\sum_{m = -\infty}^{\infty}|C_m(\phi_P,\phi_Q)|<\infty$ for $m=0,\pm 1, \pm  2, \ldots$ and any $\phi_P, \phi_Q \in [0, \pi]$.
 		\end{itemize}
 				
-		% %-------------------------------------%
-		% \begin{thm}[Mercer's theorem (simplified version) ] \hfill \\
-		% 	%-------------------------------------%
-		% 	
-		% 	A kernal $K:[a,b]\times [a,b] \to \R$ be a symmetric continuous function that is non-negative definite,
-		% 	
-		% 	\[
-		% 		\sum_{i=1}^{n}\sum_{j=1}^{n} a_i a_j K(s, t) \ge 0 \quad \mbox{and} \quad K(s,t) = K(t,s)
-		% 	\]
-		% 	
-		% 	for all $(s,t)\in [a,b]$ and $a_i>0$. Let $T_K:L_2 \to L_2$ be an intergral operator defined by
-		% 	
-		% 	\[
-		% 		[T_Kf](\cdot) = \int_{a}^{b} K(\cdot,s)f(s)ds
-		% 	\]
-		% 	
-		% 	is positive, for all $f\in L_2$
-		% 	
-		% 	\[
-		% 		\int_{a}^{b} K(s, t)f(s)f(t)dsdt \ge 0.
-		% 	\]
-		% 	
-		% 	The corresponding orthonormal eigen functions $\psi_i\in L_2$ and non negative eigen values $\lambda_i \ge 0$ of the operator $T_k$ is defined as
-		% 	
-		% 	\[
-		% 		T_K(\psi_i(\cdot)) = \int K(\cdot, s)\psi(s)ds = \lambda_i\psi_i(\cdot), \quad \int \psi_i(\cdot)\psi_j(\cdot) = \delta_{ij}
-		% 	\]
-		% 	
-		% 	
-		% 	then the kernal $K(\cdot)$ is a uniformly convergent series in terms of eigen functions and associated eigen values of $T_k$ as follows,
-		% 	
-		% 	\[
-		% 		K(s,t) = \sum_{j=1}^{\infty} \lambda_i \psi_i(s)\psi_i(t)
-		% 	\]
-		% 	
-		% \end{thm}
-				
+		
 One can use the inverse Fourier transformation to derive $C_m(\phi_P, \phi_Q)$ based on $R(P,Q)$, 				
 		\[
-			C_m(\phi_P, \phi_Q) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R(\phi_P, \phi_Q)e^{-im\Delta\lambda} d\Delta\lambda 
+			C_m(\phi_P, \phi_Q) = \frac{1}{2\pi}\int_{-\pi}^{\pi} R(\phi_P, \phi_Q, \Delta\lambda)e^{-im\Delta\lambda} d\Delta\lambda 
         \]
-				
-			% Since \Cm is continuous and both Hermitian and positive definite, Mercer's theorem (\ref{mercer}) can be directly applied to \Cm such that there exists an orthonormal basis $\{\psi_{m,\nu}, \nu = 0,1,\ldots \}$ in $L^2$ (\cite{Huang2012}) and \Cm can be given by,
-				
-			% 	\[
-			% 	C_m(\phi_P,\phi_Q) = \sum_{\nu=0}^{\infty} \eta_{m,\nu}\psi_{m,\nu}(\phi_P)\overline{\psi_{m,\nu}(\phi_Q)},  \]
-			% 	
-			% 	% Where $\eta_{m,\nu}\ge 0$ and $\psi_{m,\nu}(\cdot)$ are the corresponding eigen values and eigen functions for \Cm.\\
-			%
-			% Now the covariance function on a sphere is given by,
-			% 		\beq \label{RPQ_orthonormal}
-			% 			R(P,Q) = \sum_{m=-\infty}^{\infty}\sum_{\nu=0}^{\infty} \eta_{m,\nu}e^{im\Delta\lambda}\psi_{m,\nu}(\phi_P)\overline{\psi_{m,\nu}(\phi_Q)},
-			% 		\eeq
-			% 		
-			% 		Where $\Delta\lambda \in [0, \pi]$, $\eta_{m,\nu}\ge 0$ and $\psi_{m,\nu}(\cdot)$ are the eigen values eigen functions of $C_m(\phi_P, \phi_Q)$ respectively.
-					
-Let $C_m(\phi_P, \phi_Q) = C_m^R(\phi_P, \phi_Q) + i C_m^I(\phi_P, \phi_Q)$. From \cite{Huang2012}, if a random process is real-valued, its corresponding covariance function $R(P,Q)$ is also real-valued and so we have \Cm $= \overline{C_{-m}(\phi_P,\phi_Q)}$. The covariance function $R(P,Q)$ on the sphere given by \ref{R(PQ)-01} can then be simplified as the following form.
+
+Let $C_m(\phi_P, \phi_Q) = C_m^R(\phi_P, \phi_Q) + i C_m^I(\phi_P, \phi_Q)$. From \cite{Huang2012}, if a random process is real-valued, its corresponding covariance function $R(P,Q)$ is also real-valued and so we have \Cm $= \overline{C_{-m}(\phi_P,\phi_Q)}$. The covariance function $R(P,Q)$ on the sphere given by \eqref{R(PQ)-01} can then be simplified as the following form.
 			\begin{eqnarray*}
 				R(P,Q) &=& C_0(\phi_P,\phi_Q) + \sum_{m=1}^{\infty} e^{-im\Delta\lambda}C_{-m}(\phi_P,\phi_Q) +  \sum_{m=1}^{\infty} e^{im\Delta\lambda}C_m(\phi_P,\phi_Q) \\
 				% &=& C_0(\phi_P,\phi_Q) + \sum_{m=1}^{\infty} c_m e^{-im\Delta\lambda}( C_m^{R}(\phi_P,\phi_Q) - i C_m^{I}(\phi_P,\phi_Q)) \\
@@ -221,13 +171,13 @@ Let $C_m(\phi_P, \phi_Q) = C_m^R(\phi_P, \phi_Q) + i C_m^I(\phi_P, \phi_Q)$. Fro
 			
 			
 			%%------------------------------------------------------------------%%
-			\subsection{\bf Longitudinally reversible processes}
+			\subsection{Longitudinally Reversible Processes}
 			%%------------------------------------------------------------------%%
 If we further assume that the covariance function $R(P, Q)$ of an axially symmetric process satisfies the following.
 			\beq
 			R(\phi_P, \phi_Q, \lambda_P-\lambda_Q) = R(\phi_P, \phi_Q, \lambda_Q-\lambda_P),
 			\eeq
-we then call the underline process to be longitudinally reversible (\cite{Stein2007}). Now the covariance function $R(P, Q)$ of a real-valued longitudinally reversible process reduces to the following.			
+we then call the underlying process to be longitudinally reversible (\cite{Stein2007}). Now the covariance function $R(P, Q)$ of a real-valued longitudinally reversible process reduces to the following.			
 			\[
 				R(P,Q) = \sum_{m=0}^{\infty} C_m(\phi_P,\phi_Q)\cos(m\Delta\lambda)
 			\]
@@ -235,53 +185,47 @@ as \Cm is real so that we have $C_{-m}(\phi_P,\phi_Q)=C_m(\phi_P,\phi_Q)$  and \
 
 				
 			%%------------------------------------------------------------------%%
-			\section{Proposed parametric models}
+			\section{Proposed Parametric Models}
 			%%------------------------------------------------------------------%%
-					
-			% \blue{How to discuss/link about other parametric models suggested by \cite{JeongJun2015}, \cite{JunStein2008}, etc... and why are we using \cite{Huang2012} and what are the advantages?} \\
 
-As discussed in Chapter 2, many covariance models that are valid in $R^d$ might not be valid in $S^2$. Therefore, it is necessary to develop parametric models that possibly reflect the topological structure of compactness of a sphere. Although the Mat\'{e}rn covariance model has been often used on modeling the global data in recent years, it has some serious drawbacks. For example, it has been shown that the homogeneous Mat\'{e}rn covariance model is not valid when the smoothness parameter is bigger than 0.5. Further modifications have been proposed in various researches, see \cite{Li2013}, \cite{JunStein2008}, \cite{JeongJun2015}, to name a few. \cite{Huang2012} discussed a new representation for the covariance structure of an axially symmetric process, and based on the parametric form of $C_m(\phi_P, \phi_Q)$, they proposed some parametric covariance models. \\
+As discussed in Section 4.2, many covariance models that are valid in $\R^d$ might not be valid in $\Sp^2$. Therefore, it is necessary to develop parametric models that possibly reflect the topological structure of compactness of a sphere. Although the Mat\'{e}rn covariance model has been often used on modeling the global data in recent years, it has some drawbacks. For example, it has been shown that the homogeneous Mat\'{e}rn covariance model is not valid when the smoothness parameter is bigger than 0.5. Further modifications have been proposed in various researches, see \cite{Li2013}, \cite{JunStein2008}, \cite{JeongJun2015}, to name a few. \cite{Huang2012} discussed a new representation for the covariance structure of an axially symmetric process, and based on the parametric form of $C_m(\phi_P, \phi_Q)$, they proposed some parametric covariance models.
 					
-The covariance function on sphere, $R(P,Q)$,  given in equation \ref{R(PQ)-01}, is clearly a function of both longitude and latitude.
-			% \cite{Huang2012} pointed out that the simplest model is the separable model can be defined as follows,				
+The covariance function on sphere, $R(P,Q)$,  given in equation \ref{R(PQ)-01}, is clearly a function of both latitude and the differences of  longitudes.
 			\[
 				R(P,Q) = f(\Delta\lambda, \phi_P,\phi_Q)
 			\]
-					
-If we assume that $C_m(\phi_P, \phi_Q) = \tilde{C}(\phi_P - \phi_Q)$ only depends on the difference of $\phi_P$ and $\phi_Q$ so that $R(P, Q) = C_1(\Delta \lambda)\tilde{C}(\phi_P - \phi_Q)$. This is a simple separable model as given in \cite{HuangZhangRobeson2011} when both covariance components are exponential
+If we assume that $C_m(\phi_P, \phi_Q) = \tilde{C}(\phi_P - \phi_Q)$ only depends on the difference of $\phi_P$ and $\phi_Q$ so that $R(P, Q) = C_1(\Delta \lambda)\tilde{C}(\phi_P - \phi_Q)$. This is a simple separable model as given in \cite{HuangZhangRobeson2011}. Here is a simple  model when both covariance components are exponential
 			\[
 				R(P, Q) = c_0e^{-a|\Delta \lambda|}e^{-b|\phi_P - \phi_Q|},
 			\]
-where $c_0 > 0$, and both $a$ and $b$ are defined as decay parameters in longitude and latitude, respectively. Obviously, the separable models are not capable to capture the covariance structure of the entire sphere. \cite{Huang2012} further proposed some non-separable covariance models by carefully choosing functions for $C_m(\phi_P, \phi_Q)$ that are valid on the sphere, which are given below.
+where $c_0 > 0$, and both $a>0$ and $b>0$ are defined as decay parameters in longitude and latitude, respectively. Obviously, the separable models are not capable to capture the covariance structure of the entire sphere. \cite{Huang2012} further proposed some non-separable covariance models by carefully choosing functions for $C_m(\phi_P, \phi_Q)$ that are valid on the sphere, which resulted in the following,
 			\begin{eqnarray}
 				R(P,Q) &=& Ae^{-a|\phi_P-\phi_Q|} \frac{1-p^2}{1-2p \cos\Theta+p^2} \label{model1} \\
 				R(P,Q) &=& Ae^{-a|\phi_P-\phi_Q|} \log\frac{1}{(1-2p\cos\Theta + p^2)} \label{model2} \\
 				R(P,Q) &=& 2Ae^{-a|\phi_P-\phi_Q|}\left(\frac{\pi^4}{90}-\frac{\pi^2\Theta^2}{12}+\frac{\pi\Theta^3}{12}-\frac{\Theta^4}{48}\right), \label{model3}
 			\end{eqnarray}
-where $A > 0, 0 < p < 1, u \in R$ are all constants, $\Theta = \Delta\lambda + u(\phi_P - \phi_Q) - 2k\pi$, and $k$ is chosen such that $\Theta \in [0,2\pi]$. \\
+where $A > 0, 0 < p < 1, u \in R$ are all constants, $\Theta = \Delta\lambda + u(\phi_P - \phi_Q) - 2k\pi$, and $k$ is chosen such that $\Theta \in [0,2\pi]$.
 			
-First notice that all of the above three covariance models depend not only the difference of longitudes, but the difference of latitudes as well. As an example, we consider the model (\ref{model1}) from \cite{Huang2012}. When $\phi_P = \phi_Q$, it reduces to
+First notice that all of the above three covariance models depend not only on the difference of longitudes, but the difference of latitudes as well. As an example, we consider the model (\ref{model1}) from \cite{Huang2012}. When $\phi_P = \phi_Q$, it reduces to
 			\beq
 			\nonumber
 			R(\phi_P, \phi_P, \Delta \lambda) = A\frac{1-p^2}{1 - 2p\cos(\Delta\lambda)+p^2}.
 			\eeq
-indicating all covariance functions on latitudes are the same. If we further set $\Delta \lambda = 0$, the variance of latitude $\phi_P$ over all latitudes can be given by,
-			\beq
-			\nonumber
+indicating all covariance functions on latitudes are the same. If we further set $\Delta \lambda = 0$, the variance of the process over all locations given by,
+			\[
 			Var(X(P)) = C\frac{1+p}{1 - p},
-			\eeq
-implying a constant variance across the entire sphere, which is unrealistic, since we have seen from MSU and TOMS data that the variance highly depends on latitudes. As a generalization of the above models, we propose the following proposition.
-\begin{prop} \label{prop_nonstationary_cov}
-Let $C(\cdot) = C(x-y)$ is the stationary covariance function on $R^d$. For simplicity, we let $f(\omega) \ge 0$ be the spectral density of $C(\cdot)$. Then
+			\]
+implying a constant variance across the entire sphere. This is unrealistic, since we have seen from MSU and TOMS data that the variance highly depends on latitudes. As a generalization of the above models, we propose the following proposition.
+\pro{ \label{prop_nonstationary_cov}
+Let $C(\cdot) = C(x-y)$ is the stationary covariance function on $\R^d$. For simplicity, we let $f(\omega) \ge 0$ be the spectral density of $C(\cdot)$. Then
 				\[
 					\tilde{C}(x, y) = C_2 - C(x) - C(y) + C(x-y),
 				\]
-with
 				\[
-					C_2 \ge \int_{-\infty}^\infty f(\omega)d\omega > 0
+				\mbox{with }	C_2 \ge \int_{-\infty}^\infty f(\omega)d\omega > 0
 				\]
-				is the nonstationary covariance function on $R^d$. \\
-\end{prop}
+				is the non-stationary covariance function on $\R^d$.
+}
 \begin{proof} by Bochner's theorem, if $f(\cdot) \ge 0$ is the spectral density of the covariance function $C(\cdot)$, we have
 				\[
 					C(x) = \int_{-\infty}^\infty e^{-ix\omega}f(\omega)d\omega.
@@ -297,13 +241,12 @@ This proves the positive definiteness of $\tilde{C}(\cdot, \cdot)$, which conclu
 
 \end{proof}
 
-					
-We apply the above proposition on the following two stationary covariance functions, 							      		
+\noi We apply the above proposition on the following two stationary covariance functions, 						
 			\begin{eqnarray*}
 				C(\phi) = Ce^{-a|\phi|} \\
 				C(\phi) = C\frac{1}{\sqrt{a^2+\phi^2}},
 			\end{eqnarray*}
-where $C > 0, a > 0$. We arrive the following two nonstationary covariance functions.  
+\noi where $C > 0, a > 0$. We arrive with the following two non-stationary covariance functions.  
 			\begin{eqnarray}
 				\label{Cm_model1}
 				\tilde{C}(\phi_P, \phi_Q) &=& C_1(C_2 - e^{-a|\phi_P|} - e^{-a|\phi_Q|} + e^{-a|\phi_P - \phi_Q|}) \\
@@ -315,7 +258,7 @@ where $C_1, a > 0,$ and $C_2 \ge 1$ to ensure the positive definiteness of the a
 				\tilde{C}(\phi_P, \phi_P) &=& C_1(C_2 - 2e^{-a|\phi_P|} + 1), \\
 				\tilde{C}(\phi_P, \phi_P) &=& C_1\left(C_2 - \frac{2}{\sqrt{a^2+\phi_P^2}} + \frac{1}{a}\right).
 			\end{eqnarray*}		
-Therefore, we propose the following covariance models for axially symmetric processes on the sphere, which generalize the models given in \cite{Huang2012} (model \ref{model1}, model \ref{model2}, and model \ref{model3}).
+Therefore, we propose the following covariance models for axially symmetric processes on the sphere, which generalize the models given in \cite{Huang2012}[model 1, model 4, model 5].
 			\begin{eqnarray}
 				R(P,Q) &=& \tilde{C}(\phi_P, \phi_Q) \frac{1-p^2}{1-2p \cos\Theta+p^2} \label{model4} \\
 				R(P,Q) &=& \tilde{C}(\phi_P, \phi_Q) \log\frac{1}{(1-2p\cos\Theta* + p^2)} \label{model5} \\
@@ -325,33 +268,37 @@ where $\Theta=\Delta\lambda+u(\phi_P-\phi_Q) \in [0,2\pi ] $, $C_1 > 0, C_2 > 0,
 					
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=0.9\textwidth]{graphs/all_covariance_models}
-				\caption[The covariance between $30^0S$ and $50^0N$ (latitude $60^0$ and $140^0$) of three] {The covariance between $30^0S$ and $50^0N$ (latitude $60^0$ and $140^0$) of three covariance models with exponential family $ i.e. \tilde{C}(\phi_P, \phi_Q)$ given by \ref{Cm_model1} over 100 longitudes, for simplicity fixed $C_1 = C_2 = a = u = 1$ and $p = 0.5$.}
+				\includegraphics[width=0.7\textwidth]{graphs/all_covariance_models}
+				\caption[The Covariance Between $30^0S$ and $50^0N$ (Latitudes $60^0$ and $140^0$) of Three] {The covariance between $30^0S$ and $50^0N$ (latitudes $60^0$ and $140^0$) of three covariance models with exponential family, $ i.e., \tilde{C}(\phi_P, \phi_Q)$ given by \eqref{Cm_model1} over 100 longitudes (we set $C_1 = C_2 = a = u = 1$, and $p = 0.5$).}
 			\end{figure}
 				
-{\bf Remark 1.} The parameters $C_1, C_2, a, p$ are scaling parameters of the covariance functions and $u$ is a location parameter. All covariance models have a similar pattern and share one property, when there is no location shift ($u = 1$) the maximum of $R(P,Q)$ occurs at $\lambda_{max} = |\phi_P -\phi_Q|$ and the minimum of $R(P,Q)$ occurs at $\lambda_{min} = \pi + \lambda_{max}$.  \\
+\rmark{The parameters $C_1, C_2, a, p$ are scaling parameters of the covariance functions and $u$ is a location parameter. All covariance models have a similar pattern and share one property. When there is no location shift ($u = 1$), the maximum of $R(P,Q)$ occurs at $\lambda_{max} = |\phi_P -\phi_Q|$ and the minimum of $R(P,Q)$ occurs at $\lambda_{min} = \pi + \lambda_{max}$. } 
 					
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.9\textwidth]{graphs/parameters_model1_2}
-				\caption[Covariance distribution for different parameter using model1:] {Covariance distribution for different parameter using model1:  (a)-parameter $p$, (b)-parameter $a$, (c)-parameter $C1$ (similar pattern for parameter $C2$), (d)-parameter u}
+				\caption[Covariance Curves For Different Parameters Using Model1:] {Covariance curves for different parameters using \cite{Huang2012}[model1]:  (a)-parameter $p$, (b)-parameter $a$, (c)-parameter $C_1$ (similar pattern for parameter $C_2$), (d)-parameter $u$}
 				\label{fig_parameter_comp}
 			\end{figure}
 			
-{\bf Remark 2.} The scaling parameter $p$ is more sensitive at supremum and infimum of the covariance models and parameters $C_1, C_2, a$ are regular scaling parameters. The parameter $u$ is a location parameter which shifts the covariance from left to right ($\Delta\lambda$) when $u>0$, but $u=0$ will provide a longitudinally reversible covariance model which is similar to Mat$\acute{e}$rn covariance model when the smoothing parameter ($\nu$) is 1/2.\\
+\rmark{The scaling parameter $p$ is more sensitive at supremum and infimum of the covariance models and parameters $C_1, C_2, a$ are regular scaling parameters. The parameter $u$ is a location parameter which shifts the covariance from left to right ($\Delta\lambda$) when $u>0$, but $u=0$ will provide a longitudinally reversible covariance model.}
 
+\vskip 24pt 
 
 			%%------------------------------------------------------------------%%
-			\section{Covariance and variogram estimators on a sphere}
+			\section{Covariance and Variogram Estimators on a Sphere}
 			%%------------------------------------------------------------------%%
 			%In contrast the cross variogram is an even function when the process is intrinsically stationary.
 
-The covariance function $R(P, Q)$ can also be termed as a cross covariance in literature, as it captures the covariance between points at two latitudes separated by $\Delta \lambda \in (0,2\pi)$. In this section, we consider the estimator for the covariance function $R(P, Q)$ based on MOM as well as its properties. In addition, we will introduce the cross variogram function on the sphere. The unbiasedness of the cross variogram estimator based on MOM will also be discussed. 	\\
+The covariance function $R(P, Q)$ can also be termed as a cross covariance in literature, as it captures the covariance between points at two latitudes with longitudes separated by $\Delta \lambda \in (-\pi,\pi)$. In this section, we consider the estimator for the covariance function $R(P, Q)$ based on MOM as well as its properties. In addition, we will introduce the cross variogram function on the sphere. The unbiasedness of the cross variogram estimator based on MOM will also be discussed.
 
+\vskip 24pt 
 
-\subsubsection{\bf Cross covariance and cross variogram functions}
+%%------------------------------------------------------------------%%
+\subsection{Cross Covariance and Cross Variogram Functions}
+%%------------------------------------------------------------------%%
+
 As discussed in \cite{Wackernagel2013}, the cross covariance function, or $R(P, Q)$, can be decomposed as the following.
-
 \begin{eqnarray*}
 R(\phi_P, \phi_Q, \Delta \lambda) &=& \frac{1}{2}(R(\phi_P, \phi_Q, \Delta \lambda) + R(\phi_P, \phi_Q, -\Delta \lambda)) \\
 & & + \frac{1}{2}(R(\phi_P, \phi_Q, \Delta \lambda) - R(\phi_P, \phi_Q, -\Delta \lambda)).
@@ -363,20 +310,22 @@ For fixed two latitudes $\phi_P$ and $\phi_Q$, the first term is an even functio
 \item $R(\phi_P, \phi_Q, -\Delta \lambda) \ne R(\phi_P, \phi_Q, \Delta \lambda)$;
 \item $R(\phi_P, \phi_Q, -\Delta \lambda) = R(\phi_Q, \phi_P, \Delta \lambda)$.
 \end{itemize}
-As a special case, when $\phi_P = \phi_Q$, which now two locations are on the same circle, the cross covariance $R(\phi_P, \phi_P, \Delta)$ is the stationary covariance function, a function of longitudinal difference ($\Delta\lambda$) only. \\
+
+As a special case, when $\phi_P = \phi_Q$, which now two locations are on the same circle, the cross covariance $R(\phi_P, \phi_P, \Delta\lambda)$ is the stationary covariance function, a function of longitudinal difference ($\Delta\lambda$) only. \\
 
 Now we introduce the cross variogram function on the sphere. The cross variogram function is defined as following.
 \[
 2\gamma(\phi_p, \phi_Q, \Delta\lambda) = E\left((X(\phi_P, \lambda+\Delta \lambda) - X(\phi_P, \lambda))(X(\phi_Q, \lambda+\Delta \lambda) - X(\phi_Q, \lambda))\right).
 \]
-When $\phi_P = \phi_Q$, the above expression reduces to the expression for the variogram function on the circle. \\
+When $\phi_P = \phi_Q$, the above expression reduces to the expression for the variogram function on the circle.
 
 Note that
 \begin{eqnarray*}
 \gamma(\phi_p, \phi_Q, \Delta\lambda) &=& \frac{1}{2}E\left((X(\phi_P, \lambda+\Delta \lambda) - X(\phi_P, \lambda))(X(\phi_Q, \lambda+\Delta \lambda) - X(\phi_Q, \lambda))\right) \\
 &=& \frac{1}{2} E\left(((X(\phi_P, \lambda+\Delta \lambda) - \mu_P) - (X(\phi_P, \lambda)- \mu_P)) \right. \\
 & & \left.((X(\phi_Q, \lambda+\Delta \lambda) - \mu_Q) - (X(\phi_Q, \lambda) - \mu_Q)\right) \\
-&=& \frac{1}{2} \left(cov(X(\phi_P, \lambda+\Delta \lambda), X(\phi_Q, \lambda+\Delta \lambda)) - cov(X(\phi_P, \lambda+\Delta \lambda), X(\phi_Q, \lambda)) \right. \\
+&=& \frac{1}{2} \left(cov(X(\phi_P, \lambda+\Delta \lambda), X(\phi_Q, \lambda+\Delta \lambda)) \right. \\
+& &- \left.cov(X(\phi_P, \lambda+\Delta \lambda), X(\phi_Q, \lambda)) \right. \\
 & & \left. - cov(X(\phi_P, \lambda), X(\phi_Q, \lambda + \Delta \lambda)) + cov(X(\phi_P, \lambda), X(\phi_Q, \lambda))  \right) \\
 &=& \frac{1}{2} \left(R(\phi_P, \phi_Q, 0) - R(\phi_P, \phi_Q, \Delta \lambda) - R(\phi_P, \phi_Q, -\Delta \lambda) + R(\phi_P, \phi_Q, 0)  \right) \\
 &=& R(\phi_P, \phi_Q, 0) - \frac{1}{2}(R(\phi_P, \phi_Q, \Delta \lambda) + R(\phi_P, \phi_Q, -\Delta \lambda)).
@@ -385,41 +334,28 @@ That is,
 \beq
 \gamma(\phi_p, \phi_Q, \Delta\lambda) =  R(\phi_p, \phi_Q, 0) - \frac{1}{2}(R(\phi_P, \phi_Q, \Delta \lambda) + R(\phi_P, \phi_Q, -\Delta \lambda)).
 \eeq
-We notice that the (semi-)cross variogram relates to only the even term of the cross covariance function. \cite{Wackernagel2013} argues that cross variogram might not be sufficient when there is a delayed affect, which introduces the non-zero effect from the odd component in the above decomposition. \\
+
+We notice that the (semi-)cross variogram relates to only the even term of the cross covariance function. \cite{Wackernagel2013} argues that cross variogram might not be sufficient when there is a delayed affect, which introduces the non-zero value representing from the odd component in the cross \cov decomposition.
 
 When the axially symmetric process $X(P)$ is also longitudinally reversible, that is, $R(\phi_P, \phi_Q, -\Delta \lambda) = R(\phi_P, \phi_Q, \Delta \lambda)$, we have
 \begin{eqnarray*}
 \gamma(\phi_p, \phi_Q, \Delta\lambda) =  R(\phi_p, \phi_Q, 0) - R(\phi_P, \phi_Q, \Delta \lambda),
-\end{eqnarray*}  
-which is a relationship similar to the one between the covariance and variogram functions on the circle. \\
+\end{eqnarray*}
+which is a relationship similar to the one between the covariance and variogram functions on the circle.
 
-\subsubsection{\bf The MOM cross covariance and cross variogram estimators}
+
+%%------------------------------------------------------------------%%
+\subsection{The MOM Cross Covariance and Cross Variogram Estimators}
+%%------------------------------------------------------------------%%
 
 We now provide the MOM estimators for the cross covariance $R(\phi_P, \phi_Q, \Delta \lambda)$ and cross semivariogram function $\gamma(\phi_P, \phi_Q, \Delta \lambda)$ of an axially symmetric process on the sphere. First for any two latitudes $\phi_P$ and $\phi_Q$ with $\{\lambda_i, i = 1, 2, \ldots, n\}$ representing the gridded longitudes on each circle (for simplicity, we assume $n = 2N$ is an even number), then the MOM estimator $\hat{R}(\phi_P, \phi_Q, \Delta \lambda)$ is given by
 					
-			% 	\beq \label{emprical_var}
-			% 	\hat{R}(\phi_P, \phi_Q, \theta) = \frac{1}{n_L}\sum_{k=1}^{n_L}(X(\phi_P, \theta+\lambda_k)\cdot X(\phi_Q, \lambda_k)),
-			% 	\eeq
-			% 	where $\theta = m\Delta\lambda$.
-			% 	
-			% In general, the spatial processes are stationary at a given latitude but not within latitudes.
-				
-			%If the processes are not zero mean once could simply substract the product of means from the above MOM estimator.
-			%
-			% The above estimate is clearly unbiased as we have, for fixed two locations $P, Q \in S^2$,
-			% \[
-			% 	E[\hat{R}(\phi_P, \phi_Q, \theta)] = R(P,Q).
-			% \]
-			%
-			% Later we will prove this estimator is consistent, {\em i.e.,} for any $\varepsilon > 0$,
-			% \[
-			% 	\lim_{n \to \infty} P(|\hat{R}(\phi_P, \phi_Q, \theta) - R(P,Q)| > \varepsilon) = 0.
-			% \]
-					
+
 \beq \label{cross_covariance}
 \hat{R}(\phi_P, \phi_Q, \Delta \lambda)= \frac{1}{n}\sum_{i = 1}^n (X(\phi_P, \lambda_i + \Delta \lambda) - \bar{X}_P)(X(\phi_Q, \lambda_i) - \bar{X}_Q),
 \eeq
-where $\Delta \lambda = 0, 2\pi/n, 4\pi/n, \cdots, 2(N-1)\pi/n$ and $\bar{X}_P = \frac{1}{n}\sum_{i=1}^n X(\phi_P, \lambda_i)$ and similar for $\bar{X}_Q$. Now we calculate the unbiasedness of the cross covarince estimator.	
+
+\noi where $\Delta \lambda = 0, 2\pi/n, 4\pi/n, \cdots, 2(N-1)\pi/n$ and $\bar{X}_P = \frac{1}{n}\sum_{i=1}^n X(\phi_P, \lambda_i)$ and a similar expression for $\bar{X}_Q$. Now we calculate the unbiasedness of the cross \cov estimator.	
 \begin{eqnarray*}
 				E(\hat{R}(\phi_P, \phi_Q, \Delta \lambda)) &=& \frac{1}{n}\sum_{i = 1}^n E((X(\phi_P, \lambda_i + \Delta \lambda) - \bar{X}_P)(X(\phi_Q, \lambda_i) - \bar{X}_Q)) \\
 				&=& \frac{1}{n}\sum_{i=1}^n cov(X(\phi_P, \lambda_i+\Delta \lambda), X(\phi_Q, \lambda_i)) \\
@@ -445,13 +381,15 @@ Note that,
 since
 			\begin{eqnarray*}
 				& & \sum_{i = 1}^n \sum_{j=1}^n \cos(m*(i-j)*2\pi/n) \\
-				&=& \sum_{i=1}^n \sum_{j=1}^n \left(\cos(m*i *2\pi/n)\cos(m*j*2\pi/n) - \sin(m*i *2\pi/n)\sin(m*j*2\pi/n) \right)\\
+				&=& \sum_{i=1}^n \sum_{j=1}^n \left(\cos(m*i *2\pi/n)\cos(m*j*2\pi/n)\right. \\
+				& & - \left.\sin(m*i *2\pi/n)\sin(m*j*2\pi/n) \right)\\
 				&=& \left(\sum_{i=1}^n \cos(m*i *2\pi/n)\right)^2 - \left(\sum_{i=1}^n \sin(m*i *2\pi/n)\right)^2 = 0
 			\end{eqnarray*}
 and
 			\begin{eqnarray*}
 				& & \sum_{i = 1}^n \sum_{j=1}^n \sin(m*(i-j)*2\pi/n) \\
-				&=& \sum_{i=1}^n \sum_{j=1}^n \left(\sin(m*i *2\pi/n)\cos(m*j*2\pi/n) - \cos(m*i *2\pi/n)\sin(m*j*2\pi/n) \right)\\
+				&=& \sum_{i=1}^n \sum_{j=1}^n \left(\sin(m*i *2\pi/n)\cos(m*j*2\pi/n)\right. \\
+				& & - \left.\cos(m*i *2\pi/n)\sin(m*j*2\pi/n) \right)\\
 				&=& \left(\sum_{i=1}^n \cos(m*i *2\pi/n)\right)* \left(\sum_{i=1}^n \sin(m*i *2\pi/n)\right) \\
 				& & - \left(\sum_{i=1}^n \cos(m*i *2\pi/n)\right)* \left(\sum_{i=1}^n \sin(m*i *2\pi/n)\right) = 0.
 			\end{eqnarray*}
@@ -479,8 +417,10 @@ The MOM cross covariance estimator is biased with the constant shift given by $C
 \end{prop}
 				
 \rmark{When $\phi_P = \phi_Q$, the result above reduces to that for the MOM covariance estimator on the circle.}
-				
-\rmark{If the mean at each latitude is zero, then the above cross covariance MOM estimator can be given by				
+
+\vskip 16pt				
+
+\rmark{If the mean at each latitude is zero, then the above cross covariance MOM estimator can be simplified as following			
 			\[
 				\hat{R}(\phi_P, \phi_Q, \Delta \lambda)= \frac{1}{n}\sum_{i = 1}^n X(\phi_P, \lambda_i + \Delta \lambda)X(\phi_Q, \lambda_i).
 			\]
@@ -492,10 +432,10 @@ Next we consider the MOM cross semivariogram estimator for axially symmetric pro
 			\eeq
 where $\Lambda_i = \lambda_i+\Delta \lambda$. We have
 			\begin{eqnarray*}
-				E(\hat{\gamma}_{PQ}(\Delta \lambda)) &=& \frac{1}{2n} \sum_{i=1}^n E\left(X(\phi_P, \lambda_i+\Delta \lambda) - X(\phi_P, \lambda_i))(X(\phi_Q, \lambda_i+\Delta \lambda) - X(\phi_Q, \lambda_i))\right) \\
+				E(\hat{\gamma}_{PQ}(\Delta \lambda)) &=& \frac{1}{2n} \sum_{i=1}^n E\left(X(\phi_P, \Lambda_i) - X(\phi_P, \lambda_i))(X(\phi_Q, \Lambda_i) - X(\phi_Q, \lambda_i))\right) \\
 				&=& \frac{1}{2n} \sum_{i=1}^n \left( 2\gamma(\phi_p, \phi_Q, \Delta\lambda) \right) = \gamma(\phi_p, \phi_Q, \Delta\lambda),
 			\end{eqnarray*}
-			which is unbiased. Here we summarize our finding as follow. \\
+			which is unbiased. Here we summarize our finding as follow.
 
 \begin{prop}
 The MOM cross semivariogram estimator is unbiased.

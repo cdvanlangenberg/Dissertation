@@ -9,15 +9,17 @@
 %% This is where you can put other packages that you may need. 
 %% Note that several packages including amsmath, amsthm, amsfonts,
 %% hyperref have already been loaded.  
+\usepackage{amsmath}
 \usepackage{undertilde}
 \usepackage{float}
 \usepackage{enumerate}
 \usepackage{graphicx}
 \usepackage{framed}
-\usepackage{subcaption}
+\usepackage{subcaption} %multiple figures with captions
 \usepackage{multirow}
 \usepackage{setspace}
-\usepackage[font=doublespacing]{caption}
+\usepackage[font=doublespacing]{caption} % caption double space
+\usepackage[bottom]{footmisc} %footnote page bottom
 
 
 
@@ -122,7 +124,7 @@
 %% the acknowledgements.  The dedication is optional.
 
 \begin{dedication}
-In memory of my fater, Donald Anthony Vanlangenberg
+In memory of my father, Donald Anthony Vanlangenberg
 \end{dedication}
 
 %%------------------------------------------------------------------%%
@@ -138,7 +140,7 @@ In memory of my fater, Donald Anthony Vanlangenberg
 %% The acknowledgements are optional but highly recommended.  See tips
 %% for details. 
 \begin{acknowledgements}
-\textcolor{red}{Complete later...............!}
+\input{chapters/acknowledgement.tex}
 \end{acknowledgements}
 
 %%------------------------------------------------------------------%%
@@ -190,11 +192,11 @@ In memory of my fater, Donald Anthony Vanlangenberg
 \input{chapters/circle_2.tex}
 
 %%------------------------------------------------------------------%%
-\chapter{Parametric Models on a Sphere}
+\chapter{Parametric Models and Estimation on a Sphere}
 \input{chapters/sphere_2.tex}
 
 %%------------------------------------------------------------------%%
-\chapter{Global Data Generation and Estimation on the Sphere}
+\chapter{Global Data Generation}
 \input{chapters/datageneration_3.tex}
 
 %%------------------------------------------------------------------%%
@@ -219,7 +221,6 @@ In memory of my fater, Donald Anthony Vanlangenberg
 %%------------------------------------------------------------------%%
 \appendix
 \chapter{Data snapshots for all Models}  \label{appendixA}
-%\section*{\centering Appendix A }
 \input{chapters/appendixA.tex}
 
 %%------------------------------------------------------------------%%

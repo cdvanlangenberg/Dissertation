@@ -3,7 +3,7 @@
 %\input{template.tex}
 %\begin{document}
 
-To validate if the generated axially symmetric global data follow the given covariance model, we compare the MOM cross variogram estimates from the generated data to its theoretical counterparts. As indicated in Chapter 4, although the cross variogram (\ref{cross_variogram}) only reflects the even component of the cross covariance, it is unbiased. Moreover, when the data are generated from the longitudinally reversible covariance function, the cross variogram is equivalent to cross covariance. \\
+To validate if the generated axially symmetric global data follow the given covariance model, we compare the MOM cross variogram estimates from the generated data to its theoretical counterparts. As indicated in Chapter 4, although the cross variogram (\ref{cross_variogram}) only reflects the even component of the cross covariance, it is unbiased. Moreover, when the data are generated from the longitudinally reversible covariance function, the cross variogram is equivalent to the cross covariance. \\
 
 We have conducted the simulation for different pairs of latitudes with the same number of longitudes ($n_L = 100$). The pair of latitudes has been selected from very close by to far away. The cross variogram estimates are almost identical to the theoretical values when the pair of latitudes are closer, which is not shown in the dissertation. Here we demonstrate a case with larger latitude difference ($\phi_P = 10^0, \phi_Q = 150^0$ equivalent to $70^0S$ and $60^0N$) in order to capture the largest possible errors. 
 
@@ -12,10 +12,10 @@ We have conducted the simulation for different pairs of latitudes with the same 
 \vskip 24pt
 
 %-------------------------------------%
-\subsection{\bf Comparison of MOM estimators}
+\subsection{Comparison of MOM Estimators}
 %-------------------------------------%
 
-Now we compare the cross variogram estimates given in $\eqref{cross_variogram}$, using our approach (with $C_m$) and the approach with $R(P,Q)$ directly to generate data. One can see that the estimate given by our method is closer to the true values than those from $R(P, Q)$ directly, under two different repetitions.
+Now we compare the cross variogram estimates given in $\eqref{cross_variogram}$, using our approach (with $C_m$) and the approach with $R(P,Q)$ directly to generate data respectively. One can see that the estimate given by our method is closer to the true values than those from $R(P, Q)$ directly, under 500 repetitions and 4000 repetitions respectively (Figure \ref{compare_varigram_sim_1}).
 
 \begin{figure}[H]
 	\begin{subfigure}{.5\textwidth}
@@ -42,29 +42,31 @@ Now we compare the cross variogram estimates given in $\eqref{cross_variogram}$,
 		\caption{Using paramter Set 2 and $C_m$}
 		\label{fig:sfig2}
 	\end{subfigure}
-	\caption[Using parameter Set 1 and Set 2 to compare variogram estimator for model 1]{Using parameter Set 1 and Set 2 to compare variogram estimator for model 1, solid line (blue) the theoretical values of cross variogram and dashed lines (green, purple) represents the estimates for 500 and 4000 simulations respectively. }
+	\caption[Using Parameter Set 1 and Set 2 to Perform The Variogram Estimator]{Using parameter Set 1 and Set 2 to perform the variogram estimator under model 1, solid line (blue) represents the theoretical values of cross variogram and dashed lines (green, purple) represents the estimates for 500 and 4000 simulations respectively. }
 	\label{compare_varigram_sim_1}
 \end{figure}
 
 
 %-------------------------------------%
-\subsection{\bf Results for longitudinally reversible processes}
+\subsection{Results for Longitudinally Reversible Processes}
 %-------------------------------------%
 
-The parameter $u = 0$ in all of our models yields longitudinally reversible covariance functions (see Figure \ref{fig_parameter_comp} 1(d) ). In all three models one can see that the cross variogram estimates are very close to theoretical true value (here we use $< 500$ simulations).
+Setting parameter $u = 0$ in all of our models yields longitudinally reversible covariance functions (see Figure \ref{fig_parameter_comp} 1(d) ). In all three models one can see that the cross variogram estimates are very close to theoretical true value (here we used 500 simulations, Figure \ref{logitudinal_comparison}).
 
 \begin{figure}[H]
 	\centering
-	\includegraphics [width=0.9\textwidth ]{graphs/results_variogram_comparison}
+	% \includegraphics [width=0.9\textwidth ]{graphs/results_variogram_comparison}
+	\includegraphics [scale =.9, keepaspectratio]{graphs/results_variogram_comparison}
 	% width=12cm,height=12cm
-	\caption[The cross variogram estimator comparison for longitudinally reversible]{The cross variogram estimator comparison for longitudinally reversible process using  model 1, model 2 and model 3 (when $u=0$).}
+	\caption[The Cross Variogram Estimator Comparison for Longitudinally Reversible]{The cross variogram estimator comparison for longitudinally reversible process using  model 1, model 2, and model 3 (when $u=0$).}
+	\label{logitudinal_comparison}
 \end{figure}
 
 %-------------------------------------%
-\subsection{\bf Comparison of cross covariance}
+\subsection{Comparison of Cross Covariance}
 %-------------------------------------%
 
-As indicated from Chapter 4, when $C_0(\phi_P, \phi_Q) = 0$, the axially symmetric process is a zero mean process, under which the cross covariance estimator is unbiased. Therefore we obtain the cross covariance estimates given by \eqref{cross_covariance} under model 2 and model 3, and then compare them with the true values. Here we select two pairs of latitudes, $\phi = 70, 80$ ($20^0S$ ,$10^0S$) and $\phi = 60, 120$ ($30^0S$, $40^0N$). One can note that the cross covariance estimates match with the theoretical values very well.
+As indicated from Chapter 4, when $C_0(\phi_P, \phi_Q) = 0$, the cross covariance MOM estimator is unbiased. Therefore we obtain the cross covariance MOM estimates given by \eqref{cross_covariance} under model 2 and model 3, and then compare them with the true values. Here we select two pairs of latitudes, $\phi = 70, 80$ ($20^0S$ ,$10^0S$) and $\phi = 60, 120$ ($30^0S$, $40^0N$). One can note that the cross covariance estimates match with the theoretical values very well (Figure \ref{cross_cov_comparison}).
 
 %% individual cross covaraiance graphs
 % \begin{figure}[H]
@@ -91,33 +93,36 @@ As indicated from Chapter 4, when $C_0(\phi_P, \phi_Q) = 0$, the axially symmetr
 % 	\end{center}
 % \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
 	\begin{subfigure}{1\textwidth}
 		\centering
-		\includegraphics[keepaspectratio, scale=0.8]{graphs/Model2}
+		\includegraphics[keepaspectratio, scale=0.75]{graphs/Model2}
 		\caption{Model 2 \eqref{model2}}
 		\label{fig:cov2}
 	\end{subfigure}
 	\begin{subfigure}{1\textwidth}
 		\centering
-		\includegraphics[keepaspectratio, scale=0.8]{graphs/Model3}
+		\includegraphics[keepaspectratio, scale=0.75]{graphs/Model3}
 		% \includegraphics[width=1\linewidth]{graphs/Model3}
 		\caption{Model 3 \eqref{model3}}
 		\label{fig:cov3}
 	\end{subfigure}
-\caption[Cross covariance comparison of model 2 and model 3]{Cross covariance comparison of model 2 and model 3}
+\caption[Cross Covariance Comparison of Model 2 and Model 3]{Cross covariance comparison of model 2 and model 3}
+\label{cross_cov_comparison}
 \end{figure}
 
 
 %-------------------------------------%
-\subsection{\bf Comparison of MSE}
+\subsection{Comparison of MSE}
 %-------------------------------------%
 
 In addition to comparing the biases, we also consider the mean square error (MSE) of the MOM cross variogram estimates obtained under both $C_m$ and direct $R(P,Q)$ approaches. The overall MSE is calculated based on the following formula.
 \begin{eqnarray*}
 MSE &=& \frac{1}{n_L} \sum (var + bias^2) \\
-    &= & \frac{1}{n_L} \sum_{j=1}^{n_L} \left[ \frac{1}{nn}\sum_{i=1}^{nn}\left(\hat{\gamma_{i}}(j\Delta\lambda)-\overline{\hat{\gamma}(j\Delta\lambda)})^2\right) +  (\gamma_(j\Delta\lambda) - \overline{\hat{\gamma}(j\Delta\lambda)})^2 \right]
+    &= & \frac{1}{n_L} \sum_{j=1}^{n_L} \left[ \frac{1}{nn}\sum_{i=1}^{nn}\left(\hat{\gamma_{i}}(j\delta)-\overline{\hat{\gamma}(j\delta)})^2\right) +  (\gamma_(j\delta) - \overline{\hat{\gamma}(j\delta)})^2 \right]
 \end{eqnarray*}
+
+\noi where $\delta = \frac{2\pi}{n_L}$ and $nn$ is the number of simulations.
 
 \begin{figure}[H]
 	\begin{subfigure}{.5\textwidth}
@@ -144,13 +149,15 @@ MSE &=& \frac{1}{n_L} \sum (var + bias^2) \\
 		\caption{Model 2 (pair 2) }
 		\label{fig:mes4}
 	\end{subfigure}
-	\caption[MSE comparison between $C_m$ and $R(P,Q)$ using 500 simulations]{MSE comparison between $C_m$ and $R(P,Q)$ using 500 simulations; pair 1 ($30^0S,0^0$), pair 2 ($40^0S, 10^0N$) figures (a) - (b) is the comparison for model 1 and figure (c)-(d) is the comparison for model 2 }
+	\caption[MSE Comparison Between $C_m$ and $R(P,Q)$ Using 500 Simulations]{MSE comparison between $C_m$ and $R(P,Q)$ using 500 simulations; pair 1 ($30^0S,0^0$), pair 2 ($40^0S, 10^0N$) figures (a) - (b) is the comparison for model 1 and figure (c)-(d) is the comparison for model 2 }
 	\label{mse_comparison}
 \end{figure}
 
 \begin{table}[H]
 \label{parameters}
 \centering
+\caption[MSE Comparison For $C_m$ and $R(P,Q)$ Approaches, The Values in Paranthesis]{MSE comparison for $C_m$ and $R(P,Q)$ approaches, the values in paranthesis are the bias for each pair.  Set 1 and Set 2 are referring to the set of parameters discussed in simulation setup}
+\vskip 16pt
 \begin{tabular}{|l|c|l|l|l|l|}
 \hline
 \multicolumn{2}{|c|}{}      & \multicolumn{2}{|c|}{Set 1} & \multicolumn{2}{|c|}{Set 2}  \\ \hline
@@ -168,11 +175,9 @@ Model & $(\phi_P, \phi_Q)$  & $R(P,Q)$  & $C_m$           & $R(P,Q)$  & $C_m$  \
                         & \multirow{2}{*}{(10, 150)} & 0.457    & 0.512	  & 6.034	  & 7.266	 \\ 
                         & &                            (0.0014) &(0.0001) & (0.0337)& (0.0026)	 \\ \hline
 \end{tabular}
-
-\caption[MSE comparison for $C_m$ and $R(P,Q)$ approaches, the values in paranthesis]{MSE comparison for $C_m$ and $R(P,Q)$ approaches, the values in paranthesis are the bias for each pair.  Set 1 and Set 2 are referring to the set of parameters discussed in simulation setup}
 \end{table}
 
-One can see from the above table that a variety of pairs of latitudes and two different sets of parameters are used in simulations. The MSEs from $C_m$ are comparable with those from direct $R(P,Q)$ approach and $C_m$ approach has low bias.
+One can see from the above table that a variety of pairs of latitudes and two different sets of parameters are used in simulations. The MSEs from $C_m$ are comparable with those from direct $R(P,Q)$ approach while the $C_m$ approach gives smaller bias.
 
 
 
@@ -205,25 +210,24 @@ One can see from the above table that a variety of pairs of latitudes and two di
 
 
 %-------------------------------------%
-\subsection{\bf Generated data}
+\subsection{Generated Data}
 %-------------------------------------%
 
 \begin{figure}[H]
 	\centering
 		\includegraphics [width=1\textwidth ]{graphs/Data_sample_120_model2_withmap.pdf}
-		\caption[A snapshot of global data generated based on $C_m$ approach using zero]{A snapshot of global data generated based on $C_m$ approach using zero mean random process (model 2)}
+		\caption[A Snapshot of Global Data Generated Based on $C_m$ Approach Using Zero]{A snapshot of global data generated based on $C_m$ approach using zero mean random process (model 2)}
 		\label{grid_plot_model_2}
 \end{figure}
-
-The above figure is a snapshot of the global data generated based on model 2 and could potentially be used later for research. Clearly there are spatial trends within the latitudes but not within longitudes. However we observed some inconsistencies (strong spots) when examining closer close to the boundary points of longitudes ($\lambda \rightarrow \pm \pi$).
+The Figure \ref{grid_plot_model_2} is a snapshot of the global data generated based on model 2 and could potentially be used later for research. Clearly there are spatial trends within the latitudes but not within longitudes. It is somewhat difficult to use the covariance structure to generate data when it is closer to Earth's pole (similar complexity can also be observed in MSU and TOMS data). Therefore we will produce a snapshot by generating the data on $[0,2\pi/3] \times [0,2\pi]$ (equivalent to $[-\pi/3,\pi/3] \times [-\pi,\pi]$ ) grid, with a grid resolution of $1^0\times 2^0$ ({\em i.e } $n_l = 120, n_L=180 \Rightarrow$ 21600 spatial points). However we observed some inconsistencies (strong spots) when examining closer close to the boundary points of longitudes ($\lambda \rightarrow \pm \pi$).
 
 \begin{figure}[H]
-	\label{grid_plot_model2_sim2}
 	\begin{center}
 		\includegraphics [width=0.9\textwidth ]{graphs/Data_sample_120_model2_density.pdf}
-		\caption[One snapshot of the axially symmetric data generated based on model 2]{One snapshot of the axially symmetric data generated based on model 2, grid resolution $2^0\times 1^0$ (data scale -10 and 10).}
+		\caption[One Snapshot of The Axially Symmetric Data Generated Based on Model 2]{One snapshot of the axially symmetric data generated based on model 2, grid resolution $2^0\times 1^0$ (data scale -10 and 10).}
+			\label{grid_plot_model2_sim2}
 	\end{center}
 \end{figure}
-The above figure refers to the data snapshot given by figure \eqref{grid_plot_model_2} and it is clearly evident that trends are within latitudes not within longitudes. Four snapshots of the gridded data generated based on all models are given in appendix \ref{appendixA}.
+The above Figure \ref{grid_plot_model2_sim2} refers to the data snapshot given by Figure \eqref{grid_plot_model_2} and it is clearly evident that trends are within latitudes not within longitudes. Four snapshots of the gridded data generated based on all models are given in Appendix \ref{appendixA}.
 
 %\end{document}
