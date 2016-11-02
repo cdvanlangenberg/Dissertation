@@ -9,17 +9,15 @@
 \section{Introduction}
 %==========================
 
-Statistical simulations have been one of the critical components in statistical research. Through simulations, the researcher can explore how a proposed statistical model/method behaves in the simulated and reproducible data that mimic the real applications. For axially symmetric data generation, there seems only a limited research in literature. In order to capture non-stationarity, \cite{JunStein2007} proposed spatio-tempo covariance functions on the sphere by applying first order differential operator to fully symmetric spatio-tempo processes on sphere. Further, \cite{JunStein2008} extended the above approach and used the Discrete Fourier Transform (DFT) to find out the inverse of the covariance matrix when calculating the exact likelihood for the data on regular grids. They indicated that the inverse of the covariance matrix for axially symmetric data is of the order of $O(n_l^3 n_L)$ where $n_L$ is the number of longitudes and $n_l$ the number of latitudes. However, no data generation and simulation was discussed. Li \cite{Li2013} proposed convolution methods to generate random fields with a class of $Mat\acute{e}rn$-type kernel functions by allowing the parameters in the kernel function to vary with latitudes. They conducted a simulation study by generating data based on their proposed method, which seems model dependent. In addition, the validation of generated data was not discussed. In the recent work by \cite{JeongJun2015}, they presented a number of simulation scenarios using the Mat\'{e}rn-like covariance models that include stationary and non-stationary processes. However, the data generated seems also model dependent. 
+Statistical simulations have been one of the critical components in statistical research. Through simulations, the researcher can explore how a proposed statistical model/method behaves in the simulated and reproducible data that mimic the real applications. For axially symmetric data generation, there seems only a limited research in literature. In order to capture non-stationarity, \cite{JunStein2007} proposed spatio-tempo covariance functions on the sphere by applying first order differential operator to fully symmetric spatio-tempo processes on sphere. Further, \cite{JunStein2008} extended the above approach and used the Discrete Fourier Transform (DFT) to find out the inverse of the covariance matrix when calculating the exact likelihood for the data on regular grids. They indicated that the inverse of the covariance matrix for axially symmetric data is of the order of $O(n_l^3 n_L)$ where $n_L$ is the number of longitudes and $n_l$ the number of latitudes. However, no data generation and simulation was discussed. \cite{Li2013} proposed convolution methods to generate random fields with a class of Mat\'{e}rn-type kernel functions by allowing the parameters in the kernel function to vary with latitudes. They conducted a simulation study by generating data based on their proposed method. They used maximum likelihood estimation and local smoothing to recover the given parameters. In the recent work by \cite{JeongJun2015}, they presented a number of simulation scenarios using the Mat\'{e}rn-like covariance models that include stationary and non-stationary processes. They seemed to generate data for simulations based in the given \cov structure directly. No data validation was given. As we have discussed in the previous chapters, the global data normally exhibit both complexity and high dimensionality. For example, the MSU data was observed on a $72 \times 144$ grid which results in an estimated covariance matrix with a dimension of $10368\times 10368$. Hence, it is necessary to develop an algorithm that is efficient and with low dimensionality. In this research, we use the Discrete Fourier Transform to decompose the process as Fourier series on the circles, and represent the random Fourier coefficients with circularly-symmetric complex random vectors. This has greatly reduced both computational cost as well as dimensionality. It also gives a better insight about the axially symmetric process on the sphere.\\
 
-As we have discussed in the previous chapters, the global data normally exhibit both complexity and high dimensionality. For example, the MSU data was observed on a $72 \times 144$ grid which results in an estimated covariance matrix with a dimension of $10368\times 10368$. Hence, it is necessary to develop an algorithm that is model independent. In this research, we use the Discrete Fourier Transform to decompose the process as the Fourier series on the circles, and represent the random Fourier coefficients with circularly-symmetric complex random vectors. This has greatly reduced both computational cost as wekk as dimensions. It also gives a better inside about the axially symmetric process on the sphere.
-
-This chapter is organized as follow. We first layout the details and methodologies of generating data on a sphere using circularly-symmetric random vectors. Then we provide an algorithm pseudo for global data generation process. Finally, we conduct simulations and use the cross variogram MOM estimation to validate the data generated.
+This chapter is organized as follow. We first layout the details and methodologies of generating data on a sphere using circularly-symmetric random vectors. Then we provide an algorithm for global data generation process. Finally, we conduct simulations and use the cross variogram and cross \cov MOM estimation to validate the data generated.
 		
 	%%------------------------------------------------------------------%%
 	\section{Method Development}
 	%%------------------------------------------------------------------%%
 
-Let $X(P)$ be a continuous real-valued Gaussian random process defined on a unit sphere $S^2$, where $P = (\lambda, \phi) \in S^2$ with longitude $\lambda \in [-\pi, \pi)$ and latitude $\phi \in [0, \pi]$. Following Remark 2.5 in \cite{Huang2012}, for each fixed latitude $\phi$, $X(P)$ can then be represented as a stationary process on the circle. More specifically,			
+Let $X(P)$ be a continuous real-valued Gaussian random process defined on a unit sphere $\Sp^2$, where $P = (\lambda, \phi) \in \Sp^2$ with longitude $\lambda \in [-\pi, \pi)$ and latitude $\phi \in [0, \pi]$. Following Remark 2.5 in \cite{Huang2012}, for each fixed latitude $\phi$, $X(P)$ can then be represented as a stationary process on the circle. More specifically,			
 	\beq \label{eq:sym_process}
 	X(\phi, \lambda) = \sum_{m=-\infty}^{\infty} W_m(\phi) e^{i m \lambda},
 	\eeq
@@ -27,25 +25,25 @@ where
 \[	
 W_m(\phi) = \frac{1}{2\pi} \int_0^{2\pi} X(\phi, \lambda) e^{-i m \lambda} d \lambda,
 \]
-with $\mbox{E}(W_m(\phi_P) \overline{W_n(\phi_Q)}) = \delta_{m,n} C_m(\phi_P, \phi_Q)$. That is, $\{W_m(\phi), m = 0, \pm 1, \pm 2, \ldots,\}$ are uncorrelated Gaussian complex random variables with covariance function given by $C_m(\phi_P, \phi_Q)$.		
+with $\mbox{E}(W_m(\phi_P) \overline{W_n(\phi_Q)}) = \delta{(m,n)} C_m(\phi_P, \phi_Q)$. That is, $\{W_m(\phi), \phi \in [0,\pi], m = 0, \pm 1, \pm 2, \ldots,\}$ are uncorrelated Gaussian complex random variables with covariance function given by $C_m(\phi_P, \phi_Q)$.\\		
 			
-In order to obtain axially symmetric random variates for a given latitude $\phi$, we first construct normal independent (complex) random variates $W_m(\phi)$ that follow the given  variance-covariance function $C_m(\phi_P, \phi_Q)$. To achieve this, we truncate the infinite summation in (\ref{eq:sym_process}) to obtain a finite summation up to $N$ terms as given below (with the abuse of notation $X(P)$ for notation simplicity).
+In order to obtain axially symmetric random variates for a given latitude $\phi$, we first construct normal independent (complex) random variates $W_m(\phi)$ that follow the given  variance-covariance function $C_m(\phi_P, \phi_Q)$. To achieve this, we truncate the infinite summation in (\ref{eq:sym_process}) to obtain a finite summation up to $N$ as given below (with the abuse of notation $X(P)$ for notation simplicity).
 	\beq
 	X(P) = X(\phi, \lambda) = \sum_{m=-N}^{N} W_m(\phi) e^{i m \lambda}.
 	\eeq
-
 Since $W_m$'s are independent for $m =0, \pm 1, \pm 2, \cdots, \pm N$, we have			
 	\begin{eqnarray*}
 		Cov(X(P), {X(Q)}) &=& Cov\left(\sum_{m = -N}^{N} W_m(\phi_P) e^{i m \lambda_P}, \sum_{j=-N}^{N} {W_j(\phi_Q)} e^{i j \lambda_Q}\right) \\
 		&=& \sum_{m, j} e^{i m \lambda_P} e^{-i j \lambda_Q} Cov(W_m(\phi_P), {W_j(\phi_Q)}) \\
 		&=& \sum_{m} e^{im (\lambda_P - \lambda_Q)} C_m(\phi_P, \phi_Q),
 	\end{eqnarray*}
-indicating that the Fourier series for covariance function $R(P, Q)$ has also been truncated up to $N$ terms. Let $W_m(\phi) = W_{m}^{r}(\phi) + i W_{m}^i(\phi)$ and $C_m(\phi_P, \phi_Q) = C_m^r(\phi_P, \phi_Q) + i C_m^i(\phi_P, \phi_Q)$ each in terms of a real component and an imaginary component. In order to obtain real data values that follow the given $R(P, Q)$, we require that
+indicating that the Fourier series for covariance function $R(P, Q)$ has also been truncated up to $N$. Let $W_m(\phi) = W_{m}^{r}(\phi) + i W_{m}^i(\phi)$ and $C_m(\phi_P, \phi_Q) = C_m^r(\phi_P, \phi_Q) + i C_m^i(\phi_P, \phi_Q)$. \\
+
+In order to obtain real data values that follow the given $R(P, Q)$, we require that
 \begin{itemize}
 \item $W_{-m}(\phi) = \overline{W_m(\phi)}$, and
-\item \beq \label{eq:for_real}
-	C_{-m} (\phi_P, \phi_Q) = \overline{C_m(\phi_P, \phi_Q)}, \quad \mbox{for $m = 0, 1, 2, \cdots, N$.}
-	\eeq
+\item $ C_{-m} (\phi_P, \phi_Q) = \overline{C_m(\phi_P, \phi_Q)}, \quad \mbox{for $m = 0, 1, 2, \cdots, N$.}$
+% \label{eq:for_real}
 \end{itemize}
 First we simplify the process.
 	\begin{eqnarray} \label{eq:finite_process}
@@ -55,13 +53,13 @@ First we simplify the process.
 		& & \left. +\ (W_m^r(\phi)-iW_m^i(\phi))(\cos(m \lambda) - i \sin(m \lambda))  \right]  \nonumber \\
 		&=& W_0(\phi) + 2 \sum_{m =1}^N \left[W_m^r(\phi)\cos(m\lambda) - W_m^i(\phi)\sin(m \lambda)\right].
 	\end{eqnarray}
-Now we consider the corresponding variance-covariance function for each $W_m(\phi)$.   			
+Now we consider the corresponding variance-covariance function for each $W_m(\phi)$.  \\ 			
  
-Note that to have the real-valued data observations or to obtain a real process, we need to have
+Note that to have the real-valued data observations, hence
 	\beq \label{eq:for_real}
-	C_{-m} (\phi_P, \phi_Q) = \overline{C_m(\phi_P, \phi_Q)}, \quad \mbox{for $m = 1, 2, \cdots, N$}
+	C_{-m} (\phi_P, \phi_Q) = \overline{C_m(\phi_P, \phi_Q)}, \quad \mbox{for $m = 1, 2, \cdots, N$}.
 	\eeq
-	Write \Cm = $C_m^{r}(\phi_P, \phi_Q) + iC_m^{i}(\phi_P, \phi_Q)$ and with \eqref{eq:for_real} we have
+	Writing \Cm = $C_m^{r}(\phi_P, \phi_Q) + iC_m^{i}(\phi_P, \phi_Q)$ and with \eqref{eq:for_real}, we have
 	% Le $W_m(\phi) = W_{m}^{r}(\phi) + i W_{m}^i(\phi)$ in terms of a real component and an imaginary component. We also write 
 	% and with the relationship \ref{eq:for_real} above, 
 	\[
@@ -79,7 +77,7 @@ Note that to have the real-valued data observations or to obtain a real process,
 		& & Cov(W_m^r(\phi_P), W_m^r(\phi_Q)) = Cov(W_m^i(\phi_P), W_m^i(\phi_Q)) = \frac{1}{2}C_m^r(\phi_P, \phi_Q), \label{real_cov} \\
 		& & Cov(W_m^i(\phi_P), W_m^r(\phi_Q)) = - Cov(W_m^r(\phi_P), W_m^i(\phi_Q)) = \frac{1}{2}C_m^i(\phi_P, \phi_Q). \label{im_cov}
 	\end{eqnarray}
-The above relationships \eqref{real_cov} and \eqref{im_cov} will become our basis data generation.
+The above relationships \eqref{real_cov} and \eqref{im_cov} will become our basis for data generation.
 	
 	
 	%-------------------------------------%
@@ -88,13 +86,13 @@ The above relationships \eqref{real_cov} and \eqref{im_cov} will become our basi
 	
 Now for each fixed $m = 0, 1, 2, \cdots, N$, we write  $W_m(\phi) = W_m^r(\phi) + i W_m^i(\phi)$ then $\overline{W_m}(\phi) = W_m^r(\phi) - i W_m^i(\phi)$. We may assume that $W_m^r(\phi)$ and $W_m^i(\phi)$ are independent, each following a (Gaussian) distribution with mean zero and the same variance $\sigma_m^2(\phi) = \frac{1}{2}C_m^r(\phi, \phi)$ and $C_m^i(\phi, \phi) = 0$ (that is, $W_m(\phi)$ is circularly symmetric). For a set of distinct latitudes $\Phi = \{\phi_1, \phi_2, \cdots, \phi_{n_l}\}$, we consider a sequence of complex random variables $\{W_m(\phi): \phi \in \Phi\}$, which forms a multivariate complex random vector $\utilde{W}_m = (W_m(\phi_1), W_m(\phi_2), \cdots, W_m(\phi_n))^T$ where $W_m(\phi_i) = W_m^r(\phi_i) + iW_m^r(\phi_i)$ with associated $2\times n_l$-dimensional real random vector
 \begin{eqnarray*}
-		\utilde{V}_m  &=& (W_m^r(\phi_1),\cdots,W_m^r(\phi_{n_l}), W_m^i(\phi_1), \cdots, W_m^r(\phi_{n_l}))^T \\
+		\utilde{V}_m  &=& (W_m^r(\phi_1),\cdots,W_m^r(\phi_{n_l}), W_m^i(\phi_1), \cdots, W_m^i(\phi_{n_l}))^T \\
 		&=& (Re(\utilde{W}_m), Im(\utilde{W}_m))^T.
 	\end{eqnarray*}
 
 % Following the definition for a complex circularly-symmetry random vector introduced in Chapter 1, 
 
-We now show that the Gaussian random vector $\utilde{W}_m$ is circularly-symmetric, that is, we calculate the covariance matrix $K_W = E(\utilde{W}_m\utilde{W}_m^*)$ (where $\utilde{W}_m^*$ is the conjugated transpose of $\utilde{W}_m$) and pseudo-covariance $M_W = E(\utilde{W}_m\utilde{W}_m^T)$ and show that $M_W=0$. First note that 
+We now show that the Gaussian random vector $\utilde{W}_m$ is circularly-symmetric, that is, we calculate the covariance matrix $K_W = E(\utilde{W}_m\utilde{W}_m^*)$ (where $\utilde{W}_m^*$ is the conjugated transpose of $\utilde{W}_m$) and pseudo-covariance $M_W = E(\utilde{W}_m\utilde{W}_m^T)$, and show that $M_W=0$. First note that 
 	\begin{eqnarray*}
 		M_W & = & \left(\begin{array}{cccc}
 		E[W_m(\phi_1) W_m(\phi_1) ] & E[W_m(\phi_1) W_m(\phi_2) ]  & \cdots & E[W_m(\phi_1) W_m(\phi_{n_l}) ]\\
@@ -104,7 +102,7 @@ We now show that the Gaussian random vector $\utilde{W}_m$ is circularly-symmetr
 		\end{array}
 		\right).
 	\end{eqnarray*}
-We calculate each of the above entries.	For $i,j$,
+We calculate each of the above entries.	For any $i,j$,
 	\begin{eqnarray*}
 		& & E[W_m(\phi_i) W_m(\phi_j) ]\\
 		&=& E[(W_m^r(\phi_i) + i W_m^i(\phi_i))(W_m^r(\phi_j) + i W_m^i(\phi_j))] \\
@@ -149,7 +147,7 @@ The last equality is due to the independence of $W_m^r(\phi_i)$ and $W_m^i(\phi_
 		\right)\\
 		&=& Re(K_W) + iIm(K_W), 
 	\end{eqnarray*}
-where $C_m^r(\phi_i, \phi_j) = C_{ij}^r$ and $C_m^i(\phi_i, \phi_j) = C_{ij}^i$. Now,
+where $C_m^r(\phi_i, \phi_j) \overset{\bigtriangleup}{=}  C_{ij}^r$ and $C_m^i(\phi_i, \phi_j) \overset{\bigtriangleup}{=}  C_{ij}^i$. Now,
 	\begin{eqnarray*}
 		K_V & = & E(\utilde{V}_m\utilde{V}_m^*) = E(\utilde{V}_m\utilde{V}_m^T) \\
 		&=& \left(\begin{array}{ll}
@@ -179,36 +177,53 @@ Note that $K_V$ is a non-negative definite matrix, its singular decomposition is
 	\[ 
 	K_V = P\Lambda P^T, 
 	\]
-where $\Lambda$ is a diagonal matrix with eigenvalues (real-positive) of $K_V$ and $P$ is an orthonormal matrix, containing the corresponding orthonormalized eigenvectors of $K_V$. Let $A = K_V^{1/2} = P\Lambda^{1/2} P^T$ and let $\utilde{Z} =\{z_1^{(1)}, z_2^{(1)}, \ldots, z_{n_l}^{(1)}, z_1^{(2)}, z_2^{(2)}, \ldots, z_{n_l}^{(2)}\}$ be a vector of {\em i.i.d.} standard normal random variates $\{z_i^{(1)}, z_j^{(2)}\}$, we obtain 
+where $\Lambda$ is a diagonal matrix with eigenvalues (real-positive) of $K_V$ and $P$ is an orthonormal matrix, containing the corresponding orthonormalized eigenvectors of $K_V$. Let $A = K_V^{1/2} = P\Lambda^{1/2} P^T$ and let $\utilde{Z} =\{z_1^{(1)}, z_2^{(1)}, \ldots, z_{n_l}^{(1)}, z_1^{(2)}, z_2^{(2)}, \ldots, z_{n_l}^{(2)}\}$ be a vector of {\em i.i.d.} standard normal random variates, we obtain 
 	\[\utilde{V}_m=A_{2n_{l}\times 2n_{l}}\utilde{Z}_{2n_{l}\times 1},\]
-and hence $\utilde{W}_m$.
+and hence $\utilde{W}_m$.\\
 
 Now for each latitude $\phi_l, l = 1, 2, \cdots, n_l$ and $\lambda_k, k = 1, 2, \cdots, n_L$, we denote the axially symmetric real data as $\{X(\phi_l, \lambda_k)\}$. These random variates can be obtained from the equation (\ref{eq:finite_process}), which is rewritten as below.
 	\begin{eqnarray} \label{eq:finite_process_2}
 		X(\phi_l,\lambda_k) &=& W_0(\phi_l) + 2 \sum_{m =1}^N \left[W_m^r(\phi_l)\cos(m\lambda_k) - W_m^i(\phi_l)\sin(m \lambda_k)\right].
 	\end{eqnarray}
 		
-	\rmark{For the above decomposition, one needs to compute the eigenvalues and eigenvectors of $K_V$, which has the computational cost of $\mathcal{O}((n_l)^2)$.}
+	\rmark{For the above decomposition, one needs to compute the eigenvalues and eigenvectors of $K_V$, which has the computational cost of $O((n_l)^2)$.}
 	
 	%-------------------------------------%
 	%\subsection{\bf Pseudo-code}
 	%-------------------------------------%
-	  \begin{algorithm}[Pseudo-code] \label{pseudo_code} \hfill
-		\begin{itemize}
+	%   \begin{algorithm}[Pseudo-code] \label{pseudo_code} \hfill
+	% 	\begin{itemize}
+	% 		  \begin{framed}
+	% 		\item Choose a cross covariance function, $R(P,Q)$
+	% 		\item Initialize the parameters ($C_1, C_2, a, u, p$) and choose a resolution $\phi_1,\ldots,\phi_{n_l}, \lambda_1, \ldots, \lambda_{n_L}$ (or $n_l\times n_L$),
+	% 		\item Derive \Cm based on $R(P,Q)$ where $m=0,1,\ldots,n_L/2$,
+	% 		      \begin{enumerate}
+	% 		      	\item for each $m$ get $Re(K_W)$ and $Im(K_W)$ hence obtain $K_V$
+	% 		      	\item use SVD to get $\utilde{V}_m$ ($n_l-tuples$)
+	% 		      	\item get $\utilde{W}_m$'s from $\utilde{V}_m$
+	% 		      \end{enumerate}
+	% 		      		      		
+	% 		\item Apply the equation (\ref{eq:finite_process_2}) to obtain gridded data.
+	% 		\end{framed}
+	% 	\end{itemize}
+	% \end{algorithm}
+	
+  \begin{algorithm}[Pseudo-code] \label{pseudo_code} \hfill
+			\begin{itemize}
 			  \begin{framed}
-			\item Choose a cross covariance function, $R(P,Q)$
-			\item Initialize the parameters ($C_1, C_2, a, u, p$) and choose a resolution $\phi_1,\ldots,\phi_{n_l}, \lambda_1, \ldots, \lambda_{n_L}$ (or $n_l\times n_L$),
-			\item Derive \Cm based on $R(P,Q)$ where $m=0,1,\ldots,n_L/2$,
+			\item Given a cross covariance function $R(P,Q)$ with given parameters ($C_1, C_2, a, u, p$)
+			\item Choose a resolution $\phi_1,\ldots,\phi_{n_l}, \lambda_1, \ldots, \lambda_{n_L}$ (or $n_l\times n_L$)
+			\item Obtain \{$W_m$\},
 			      \begin{enumerate}
+					\item derive \Cm $m=0,1,\ldots,n_L/2$ based on $R(P,Q)$
 			      	\item for each $m$ get $Re(K_W)$ and $Im(K_W)$ hence obtain $K_V$
-			      	\item use SVD to get $\utilde{V}_m$ ($n_l-tuples$)
+			      	\item use SVD to compute $\utilde{V}_m$ ($n_l-tuples$)
 			      	\item get $\utilde{W}_m$'s from $\utilde{V}_m$
-			      \end{enumerate}
-			      		      		
+			      \end{enumerate}		      		      		
 			\item Apply the equation (\ref{eq:finite_process_2}) to obtain gridded data.
 			\end{framed}
 		\end{itemize}
-	\end{algorithm}
+		\end{algorithm}
 	
 	%-------------------------------------%
 	\section{Simulation Setup}
@@ -228,33 +243,34 @@ set 2 : & $C_1 = 1, C_2 = 2, a = 3, u = 1$, $p=0.6$ \\ \hline
 The parameter $u$ is the location parameter and $u=0$ gives the covariance function of a longitudinally reversible process on a sphere. 
 
 	%-------------------------------------%
-	\subsection{Deriving ${\bf C_m}$ for Model 1}
+	\subsection{Deriving $\mathbf{C_m}$ for Model 1}
 	%-------------------------------------%	
 \input{chapters/getCm_2.tex}	
 
 The \Cm functions for all three proposed models are given below,
 				\begin{table}[H]
 				\centering
-				\caption[The $C_m(\cdot, \cdot)$ Functions For Covariance Models Used in Data Generation]{The $C_m(\cdot, \cdot)$ functions for covariance models used in data generation}
+				\caption[The $C_m(\cdot, \cdot)$ Functions for Covariance Models used in Data Generation]{The $C_m(\cdot, \cdot)$ functions for covariance models used in data generation}
 				\label{Cm_table}
 			  \vskip 16pt
 				\begin{tabular}{|l|l|l|}
 					\hline
 					Model   & $C_m(\phi_P, \phi_Q)$                                         & Parameters                               \\
 					\hline \hline
-					model 1 & $\tilde{C}(\phi_P, \phi_Q) Cp^m  \mbox{ and } C_0 = C\tilde{C}(\phi_P, \phi_Q)$          & $m=0, \pm 1, \pm 2,... \quad p\in (0,1)$ \\
-					model 2 & $\tilde{C}(\phi_P, \phi_Q) \frac{Cp^m}{m} \mbox{ and } C_0 = 0$ & $m=\pm 1, \pm 2,... \quad p\in (0,1)$    \\
-					model 3 & $\tilde{C}(\phi_P, \phi_Q) \frac{C}{m^4} \mbox{ and } C_0 = 0$  & $m=\pm 1, \pm 2,...$                     \\
+					model 1 & $\tilde{C}(\phi_P, \phi_Q) p^m  \mbox{ and } C_0 = \tilde{C}(\phi_P, \phi_Q)$          & $m=0, \pm 1, \pm 2,... \quad p\in (0,1)$ \\
+					model 2 & $\tilde{C}(\phi_P, \phi_Q) \frac{p^m}{m} \mbox{ and } C_0 = 0$ & $m=\pm 1, \pm 2,... \quad p\in (0,1)$    \\
+					model 3 & $\tilde{C}(\phi_P, \phi_Q) \frac{1}{m^4} \mbox{ and } C_0 = 0$  & $m=\pm 1, \pm 2,...$                     \\
 					\hline
 				\end{tabular}
 			\end{table}
-Note that out of above three models, model 1 has $C_0(\phi_P, \phi_Q) \ne 0$. Hence, from Chapter 4, the MOM cross covariance estimator is biased with the non-estimable shift. On the other hand, both models 2 and 3 have $C_0 = 0$, and hence one could use the unbiased MOM cross covariance estimator for data validation. 
+
+\noi Note that out of above three models, model 1 has $C_0(\phi_P, \phi_Q) \ne 0$. Hence, from Chapter 4, the MOM cross covariance estimator is biased with the non-estimable shift. On the other hand, both models 2 and 3 have $C_0 = 0$, and hence one could use the unbiased MOM cross covariance estimator for data validation. 
 
 %==============================================
 \subsection{Data Generation Through R(P, Q)}
 %==============================================
 
-In order to demonstrate how effective our data generation algorithm is, we also consider the data generated through the given covariance matrix $R(P, Q)$ directly. Note that the covariance matrix $R(P, Q)$ is a real block circulant matix with the following from (\cite{Li2013} and \cite{JunStein2008}). 
+In order to demonstrate how effective our data generation algorithm is, we also consider the data generated through the given covariance matrix $R(P, Q)$ directly. Note that the covariance matrix $R(P, Q)$ is a real block circulant matix with the following (\citealp{Li2013, JunStein2008}). 
  \begin{eqnarray}
 	R(P,Q) &=& \left[
 		\begin{array}{lllll}
@@ -279,5 +295,5 @@ where $R_j$'s are $n_l\times n_l$ sub-matrices of real-valued elements; here $R_
 %------------------------------------%
 \section{Discussion}
 %------------------------------------%
-The data generation algorithm proposed in this dissertation seems producing axially symmetric data that follow the given covariance models. The bias of the cross variogram estimates from the data generated based on our algorithm is generally smaller than that from taking direct $R(P,Q)^{1/2}$ approach, while maintaining the same level of MSEs. The computation cost for our algorithm is very small, with the order of $O(n_L n_l^2)$, which is much smaller than that when taking the square root through SVD decomposition for $R(P,Q)$. Note that the dimension of $R(P,Q)$ is $n_ln_L \times n_ln_L$, which might be expensive or even not possible when performing the SVD with large dimension. In addition, obtaining $R(P,Q)^{1/2}$ with the light of block circulant matrix seems unclear. \cite{Li2013} indicated that one might find the eigenvalues using the properties of block circulant matrices, more specifically, they pointed out these eigenvalues are related to sub-matrices $R_0, R_1, \ldots, R_{n_L-1}$. However, since these matrices are not necessary symmetric, their eigenvalues could be complex-valued or negative. When submatrices are symmetric, \cite{Tee2005} proposed some methods to find the eigenvalues. This will be extensively explored in the future.
+The data generation algorithm proposed in this dissertation seems producing axially symmetric data that follow the given covariance models. The bias of the cross variogram estimates from the data generated based on our algorithm is generally smaller than that from direct $R(P,Q)$ approach, while maintaining the same level of MSEs. The computation cost for our algorithm is very small, with the order of $O(n_L n_l^2)$. This is much smaller than that when taking the square root of $R(P,Q)$ through SVD decomposition. Note that the dimension of $R(P,Q)$ is $n_ln_L \times n_ln_L$, which might be expensive or even not possible when performing the SVD with large dimension. In addition, obtaining $R(P,Q)^{1/2}$ with the light of block circulant matrix seems unclear. \cite{Li2013} indicated that one might find the eigenvalues using the properties of block circulant matrices, more specifically, they pointed out these eigenvalues are related to sub-matrices $R_0, R_1, \ldots, R_{n_L-1}$. However, since these matrices are not necessary symmetric, their eigenvalues could be complex-valued or negative. When submatrices are symmetric, \cite{Tee2005} proposed some methods to find the eigenvalues. This will be extensively explored in the future.
 

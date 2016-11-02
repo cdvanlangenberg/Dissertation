@@ -9,13 +9,13 @@ We have conducted the simulation for different pairs of latitudes with the same 
 
 %The rate of convergence (\blue{should we talk about any theoretical properties of convergence since we don't have a proof for consistency}) is very slow as one can see that when number of simulations were increased from 500 to 4000 the cross variogram estimator is much closer to its theoretical value. However, the cross variogram estimator for model 2 and 3 converges much faster compared to model 1.
 
-\vskip 24pt
+\vskip 8pt
 
 %-------------------------------------%
 \subsection{Comparison of MOM Estimators}
 %-------------------------------------%
 
-Now we compare the cross variogram estimates given in $\eqref{cross_variogram}$, using our approach (with $C_m$) and the approach with $R(P,Q)$ directly to generate data respectively. One can see that the estimate given by our method is closer to the true values than those from $R(P, Q)$ directly, under 500 repetitions and 4000 repetitions respectively (Figure \ref{compare_varigram_sim_1}).
+Now we compare the cross variogram estimates given in $\eqref{cross_variogram}$, using our approach (with $C_m$) and the approach with $R(P,Q)$ directly to generate data, respectively. One can see that the estimate given by our method is closer to the true values than those from $R(P, Q)$ directly, under 500 repetitions and 4000 repetitions respectively (Figure \ref{compare_varigram_sim_1}).
 
 \begin{figure}[H]
 	\begin{subfigure}{.5\textwidth}
@@ -51,16 +51,24 @@ Now we compare the cross variogram estimates given in $\eqref{cross_variogram}$,
 \subsection{Results for Longitudinally Reversible Processes}
 %-------------------------------------%
 
-Setting parameter $u = 0$ in all of our models yields longitudinally reversible covariance functions (see Figure \ref{fig_parameter_comp} 1(d) ). In all three models one can see that the cross variogram estimates are very close to theoretical true value (here we used 500 simulations, Figure \ref{logitudinal_comparison}).
+Setting parameter $u = 0$ in all of our models yields longitudinally reversible covariance functions (see Figure \ref{fig_parameter_comp} 1(d) ). Based on 500 simulations, one can see that the cross variogram estimates from direct $R(P,Q)$ approach are slightly away from the theoretical values all three models (Figure \ref{logitudinal_comparison_rpq}). In contrast from the $C_m$ approach the estimates are very close to theoretical values (Figure \ref{logitudinal_comparison_cm}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics [scale =.9, keepaspectratio]{graphs/results_variogram_comparison_rpq}
+	\caption[Based on $R(P,Q)$ Approach the Cross Variogram Estimator Comparison]{Based on $R(P,Q)$ approach the cross variogram estimator comparison for longitudinally reversible process using  model 1, model 2, and model 3 (when $u=0$).}
+	\label{logitudinal_comparison_rpq}
+\end{figure}
 
 \begin{figure}[H]
 	\centering
 	% \includegraphics [width=0.9\textwidth ]{graphs/results_variogram_comparison}
-	\includegraphics [scale =.9, keepaspectratio]{graphs/results_variogram_comparison}
+	\includegraphics [scale =.9, keepaspectratio]{graphs/results_variogram_comparison_cm}
 	% width=12cm,height=12cm
-	\caption[The Cross Variogram Estimator Comparison for Longitudinally Reversible]{The cross variogram estimator comparison for longitudinally reversible process using  model 1, model 2, and model 3 (when $u=0$).}
-	\label{logitudinal_comparison}
+	\caption[Based on $C_m$ Approach the Cross Variogram Estimator Comparison]{Based on $C_m$ approach the cross variogram estimator comparison for longitudinally reversible process using  model 1, model 2, and model 3 (when $u=0$).}
+	\label{logitudinal_comparison_cm}
 \end{figure}
+
 
 %-------------------------------------%
 \subsection{Comparison of Cross Covariance}
@@ -96,13 +104,13 @@ As indicated from Chapter 4, when $C_0(\phi_P, \phi_Q) = 0$, the cross covarianc
 \begin{figure}
 	\begin{subfigure}{1\textwidth}
 		\centering
-		\includegraphics[keepaspectratio, scale=0.75]{graphs/Model2}
+		\includegraphics[keepaspectratio, scale=0.6]{graphs/Model2}
 		\caption{Model 2 \eqref{model2}}
 		\label{fig:cov2}
 	\end{subfigure}
 	\begin{subfigure}{1\textwidth}
 		\centering
-		\includegraphics[keepaspectratio, scale=0.75]{graphs/Model3}
+		\includegraphics[keepaspectratio, scale=0.6]{graphs/Model3}
 		% \includegraphics[width=1\linewidth]{graphs/Model3}
 		\caption{Model 3 \eqref{model3}}
 		\label{fig:cov3}
@@ -156,7 +164,7 @@ MSE &=& \frac{1}{n_L} \sum (var + bias^2) \\
 \begin{table}[H]
 \label{parameters}
 \centering
-\caption[MSE Comparison For $C_m$ and $R(P,Q)$ Approaches, The Values in Paranthesis]{MSE comparison for $C_m$ and $R(P,Q)$ approaches, the values in paranthesis are the bias for each pair.  Set 1 and Set 2 are referring to the set of parameters discussed in simulation setup}
+\caption[MSE Comparison for $C_m$ and $R(P,Q)$ Approaches, the Values in Paranthesis]{MSE comparison for $C_m$ and $R(P,Q)$ approaches, the values in paranthesis are the bias for each pair.  Set 1 and Set 2 are referring to the set of parameters discussed in simulation setup}
 \vskip 16pt
 \begin{tabular}{|l|c|l|l|l|l|}
 \hline
@@ -216,10 +224,10 @@ One can see from the above table that a variety of pairs of latitudes and two di
 \begin{figure}[H]
 	\centering
 		\includegraphics [width=1\textwidth ]{graphs/Data_sample_120_model2_withmap.pdf}
-		\caption[A Snapshot of Global Data Generated Based on $C_m$ Approach Using Zero]{A snapshot of global data generated based on $C_m$ approach using zero mean random process (model 2)}
+		\caption[A Snapshot of Global Data Generated Based on $C_m$ Approach using Zero]{A snapshot of global data generated based on $C_m$ approach using zero mean random process (model 2)}
 		\label{grid_plot_model_2}
 \end{figure}
-The Figure \ref{grid_plot_model_2} is a snapshot of the global data generated based on model 2 and could potentially be used later for research. Clearly there are spatial trends within the latitudes but not within longitudes. It is somewhat difficult to use the covariance structure to generate data when it is closer to Earth's pole (similar complexity can also be observed in MSU and TOMS data). Therefore we will produce a snapshot by generating the data on $[0,2\pi/3] \times [0,2\pi]$ (equivalent to $[-\pi/3,\pi/3] \times [-\pi,\pi]$ ) grid, with a grid resolution of $1^0\times 2^0$ ({\em i.e } $n_l = 120, n_L=180 \Rightarrow$ 21600 spatial points). However we observed some inconsistencies (strong spots) when examining closer close to the boundary points of longitudes ($\lambda \rightarrow \pm \pi$).
+The Figure \ref{grid_plot_model_2} is a snapshot of the global data generated based on model 2 and could potentially be used later for research. Clearly there are spatial trends within the latitudes but not within longitudes. It is somewhat difficult to use the covariance structure to generate data when it is closer to Earth's pole (similar complexity can also be observed in MSU and TOMS data). Therefore we produced a snapshot by generating the data on $[0,2\pi/3] \times [0,2\pi]$ (equivalent to $[-\pi/3,\pi/3] \times [-\pi,\pi]$ ) grid, with a grid resolution of $1^0\times 2^0$ ({\em i.e } $n_l = 120, n_L=180 \Rightarrow$ 21600 spatial points). However we observed some inconsistencies (strong spots) when examining closer close to the boundary points of longitudes ($\lambda \rightarrow \pm \pi$).
 
 \begin{figure}[H]
 	\begin{center}
@@ -228,6 +236,6 @@ The Figure \ref{grid_plot_model_2} is a snapshot of the global data generated ba
 			\label{grid_plot_model2_sim2}
 	\end{center}
 \end{figure}
-The above Figure \ref{grid_plot_model2_sim2} refers to the data snapshot given by Figure \eqref{grid_plot_model_2} and it is clearly evident that trends are within latitudes not within longitudes. Four snapshots of the gridded data generated based on all models are given in Appendix \ref{appendixA}.
+The above Figure \ref{grid_plot_model2_sim2} refers to the data snapshot given by Figure \eqref{grid_plot_model_2} and it is clear that trends are within latitudes not within longitudes. Four snapshots of the gridded data generated based on all models are given in Appendix \ref{appendixA}.
 
 %\end{document}
